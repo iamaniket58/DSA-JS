@@ -31,6 +31,8 @@ var topKFrequent = function (nums, k) {
     while(minPQ.size()>0){
         ans.push(minPQ.pop().value)
     }
+    //or- This is also correct
+    //return minPQ.toArray().map(x=>Number(x.val))
     return ans;
 
 };
@@ -57,6 +59,8 @@ var topKFrequent = function (nums, k) {
     while(minPQ.size()>0){
         ans.push(minPQ.pop().value)
     }
+    //or- This is also correct
+    //return minPQ.toArray().map(x=>Number(x.val))
     return ans;
 
 };
