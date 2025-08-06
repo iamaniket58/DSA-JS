@@ -33,3 +33,17 @@ var lastStoneWeight = function (stones) {
     return maxHeap.front() ?? 0;
 
 };
+
+//instaed of looping, use from Array- Just for LeetCode and also ue push and pop instaed of enqueue and dequeue
+var lastStoneWeight = function (stones) {
+    let maxHeap = new MaxPriorityQueue.fromArray(stones)
+    while (maxHeap.size() > 1) {
+        let y = maxHeap.pop();
+        let x = maxHeap.pop();
+        if (y > x) {
+            maxHeap.push(y - x)
+        }
+    }
+    return maxHeap.front() ?? 0;
+
+};
