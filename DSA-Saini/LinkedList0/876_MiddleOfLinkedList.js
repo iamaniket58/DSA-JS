@@ -47,6 +47,23 @@ var middleNode2=function(head){
     return nodes[mid];
 }
 
+//Uisng Size
+var middleNode = function(head) {
+    let size=0
+    let curr1=head;
+    while(curr1!=null){
+        curr1=curr1.next
+        size++
+    }
+    let mid=Math.floor(size/2)
+    let i=0
+    let curr=head
+    while(i<mid){
+        curr=curr.next;
+        i++
+    }
+    return curr;
+};
 
 //Test cases Below
 
