@@ -24,7 +24,7 @@ var reverseList = function(head) {
 };
 
 //This is completely my solution--temp is getting handled outside loop
-var reverseList = function(head) {
+var reverseList1 = function(head) {
     if(head==null)return null
     let prev=null
     let curr=head;
