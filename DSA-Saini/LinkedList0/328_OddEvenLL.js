@@ -24,6 +24,25 @@ var oddEvenList = function(head) {
     return head;
 };
 
+//During revision
+var oddEvenList = function (head) {
+    if(head==null)return head;
+    let odd = head;
+    let even = head.next;
+    let x=even;
+    while (even != null && even.next != null) {
+        odd.next = odd.next?.next;
+        even.next = even.next?.next;
+        odd=odd.next;
+        even=even.next;
+    }
+    odd.next=x;
+    return head;
+
+};
+
+//Test Cases
+
 function ListNode(val, next = null) {
     this.val = val;
     this.next = next;

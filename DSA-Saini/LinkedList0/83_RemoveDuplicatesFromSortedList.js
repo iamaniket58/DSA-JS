@@ -16,6 +16,7 @@ var deleteDuplicates = function (head) {
     return head
 };
 
+
 //Using 1 Variable
 
 var deleteDuplicates = function (head) {

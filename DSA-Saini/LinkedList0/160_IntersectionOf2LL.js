@@ -28,8 +28,37 @@ var getIntersectionNode = function (headA, headB) {
     }
     return null
 };
+//Slight Improvised- Avoid adding to set again
+var getIntersectionNode = function (headA, headB) {
+    let set = new Set();
+    let hA = headA;
+    let hB = headB;
+    while (hA) {
+        set.add(hA)
+        hA = hA.next
+    }
+    while (hB) {
+        if (set.has(hB)) {
+            return hB
+        }
+        hB = hB.next;
+    }
+    return null;
+};
 
-//This one is bad solution
+//Interesting Solution
+var getIntersectionNode = function (headA, headB) {
+
+    let pA = headA;
+    let pB = headB;
+    while (pA != pB) {
+        pA = pA != null ? pA.next : headB
+        pB = pB != null ? pB.next : headA
+    }
+    return pA
+};
+
+//This one is bad solution-Bruite Force Approach
 var getIntersectionNode = function (headA, headB) {
     let c1 = headA;
     while (c1 != null) {

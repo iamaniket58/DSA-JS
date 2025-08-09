@@ -33,7 +33,7 @@ var removeNthFromEnd = function (head, n) {
 };
 
 
-//Sirts Method
+//Sirs Method- attaching Sentinel Node in begining
 var removeNthFromEnd = function (head, n) {
     let sential = new ListNode();
     sential.next = head;
