@@ -10,6 +10,7 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
+//Naive approach
 var addTwoNumbers = function (l1, l2) {
     let c1 = l1;
     let c2 = l2;

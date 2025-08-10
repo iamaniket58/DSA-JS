@@ -29,6 +29,27 @@ var swapPairs = function (head) {
     return dummy.next
 };
 
+//Iteration-Revision
+var swapPairs = function (head) {
+    if (head == null || head.next==null) return head;
+    let sentinel = new ListNode();
+
+    let p = sentinel;
+    let c = head;
+    let N = head.next;
+
+    while (c != null && N != null) {
+        c.next = N.next;
+        N.next = c;
+        p.next = N;
+
+        p = c;
+        c = c.next;
+        N = c && c.next
+    }
+    return sentinel.next
+};
+
 //using Recursion
 var swapPairs = function (head) {
     //using recursion
