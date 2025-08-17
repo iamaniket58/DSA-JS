@@ -3,20 +3,11 @@
  * @param {number[][]} queries
  * @return {number[]}
  */
-//Brite Force Approach- take each range from queries array and compute XOR from nums array
-var xorQueries = function (nums, queries) {
-    let ans = [];
-    for (let [start, end] of queries) {
-        let xor = 0
-        for (let i = start; i <= end; i++) {
-            xor ^= nums[i]
-        }
-        ans.push(xor)
-    }
-    return ans;
-};
-
-//Solve with Optimized
+// Optimized Approach using Prefix XOR
+// Idea: Precompute prefix XOR so that XOR of any range [L, R]
+// can be found in O(1) time using:
+// prefix[R] ^ prefix[L - 1]   (if L > 0)
+// prefix[R]                   (if L == 0)
 var xorQueries = function (nums, queries) {
     let arr = [nums[0]];
     for (let i = 1; i < nums.length; i++) {
@@ -33,3 +24,18 @@ var xorQueries = function (nums, queries) {
     }
     return ans;
 };
+
+//Brite Force Approach- take each range from queries array and compute XOR from nums array
+//Time Limit Exceeded
+var xorQueries = function (nums, queries) {
+    let ans = [];
+    for (let [start, end] of queries) {
+        let xor = 0
+        for (let i = start; i <= end; i++) {
+            xor ^= nums[i]
+        }
+        ans.push(xor)
+    }
+    return ans;
+};
+
