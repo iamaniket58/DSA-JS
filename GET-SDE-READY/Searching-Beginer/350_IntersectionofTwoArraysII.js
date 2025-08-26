@@ -16,6 +16,23 @@ var intersect = function (nums1, nums2) {
     }
     return ans;
 };
+//using HasMap
+var intersect = function (nums1, nums2) {
+
+    let obj = {};
+    let ans = [];
+    for (let i = 0; i < nums1.length; i++) {
+        obj[nums1[i]] = (obj[nums1[i]] || 0) + 1
+    }
+    for (let i = 0; i < nums2.length; i++) {
+        if (obj[nums2[i]]) {
+            ans.push(nums2[i]);
+            obj[nums2[i]]--;
+        }
+    }
+    return ans;
+};
+
 //Follow up Ques- If array is sorted
 //Approach 2: Sorting + Two Pointers — O(m log m + n log n)
 var intersect = function (nums1, nums2) {
