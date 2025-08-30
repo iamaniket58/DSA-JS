@@ -33,6 +33,34 @@ var search = function(arr, target) {
 };
 console.log(search([3,4,5,6,7,8,0,1,2],0))
 
+
+//Taking Right Sorted Array First
+var search = function(nums, target) {
+    let l=0;
+    let r=nums.length-1;
+    while(l<=r){
+        let m=Math.floor((l+r)/2);
+        if(target==nums[m])return m;
+        else if(nums[m]<nums[r]){//right sorted
+            if(target>nums[m] && target<=nums[r]){
+                l=m+1;
+            }
+            else{
+                r=m-1
+            }
+        }
+        else{ //Left Sorted
+            if(target<nums[m] && target>=nums[l]){
+                r=m-1;
+            }
+            else{
+                l=m+1;
+            }
+        }
+    }
+    return -1
+};
+
 //Using Linear Search
 var search1 = function(arr, target) {
     for(let i=0;i<nums.length;i++){

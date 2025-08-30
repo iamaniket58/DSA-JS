@@ -16,9 +16,9 @@ var guessNumber = function(n) {
     let r=n
     while(r>=l){
         let mid=l+Math.floor((r-l)/2);
-        const c=guess(mid);
-        if(c==0)return mid;
-        else if(c==1){
+        const response=guess(mid);
+        if(response==0)return mid;
+        else if(response==1){
             l=mid+1
         }
         else{

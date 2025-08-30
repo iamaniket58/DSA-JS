@@ -10,7 +10,9 @@ var findMin = function (arr) {
     while(l<=r){
         if(arr[l]<=arr[r])return arr[l];
         let mid=Math.floor(l+(r-l)/2);
+
         if(arr[mid]<arr[mid-1])return arr[mid];
+        
         if(arr[l]<=arr[mid]){ //Left is sorted
             l=mid+1
         }
