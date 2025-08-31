@@ -3,7 +3,8 @@
  * @param {number} target
  * @return {boolean}
  */
-//check the row in which target is there, then apply Binary Search
+// Step 1: Find the row in which the target can exist (target lies between first and last element of the row)
+// Step 2: Apply Binary Search within that row
 var searchMatrix = function(matrix, target) {
     let m=matrix.length;
     let n=matrix[0].length;
@@ -26,7 +27,8 @@ var searchMatrix = function(matrix, target) {
     return false;
 };
 
-//Imagine it as a flatened array, then find the mid with mid, find row and column
+//Treat the 2D matrix as a flattened sorted array of size (m * n).
+// Perform Binary Search on the virtual array:
 var searchMatrix = function (matrix, target) {
     let m = matrix.length;
     let n = matrix[0].length;
