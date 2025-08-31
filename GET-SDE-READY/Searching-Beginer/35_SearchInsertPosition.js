@@ -18,6 +18,7 @@ var searchInsert = function(nums, target) {
         }
     }
     return l;
+    //return r+1 //This is also correct
 };
 
 //Using Linear Search
