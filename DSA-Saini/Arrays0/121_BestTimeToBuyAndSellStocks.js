@@ -19,6 +19,22 @@ var maxProfit = function (prices) {
     }
     return maxPrice;
 };
+//Optimixed- GPT
+var maxProfit = function(prices) {
+    let minPrice = Infinity;
+    let maxProfit = 0;
+
+    for (let price of prices) {
+        if (price < minPrice) {
+            minPrice = price; // buy at cheaper price
+        } else {
+            maxProfit = Math.max(maxProfit, price - minPrice);
+        }
+    }
+
+    return maxProfit;
+};
+
 //Bruite Force- Time Lmit Exceeded
 var maxProfit = function (prices) {
     let n = prices.length;
