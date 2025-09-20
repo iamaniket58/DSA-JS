@@ -8,8 +8,8 @@ var partitionLabels = function (s) {
     let ans = [];
 
     //Update First and last index of each character
-    let first = new Array(25).fill(-1);
-    let last = new Array(25).fill(-1);
+    let first = new Array(26).fill(-1);
+    let last = new Array(26).fill(-1);
     for (let i = 0; i < s.length; i++) {
         let curr = s.charCodeAt(i) - 97;
         if (first[curr] < 0) {
@@ -56,12 +56,12 @@ var partitionLabels = function (s) {
 };
 
 //Sir's Solution-- My Sol is Better
-var partitionLabels = function (s) {
+var partitionLabels1 = function (s) {
     let ans = [];
 
     //Update First and last index of each character
-    let first = new Array(25).fill(-1);
-    let last = new Array(25).fill(-1);
+    let first = new Array(26).fill(-1);
+    let last = new Array(26).fill(-1);
     for (let i = 0; i < s.length; i++) {
         let curr = s.charCodeAt(i) - 97;
         if (first[curr] < 0) {
@@ -85,5 +85,6 @@ var partitionLabels = function (s) {
     }
     return ans;
 };
+console.log(partitionLabels1("qvmwtmzzse"))
 
 
