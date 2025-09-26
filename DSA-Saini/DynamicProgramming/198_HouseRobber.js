@@ -42,6 +42,8 @@ var rob = function (nums) {
 
 
 
+
+//This is wrong- Started with this Recusrion
 var rob = function (nums) {
     let n = nums.length;
     let maxTotal = 0;
