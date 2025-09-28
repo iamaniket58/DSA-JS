@@ -3,6 +3,7 @@
  * @param {number} target
  * @return {number[][]}
  */
+//My Method
 var combinationSum = function(candidates, target) {
     let result=[];
     let backtrack=(path,start,targetSum)=>{
@@ -21,6 +22,7 @@ var combinationSum = function(candidates, target) {
     return result;
 };
 
+//Sir's Method
 var combinationSum = function(arr, target) {
     let result=[];
     let backtracking=(remainingSum,path,start)=>{
