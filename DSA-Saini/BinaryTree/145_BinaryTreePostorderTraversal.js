@@ -64,3 +64,27 @@ var postorderTraversal = function (root) {
     }
     return ans;
 }
+
+//1 Stack- My Method using visited array to mark the seen Ones
+var postorderTraversal = function (root) {
+    let stack = [];
+    let arr = [];
+    let curr = root;
+    let visited = [];
+    while (stack.length > 0 || curr != null) {
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+
+        let elem = stack[stack.length - 1];
+        if (elem.right != null && !visited.includes(elem)) {
+            curr = elem.right;
+            visited.push(elem)
+        }
+        else {
+            arr.push(stack.pop().val);
+        }
+    }
+    return arr;
+};

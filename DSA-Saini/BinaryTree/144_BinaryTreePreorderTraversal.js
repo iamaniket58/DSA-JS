@@ -40,11 +40,19 @@ var preorderTraversal1 = function (root) {
 }
 
 //Test Cases
-function TreeNode(val, left = null, right = null) {
+// function TreeNode(val, left = null, right = null) {
+//     this.val = val;
+//     this.left = left;
+//     this.right = right;
+// }
+class TreeNode {
+  constructor(val, left = null, right = null) {
     this.val = val;
     this.left = left;
     this.right = right;
+  }
 }
+
 
 // Build the tree
 let root = new TreeNode(10,

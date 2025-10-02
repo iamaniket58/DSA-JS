@@ -27,7 +27,7 @@ var inorderTraversal1 = function (root) {
 var inorderTraversal = function (root) {
     let ans = [];
     let curr = root;
-    let stacl=[]
+    let stack=[]
     while (curr != null || stack.length > 0) {
         while (curr != null) {
             stack.push(curr);
@@ -40,6 +40,23 @@ var inorderTraversal = function (root) {
     return ans
 }
 
+//Iteration- My Solution- Revision
+var inorderTraversal = function (root) {
+    if (!root) return [];
+    let arr = [];
+    let stack = [root];
+    let curr = root.left;
+    while (stack.length>0 || curr!=null) {
+        while (curr != null) {
+            stack.push(curr);
+            curr = curr.left
+        }
+        let element = stack.pop();
+        arr.push(element.val);
+        curr = element.right;
+    }
+    return arr;
+};
 
 //Test cases
 // Define the TreeNode class
