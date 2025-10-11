@@ -77,3 +77,4 @@ var coinChange = function (coins, amount) {
     }
     return amount != 0 ? -1 : totalCoins;
 };
+//Example Fail: coins = [1, 3, 4]  amount = 6

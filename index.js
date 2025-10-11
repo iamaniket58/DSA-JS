@@ -1,35 +1,48 @@
-var lowestCommonAncestor = function (root, p, q) {
-    let ans = null
-    let traverse = (curr) => {
-        if(!curr)return false
-        let left = traverse(curr.left)
-        let right = traverse(curr.right)
-        isCurrMatch = curr.val == p.val || curr.val == q.val
-        if(left && right){
-            ans=curr.val
+/**
+ * @param {string} s
+ * @return {string[][]}
+ */
+var partition = function (s) {
+    let result = [];
+    let backtrack = (path, remainingString) => {
+        if (!remainingString.length) {
+            console.log(path)
+            result.push(path);
+            return;
         }
-        if((left || right) && isCurrMatch){
-            ans=curr.val;
+        for (let i = 0; i < remainingString.length; i++) {
+            let choices = remainingString.substring(0, i + 1);
+            if (!isPalindrome(choices)) continue;
+            path.push(choices);
+            backtrack(path, remainingString.substring(i + 1));
+            path.pop();
         }
-
-        return left || right || isCurrMatch
     }
-    traverse(root)
-    return ans;
+    backtrack([], s);
+    return result;
+};
+
+let isPalindrome = (str) => {
+    let halfLength = Math.floor(str.length / 2);
+    for (let i = 0; i < halfLength; i++) {
+        if (str[i] != str[str.length - i - 1]) {
+            return false;
+        }
+    }
+    return true;
 }
 
-function TreeNode(val){
-  this.val=val;
-  this.left=null;
-  this.right=null
-}
-let root=new TreeNode(3)
-root.left=new TreeNode(5)
-root.right=new TreeNode(1)
-root.left.left=new TreeNode(6)
-root.left.right=new TreeNode(2)
-root.left.right.left=new TreeNode(7)
-root.left.right.right=new TreeNode(4)
-root.right.left=new TreeNode(0)
-root.right.right=new TreeNode(8)
-lowestCommonAncestor(root,new TreeNode(6),new TreeNode(4))
+var change = function (amount, coins) {
+    const dp = new Uint32Array(amount + 1);
+    dp[0] = 1;
+
+    for (const coin of coins) {
+        for (let i = coin; i <= amount; i += 1) {
+            dp[i] += dp[i - coin];
+        }
+    }
+
+    return dp[amount];
+};
+console.log(change(5, [1, 2, 5]));
+//console.log(partition('aab'))

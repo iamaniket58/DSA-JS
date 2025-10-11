@@ -32,7 +32,36 @@ var uniquePaths = function (m, n) {
     return recursion(0, 0);
 };
 console.log(uniquePaths(3, 2))
+//DP-Almost same as Above
+var uniquePaths = function (m, n) {
+    let dp = Array.from({length:m},()=>Array(n).fill(-1));
+    let recursion = (row, col) => {
+        if (row == m - 1 && col == n - 1) return 1;
 
+        if (dp[row][col]!=-1) return dp[row][col];
+        let right = col < n - 1 && recursion(row, col + 1);
+        let left = row < m - 1 && recursion(row + 1, col);
+        
+        return dp[row][col] = right + left;
+    }
+    return recursion(0, 0)
+};
+
+
+//DP
+var uniquePaths = function (m, n) {
+    let dp = {};
+    let recursion = (row, col) => {
+        if (row == m - 1 && col == n - 1) return 1;
+        let key = row + "," + col;
+        if (dp[key]) return dp[key];
+        let right = col < n - 1 && recursion(row, col + 1);
+        let left = row < m - 1 && recursion(row + 1, col);
+        
+        return dp[key] = right + left;
+    }
+    return recursion(0, 0)
+};
 //GPT Solution
 var uniquePaths1 = function (m, n) {
     if (m == 1 || n == 1) return 1;
