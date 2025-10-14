@@ -16,6 +16,23 @@ var lengthOfLastWord = function (s) {
     return str.length
 };
 
+//Revision
+var lengthOfLastWord = function (s) {
+    let count = 0;
+    let isCharSeen=false;
+    for (let i = s.length - 1; i >= 0; i--) {
+        if (s[i] == " " && !isCharSeen) continue;
+
+        if (s[i] != " ") {
+            count++;
+            isCharSeen=true
+        }
+        else break;
+
+    }
+    return count;
+};
+
 //using in-built Method
 var lengthOfLastWord1 = function (s) {
     s = s.trim().split(" ");

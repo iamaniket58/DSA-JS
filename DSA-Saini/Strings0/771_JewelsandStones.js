@@ -24,7 +24,7 @@ var numJewelsInStones1 = function (jewels, stones) {
     return count;
 };
 
-//using iccludes
+//using includes
 
 var numJewelsInStones2 = function (jewels, stones) {
     let count=0;
