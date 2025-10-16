@@ -3,6 +3,22 @@
  * @param {string} t
  * @return {boolean}
  */
+//revision
+var isAnagram = function (s, t) {
+    if (s.length != t.length) return false;
+    let sobj = {};
+    let tobj = {};
+    let n = s.length;
+    for (let i = 0; i < n; i++) {
+        sobj[s[i]] = (sobj[s[i]] || 0) + 1;
+        tobj[t[i]] = (tobj[t[i]] || 0) + 1;
+    }
+    for(let key in sobj){
+        if(sobj[key] != tobj[key])return false;
+    }
+    return true;
+};
+
 var isAnagram = function(s, t) {
     objs={};
     objt={};

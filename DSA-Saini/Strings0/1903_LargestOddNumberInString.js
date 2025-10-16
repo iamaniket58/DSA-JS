@@ -38,3 +38,13 @@ var largestOddNumber1 = function (nums) {
     }
     return ""
 };
+
+//Revision
+var largestOddNumber = function(num) {
+    let i=num.length-1;
+    for(;i>=0;i--){
+        if(Number(num[i])%2==1)break;
+    }
+    return num.substring(0,i+1);
+};
+

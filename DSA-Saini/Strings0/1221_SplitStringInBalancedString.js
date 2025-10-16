@@ -18,7 +18,7 @@ var balancedStringSplit = function (s) {
     return balanced
 };
 
-//Optimised Solution
+//Optimised Solution- using 1 variable
 var balancedStringSplit = function (s) {
     let temp=0;
     let count=0;
