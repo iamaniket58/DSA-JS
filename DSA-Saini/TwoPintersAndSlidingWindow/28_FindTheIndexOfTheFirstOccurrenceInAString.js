@@ -30,4 +30,21 @@ var strStr = function (haystack, needle) {
     }
     return -1;
 };
+
+//Revision
+var strStr = function (haystack, needle) {
+    let index = -1;
+    let n = needle.length;
+    for (let i = 0; i < haystack.length - n + 1; i++) {
+        let str = "";
+        for (let j = i; j < i + n; j++) {
+            str += haystack[j]
+        }
+        if(str==needle){
+            index=i;
+            break;
+        }
+    }
+    return index;
+};
 console.log(strStr1("sadbutsad", "sad"))

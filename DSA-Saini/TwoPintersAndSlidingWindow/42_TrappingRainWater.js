@@ -66,3 +66,46 @@ var trap = function (height) {
     }
     return count;
 };
+
+
+
+//Revision
+var trap = function (height) {
+    let maxL = [height[0]];
+    for (let i = 1; i < height.length; i++) {
+        maxL[i] = height[i] > maxL[i - 1] ? height[i] : maxL[i - 1];
+    }
+    let maxR = []
+    maxR[height.length - 1] = height[height.length - 1];
+    // console.log(maxR)
+    for (let i = height.length - 2; i >= 0; i--) {
+        maxR[i] = height[i] > maxR[i + 1] ? height[i] : maxR[i + 1];
+    }
+    // console.log(maxL, maxR)
+    let count = 0;
+    for (let i = 0; i < height.length; i++) {
+        let min = Math.min(maxL[i], maxR[i]);
+        let val = min - height[i]
+        if (val > 0) count+=val;
+    }
+    return count;
+};
+//1 for loop for MaxL and maxR
+var trap = function (height) {
+    let n=height.length;
+    let maxL = [height[0]];
+    let maxR = []
+    maxR[height.length - 1] = height[height.length - 1];
+    for (let i = 1; i < height.length; i++) {
+        maxL[i] = height[i] > maxL[i - 1] ? height[i] : maxL[i - 1];
+        maxR[n-1-i]=height[n-1-i] > maxR[n-i] ? height[n-1-i] : maxR[n-i];
+    }
+
+    let count = 0;
+    for (let i = 0; i < height.length; i++) {
+        let min = Math.min(maxL[i], maxR[i]);
+        let val = min - height[i]
+        if (val > 0) count += val;
+    }
+    return count;
+};

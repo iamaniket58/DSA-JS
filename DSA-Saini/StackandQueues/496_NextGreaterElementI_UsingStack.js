@@ -70,6 +70,32 @@ var nextGreaterElement = function (nums1, nums2) {
     return ans
 }
 
+//Revision
+var nextGreaterElement = function (nums1, nums2) {
+    let stack = [nums2[nums2.length - 1]];
+    let map = { [nums2[nums2.length - 1]]: -1 };
+    for (let i = nums2.length - 2; i >= 0; i--) {
+        let top = stack[stack.length - 1];
+        if(nums2[i]<top){
+            map[nums2[i]]=top;
+        }
+        else{
+            while(stack.length && nums2[i]>stack[stack.length-1])stack.pop();
+            if(stack.length==0) map[nums2[i]]=-1;
+            else{
+                 map[nums2[i]]=stack[stack.length-1];
+            }
+        }
+        stack.push(nums2[i]);
+    }
+    let ans=[];
+    for(let i=0;i<nums1.length;i++){
+        ans.push(map[nums1[i]]);
+    }
+    console.log(map);
+    return ans;
+};
+
 //Even More Optimized - Chat GPT
 
 var nextGreaterElement = function (nums1, nums2) {

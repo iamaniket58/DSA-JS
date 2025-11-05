@@ -10,6 +10,7 @@
  * @param {_Node} node
  * @return {_Node}
  */
+//Using Queue
 var cloneGraph = function(root) {
     if(!root)return null;
     let q=[root];
@@ -22,6 +23,28 @@ var cloneGraph = function(root) {
         for(let n of curr.neighbors){
             if(!visited.has(n)){
                 q.push(n);
+                visited.set(n,new Node(n.val))
+            }
+            let cloneCurr=visited.get(curr);
+            cloneCurr.neighbors.push(visited.get(n));
+        }
+    }
+    return clonedGraph;
+};
+
+//Using Stack
+var cloneGraph = function(root) {
+    if(!root)return null;
+    let stack=[root];
+    let visited=new Map();
+    let clonedGraph=new Node(root.val);
+    visited.set(root,clonedGraph);
+
+    while(stack.length>0){
+        let curr=stack.pop();
+        for(let n of curr.neighbors){
+            if(!visited.has(n)){
+                stack.push(n);
                 visited.set(n,new Node(n.val))
             }
             let cloneCurr=visited.get(curr);

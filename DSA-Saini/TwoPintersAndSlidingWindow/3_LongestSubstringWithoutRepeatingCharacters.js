@@ -42,6 +42,46 @@ var lengthOfLongestSubstring2 = function (s) {
     }
     return maxL
 }
+//Revison- Bruite force
+var lengthOfLongestSubstring = function (s) {
+    let n = s.length;
+    let maxLength = 0;
+    for (let i = 0; i < n; i++) {
+        let str = "";
+        let set = new Set();
+        for (let j = i; j < n; j++) {
+            if (!set.has(s[j])) {
+                str += s[j];
+                set.add(s[j]);
+            }
+            else {
+                break;
+            }
+        }
+        if (str.length > maxLength) maxLength = str.length;
+    }
+    return maxLength;
+};
+
+//Revision
+var lengthOfLongestSubstring = function (s) {
+    let i = j = 0;
+    let obj = {};
+    let maxLength = 0;
+    while (j < s.length) {
+        if (obj[s[j]] == undefined || obj[s[j]]<i) {
+            obj[s[j]] = j;
+            if ((j - i + 1) > maxLength) maxLength = (j - i + 1);
+        }
+        else {
+            i = obj[s[j]] + 1;
+            obj[s[j]] = j
+        }
+        j++;
+    }
+    return maxLength;
+};
+//Bruite Force- Revision One is better
 var lengthOfLongestSubstring1 = function (s) {
     if (s.length == 1) return 1;
     let str = ""
@@ -65,6 +105,8 @@ var lengthOfLongestSubstring1 = function (s) {
     }
     return longestLength > str.length ? longestLength : str.length; //edge case "abc"
 };
+
+
 
 //Thi will not work for all test cases
 var lengthOfLongestSubstring = function (s) {
