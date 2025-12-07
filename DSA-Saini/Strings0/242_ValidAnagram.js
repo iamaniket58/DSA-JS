@@ -18,6 +18,22 @@ var isAnagram = function (s, t) {
     }
     return true;
 };
+//Using Array instaed of Objects
+var isAnagram = function (s, t) {
+    if (s.length != t.length) return false;
+    let array = new Array(26).fill(0);
+    for (let i = 0; i < s.length; i++) {
+        let scharcode = s.charCodeAt(i) - 97;
+        let tcharcode = t.charCodeAt(i) - 97;
+        array[scharcode]++;
+        array[tcharcode]--;
+    }
+    for(let i=0;i<26;i++){
+        if(array[i]!=0)return false;
+    }
+    return true;
+};
+
 
 var isAnagram = function(s, t) {
     objs={};
@@ -56,7 +72,7 @@ var isAnagram1 = function(s, t) {
     return true;
 };
 
-//More Optimized
+//More Optimized --Best Solution
 var isAnagram2 = function(s, t) {
     if(s.length!=t.length)return false;
     obj={};

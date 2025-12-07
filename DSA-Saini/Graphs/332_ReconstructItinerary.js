@@ -59,7 +59,7 @@ var findItinerary1 = function (tickets) {
     dfs("JFK");
     return path;
 };
-//For loop which is not good
+//For loop which is not good- Solution will not work
 var findItinerary = function (tickets) {
     let graph = {};
     for (let [from, to] of tickets) {
@@ -84,5 +84,68 @@ var findItinerary = function (tickets) {
     return path;
 };
 
+//Revision
+var findItinerary = function (tickets) {
+    let graph = {};
+    for (let [from, to] of tickets) {
+        if (!graph[from]) graph[from] = [];
+        graph[from].push(to);
+    }
+    for (nodes in graph) {
+        graph[nodes].sort();
+    }
+
+    let path = [];
+    let dfs = (curr) => {
+        while ((graph[curr] || []).length > 0) {
+            let a = graph[curr].shift();
+            dfs(a)
+        }
+        path.push(curr);
+    }
+    dfs("JFK");
+    return path.reverse();
+};
+//Instaedad of Reverse do unshift
+var findItinerary = function (tickets) {
+    let graph = {};
+    for (let [from, to] of tickets) {
+        if (!graph[from]) graph[from] = [];
+        graph[from].push(to);
+    }
+    for (nodes in graph) {
+        graph[nodes].sort();
+    }
+
+    let path = [];
+    let dfs = (curr) => {
+        while ((graph[curr] || []).length > 0) {
+            let a = graph[curr].shift();
+            dfs(a)
+        }
+        path.unshift(curr);
+    }
+    dfs("JFK");
+    return path;
+};
+
 // findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
 findItinerary1([["JFK","BAT"],["JFK","CAT"],["CAT","JFK"]])
+///////
+// Explore the working of all 3 ways to understand working of loops while removing the elements
+let array = [2, 4, 6, 8];
+//1
+for (let x of array) {
+    array.shift()
+    console.log(x)
+}
+//2
+for (let x of array) {
+    let a=array.shift()
+    console.log(a)
+}
+//3
+while(array.length){
+    let a=array.shift()
+    console.log(a)
+}

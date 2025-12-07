@@ -1,0 +1,4 @@
+257. Binary Tree Paths
+Solve this Question to Understand Array Expand and Shrink- Works only for +ve Numbers
+    560. Subarray Sum Equals K
+ 209. Minimum Size Subarray Sum- Sliding window works only for +ve numbers so this is NA for Array Expand and Shrink
