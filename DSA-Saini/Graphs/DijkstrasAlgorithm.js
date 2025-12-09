@@ -89,7 +89,7 @@ function Dijkstras(graph, src) {
     let pq = new MinHeap(); 
     pq.push([src, 0]);
 
-    while (pq.size()) {
+    while (pq.size()) { //pq.heap.length- Both are same
         let [node, nodeDist] = pq.pop();
         if (nodeDist > dist[node]) continue; //Stale Node
 
