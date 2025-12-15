@@ -13,7 +13,7 @@ function bellmanFord(edges, V, src) {
         if (!updated) break; //Early Exit
     }
 
-    //Checking for -Ve Edge Cycle as it may lead to Infinite Loop
+    //Checking for -Ve Edge Cycle as it may lead to Infinite Loop- If it happens one more time means we have -ve edge cycle
     for (let [u, v, w] of edges) {
         if (dist[u] != Infinity && dist[u] + w < dist[v]) {
             console.log("Negative Edge Cycle Detected!!");

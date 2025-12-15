@@ -6,10 +6,10 @@ function ShortestDistance(graph, src) {
     let q = [src];
     while (q.length) {
         let curr = q.shift();
-        for (let n of graph[curr]) {
-            if (distance[n] == Infinity) {
-                distance[n] = distance[curr] + 1;
-                q.push(n);
+        for (let neighbor of graph[curr]) {
+            if (distance[neighbor] == Infinity) {
+                distance[neighbor] = distance[curr] + 1;
+                q.push(neighbor);
             }
         }
 
@@ -35,10 +35,10 @@ function ShortestDistancePath(graph, src, destination) {
     let q = [src];
     while (q.length) {
         let curr = q.shift();
-        for (let n of graph[curr]) {
-            if (distance[n] == Infinity) {
-                distance[n] = distance[curr] + 1;
-                q.push(n);
+        for (let neighbor of graph[curr]) {
+            if (distance[neighbor] == Infinity) {
+                distance[neighbor] = distance[curr] + 1;
+                q.push(neighbor);
             }
         }
 

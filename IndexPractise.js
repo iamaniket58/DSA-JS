@@ -1,23 +1,25 @@
-var findItinerary = function (tickets) {
-    let graph = {};
-    for (let [from, to] of tickets) {
-        if (!graph[from]) graph[from] = [];
-        graph[from].push(to);
-    }
-    for (nodes in graph) {
-        graph[nodes].sort();
-    }
-    
-    let path=[];
-    let dfs=(curr)=>{
-        path.push(curr);
-        while((graph[curr] || []).length>0){
-            let a=graph[curr].shift();
-            dfs(a)
+function ShortestDistance(graph, src) {
+    let dist = new Array(graph.length).fill(Infinity);
+    dist[src] = 0;
+    let bfs = (node, distance) => {
+        for (let neighbor of graph[node]) {
+
+            if (dist[neighbor] == Infinity) {
+
+                dist[neighbor] = distance + 1;
+                bfs(neighbor, distance + 1);
+            }
         }
     }
-    dfs("JFK");
-    return path;
-};
-let tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]];
-console.log(findItinerary(tickets))
+    bfs(src, 0);
+    return dist;
+}
+const graph = [
+    [1, 2],
+    [3],
+    [4],
+    [5],
+    [3],
+    [],
+];
+console.log(ShortestDistance(graph, 0))
