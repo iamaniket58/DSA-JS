@@ -18,3 +18,25 @@ var fib1= function (n) {
 console.log(new Date().toLocaleTimeString())
 console.log(fib(70))
 console.log(new Date().toLocaleTimeString())
+
+//Using DP
+let map = {};
+var fib = function (n) {
+    if (n <= 1) {
+        map[n] = n
+        return n;
+    }
+    let x = map[n - 1] == undefined ? fib(n - 1) : map[n - 1];
+    let y = map[n - 2] == undefined ? fib(n - 2) : map[n - 2];
+    map[n] = x + y
+    return map[n];
+};
+
+let store = {};
+var fib = function (n) {
+    if (n <= 1)  return n;
+    if(!store[n]){
+        store[n]=fib(n - 1)+fib(n-2);
+    }
+    return store[n];
+};
