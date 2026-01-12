@@ -25,9 +25,19 @@ var isSymmetric = function (root) {
     return isMirror(root.left, root.right)
 
 };
+//Rescursive- Revision
+var isSymmetric1 = function (root) {
+    let traverse = (left, right) => {
+        if (left == null && right == null) return true;
+        if (left == null && right != null) return false;
+        if (right == null && left != null) return false;
+        return left.val == right.val && traverse(left.left, right.right) && traverse(left.right, right.left);
+    }
+    return traverse(root.left, root.right);
+};
 
 
-var isSymmetric = function (root) {
+var isSymmetric2 = function (root) {
     //Using iteration
 
     let q = [root.left, root.right];
@@ -46,3 +56,28 @@ var isSymmetric = function (root) {
     return true
 
 };
+
+
+//Test Cases
+function TreeNode(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
+}
+
+let root = new TreeNode(1);
+
+root.left = new TreeNode(2);
+root.right = new TreeNode(2);
+
+root.left.left = new TreeNode(3);
+root.left.right = new TreeNode(4);
+
+root.right.left = new TreeNode(4);
+root.right.right = new TreeNode(3);
+
+root.left.left.right = new TreeNode(5);
+root.right.right.left = new TreeNode(5);
+
+// Expected: true (tree is symmetric)
+isSymmetric2(root);

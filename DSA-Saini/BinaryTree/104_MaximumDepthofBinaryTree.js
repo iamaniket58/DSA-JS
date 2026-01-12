@@ -24,15 +24,28 @@ var maxDepth = function (root) {
     Traverse(root, 0)
     return max + 1;
 };
+//Revision- TopDown
+var maxDepth1 = function (root) {
+    if(!root)return 0;
+
+    let maxDepth = -Infinity;
+    let traverse = (curr, depth) => {
+        if (depth > maxDepth) maxDepth = depth;
+        curr.left && traverse(curr.left, depth + 1);
+        curr.right && traverse(curr.right, depth + 1);
+    }
+    traverse(root, 1);
+    return maxDepth;
+};
 
 //Bottom-up Approach
-var maxDepth = function (root) {
+var maxDepth2 = function (root) {
 
     let maxDepth = (curr) => {
         if (curr == null) return 0;
-        let x = maxDepth(curr.left);
-        let y = maxDepth(curr.right);
-        return Math.max(x, y) + 1
+        let left = maxDepth(curr.left);
+        let right = maxDepth(curr.right);
+        return Math.max(left, right) + 1
     }
 
     return maxDepth(root);

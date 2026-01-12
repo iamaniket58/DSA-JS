@@ -44,6 +44,24 @@ var isSameTree = function (p, q) {
     // return q1.length == 0 && q2.length == 0;
 
 };
+//using 1 queue
+var isSameTree = function (p, q) {
+    let queue = [p, q];
+    while(queue.length){
+        let c1=queue.shift();
+        let c2=queue.shift();
+        if(c1==null && c2==null)continue;
+        if(c1==null || c2==null)return false;
+
+        if(c1.val !=c2.val)return false;
+
+        queue.push(c1.left);
+        queue.push(c2.left);
+        queue.push(c1.right);
+        queue.push(c2.right);
+    }
+    return true;
+};
 
 
 // TreeNode constructor
