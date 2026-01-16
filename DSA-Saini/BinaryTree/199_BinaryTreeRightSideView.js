@@ -30,6 +30,41 @@ var rightSideView = function (root) {
     }
     return ans;
 }
+
+//Recursion
+var rightSideView = function (root) {
+    let ans = [];
+    let traverse = (curr, level) => {
+        if (curr == null) return;
+        if (ans[level] == undefined) ans.push(curr.val);
+        traverse(curr.right, level + 1);
+        traverse(curr.left, level + 1);
+    }
+    traverse(root, 0);
+    return ans;
+};
+
+//Revision
+var rightSideView = function (root) {
+    if (!root) return [];
+    let q = [root];
+    let ans = [];
+    while (q.length) {
+        let qlength = q.length
+        let isleveltraversed = false;
+        for (let i = 0; i < qlength; i++) {
+            let curr = q.shift();
+            if (!isleveltraversed) {
+                ans.push(curr.val);
+                isleveltraversed = true;
+            }
+            curr.right && q.push(curr.right);
+            curr.left && q.push(curr.left);
+        }
+    }
+    return ans;
+};
+
 //This is compelly my solution using Queue
 var rightSideView = function (root) {
     if (!root) return []

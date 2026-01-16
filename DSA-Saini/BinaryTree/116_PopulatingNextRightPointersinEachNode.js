@@ -12,6 +12,25 @@
  * @param {_Node} root
  * @return {_Node}
  */
+//Iteration-Revision
+var connect = function (root) {
+    if (!root) return null;
+    let q = [root];
+    while (q.length > 0) {
+        let qlength = q.length;
+        for (let i = 0; i < qlength; i++) {
+            let curr = q.shift();
+            let nextNode = (i == qlength - 1) ?null : q[0];
+            // console.log('Curr', curr.val);
+            // console.log('Next Node', nextNode?.val);
+            curr.next = nextNode;
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+        }
+    }
+    return root;
+};
+
 //This is my solution- first store all in a queue then traverse and connect all
 var connect = function (root) {
     if (!root) return root

@@ -20,6 +20,22 @@ var strStr1 = function (haystack, needle) {
     }
     return -1;
 }
+//Revision
+var strStr = function (haystack, needle) {
+    let n = haystack.length;
+    let m = needle.length;
+    for (let i = 0; i < n - m + 1; i++) {
+        let isSubstring = true;
+        for (let j = 0; j < m; j++) {
+            if (haystack[j + i] != needle[j]) {
+                isSubstring = false;
+                break;
+            }
+        }
+        if (isSubstring) return i;
+    }
+    return -1;
+};
 //find a window of length of needle and check with needle
 var strStr = function (haystack, needle) {
     for (let i = 0; i < haystack.length - needle.length + 1; i++) {

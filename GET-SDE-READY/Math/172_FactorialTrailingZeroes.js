@@ -2,14 +2,34 @@
  * @param {number} n
  * @return {number}
  */
+//Revision-Best
+var trailingZeroes = function (n) {
+    let ans = 0;
+    while (n >= 5) {
+        let num = Math.floor(n / 5);
+        ans += num;
+        n = num
+    }
+    return ans;
+};
+var trailingZeroes = function (n) {
+    let ans = 0;
+    while (n != 0) {
+        let num = Math.floor(n / 5);
+        ans += num;
+        n = num
+    }
+    return ans;
+};
+
 var trailingZeroes = function (n) {
     let deno = 5;          // Start with the first factor of 5 
-    let ans = 0;   
+    let ans = 0;
 
     // Keep dividing n by powers of 5 until n < current power of 5
     while (n >= deno) {
-        ans += Math.floor(n / deno); 
-        deno = deno * 5;      
+        ans += Math.floor(n / deno);
+        deno = deno * 5;
     }
     return ans;
 

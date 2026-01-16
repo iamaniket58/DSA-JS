@@ -12,7 +12,7 @@
  * @return {TreeNode}
  */
 
-//Thi is amazing
+//This is amazing
 var lowestCommonAncestor = function (root, p, q) {
     let lca = null;
     let traverse = (curr) => {
@@ -54,6 +54,24 @@ var lowestCommonAncestor = function (root, p, q) {
     traverse(root)
     return ans;
 }
+
+//Practise
+var lowestCommonAncestor = function (root, p, q) {
+    let ans = null;
+    let traverse = (curr) => {
+        if (curr == null) return false;
+        let left = traverse(curr.left);
+        let right = traverse(curr.right);
+
+        if (left && right && !ans) ans = curr;
+        if ((left || right) && (curr == p || curr == q) && !ans) ans = curr;
+
+        if ((curr == p || curr == q) || left || right) return true;
+        else return false;
+    }
+    traverse(root);
+    return ans;
+};
 // ❌ bReaking for scenario ii in ques- DIdint work 
 var lowestCommonAncestor2 = function (root, p, q) {
     let lca = null;

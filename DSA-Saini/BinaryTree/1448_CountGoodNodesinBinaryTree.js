@@ -45,3 +45,20 @@ var goodNodes = function (root) {
     traverse(root, -Infinity)
     return count
 };
+
+//Revision
+var goodNodes = function (root) {
+    let count = 0;
+    let traverse = (curr, arr) => {
+        if (curr == null) return;
+        if (arr.every(val => val <= curr.val)) {
+            count++;
+        }
+        arr.push(curr.val);
+        traverse(curr.left, arr);
+        traverse(curr.right, arr);
+        arr.pop();
+    }
+    traverse(root, []);
+    return count;
+};

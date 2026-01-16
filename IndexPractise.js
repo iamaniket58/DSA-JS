@@ -1,25 +1,57 @@
-function ShortestDistance(graph, src) {
-    let dist = new Array(graph.length).fill(Infinity);
-    dist[src] = 0;
-    let bfs = (node, distance) => {
-        for (let neighbor of graph[node]) {
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+var lowestCommonAncestor = function (root, p, q) {
+    let ans = 0;
+    let traverse = (curr) => {
+        if (curr == null) return false;
 
-            if (dist[neighbor] == Infinity) {
+        let left = traverse(curr.left);
+        let right = traverse(curr.right);
 
-                dist[neighbor] = distance + 1;
-                bfs(neighbor, distance + 1);
-            }
-        }
+        if (left && right && ans==0) ans = curr.val;
+        if ((left || right) && (curr.val == p || curr.val == q) && ans==0) ans = curr.val;
+
+        if ((curr.val == p || curr.val == q) || left || right) return true;
+        else return false;
     }
-    bfs(src, 0);
-    return dist;
+    traverse(root);
+    return ans;
+};
+
+// Definition for a binary tree node.
+function TreeNode(val, left = null, right = null) {
+    this.val = val;
+    this.left = left;
+    this.right = right;
 }
-const graph = [
-    [1, 2],
-    [3],
-    [4],
-    [5],
-    [3],
-    [],
-];
-console.log(ShortestDistance(graph, 0))
+
+// Create nodes
+let root = new TreeNode(3);
+
+root.left = new TreeNode(5);
+root.right = new TreeNode(1);
+
+root.left.left = new TreeNode(6);
+root.left.right = new TreeNode(2);
+
+root.right.left = new TreeNode(0);
+root.right.right = new TreeNode(8);
+
+root.left.right.left = new TreeNode(7);
+root.left.right.right = new TreeNode(4);
+
+// p and q
+let p = root.left;               // Node with value 5
+let q = root.left.right.right;   // Node with value 4
+console.log(lowestCommonAncestor(root,5,1));

@@ -58,6 +58,26 @@ var isSubtree = function (root, subRoot) {
     return false
 };
 
+var isSubtree = function (root, subRoot) {
+    let ans=false;
+    let traverse = (curr) => {
+        if (curr == null) return;
+        if (curr.val == subRoot.val) {
+            let treecheck = (tree1, tree2) => {
+                if(!tree1 && !tree2)return true;
+                if(!tree1 || !tree2)return false;
+                return tree1.val == tree2.val &&
+                    treecheck(tree1.left, tree2.left) &&
+                    treecheck(tree1.right, tree2.right)
+            }
+            if(treecheck(curr, subRoot))ans=true
+        }
+        traverse(curr.left);
+        traverse(curr.right);
+    }
+    traverse(root);
+    return ans;
+};
 
 
 //Test cases

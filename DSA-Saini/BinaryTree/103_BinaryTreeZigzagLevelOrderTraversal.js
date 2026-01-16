@@ -10,6 +10,7 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
+//Iterative
 var zigzagLevelOrder = function (root) {
     if (!root) return []
     let q = [root];
@@ -34,4 +35,46 @@ var zigzagLevelOrder = function (root) {
         ans.push(levelArr)
     }
     return ans
+};
+
+//Recursive
+var zigzagLevelOrder = function (root) {
+    let ans = [];
+    let traverse = (curr, level) => {
+        if (curr == null) return;
+        if (!ans[level]) ans[level] = [];
+
+        if (level % 2 == 0) ans[level].push(curr.val);
+        else ans[level].unshift(curr.val);
+
+        traverse(curr.left, level + 1);
+        traverse(curr.right, level + 1);
+    }
+    traverse(root,0);
+    return ans;
+};
+
+//Revision
+var zigzagLevelOrder = function (root) {
+    if (!root) return [];
+    let q = [root];
+    let zigzag = false;
+    let ans = [];
+    while (q.length) {
+        let qlength = q.length;
+        zigzag = !zigzag;
+        let levelArray = [];
+        for (let i = 0; i < qlength; i++) {
+            let curr = q.shift();
+            if (zigzag) levelArray.push(curr.val);
+            else levelArray.unshift(curr.val);
+
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+
+        }
+        ans.push(levelArray);
+    }
+
+    return ans;
 };
