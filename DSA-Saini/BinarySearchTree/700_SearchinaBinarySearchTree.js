@@ -11,6 +11,22 @@
  * @param {number} val
  * @return {TreeNode}
  */
+
+//Revision
+var searchBST = function (root, val) {
+    let traverse = (curr) => {
+        if (!curr) return null;
+        if (curr.val == val) return curr;
+        if (val > curr.val) {
+            return traverse(curr.right);
+        }
+        else {
+            return traverse(curr.left);
+        }
+    }
+    return traverse(root);
+};
+
 //My SOlution
 //Top Down- Simple Solution
 var searchBST = function (root, val) {
@@ -63,7 +79,10 @@ var searchBST = function (root, val) {
 }
 
 //Smallest Solution
-var sreachBST=function(root,val){
-    if(!root || root.val==val)return root
-    return root.val>val?sreachBST(root.left,val):searchBST(root.right,val)
+var sreachBST = function (root, val) {
+    if (!root || root.val == val) return root;
+
+    return root.val > val ?
+        sreachBST(root.left, val) :
+        searchBST(root.right, val)
 }

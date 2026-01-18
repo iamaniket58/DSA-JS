@@ -60,3 +60,35 @@ var isValidBST = function (root) {
     }
     return true
 };
+
+//Revision
+var isValidBST = function (root) {
+    let traverse = (curr, h, l) => {
+        if(!curr)return true;
+        let val1 = val2 = true;
+        if (h !=null) {
+            val1 = curr.val < h
+        }
+        if (l !=null) {
+            val2 = curr.val > l
+        }
+        return val1 && val2 &&
+            traverse(curr.left, curr.val, l) &&
+            traverse(curr.right, h, curr.val);
+    }
+    return traverse(root, null, null);
+};
+
+var isValidBST = function (root) {
+    let traverse = (curr, high, low) => {
+        if (!curr) return true;
+
+        if (high != null && curr.val >= high) return false;
+        if (low != null && curr.val <= low) return false;
+
+        return traverse(curr.left, curr.val, low) &&
+            traverse(curr.right, high, curr.val);
+
+    }
+    return traverse(root, null, null);
+};

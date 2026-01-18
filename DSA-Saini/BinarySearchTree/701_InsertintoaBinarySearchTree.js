@@ -65,16 +65,25 @@ var insertIntoBST3 = function (root, val) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
+//Revision- Its not good method TBH
+var insertIntoBST = function (root, val) {
+    if(!root)return new TreeNode(val);
+    let traverse = (curr,parent,str) => {
+        if(!curr){
+            if(str=='right')parent.right=new TreeNode(val);
+            else parent.left=new TreeNode(val);
+            return;
+        }
+        if (val > curr.val) {
+            traverse(curr.right,curr,'right');
+        }
+        else {
+            traverse(curr.left,curr,'left')
+        }
+    }
+    traverse(root,null,'');
+    return root;
+};
 
 
 //Test Cases

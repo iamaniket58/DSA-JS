@@ -12,6 +12,22 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
+//Sirs Solution- Best
+var lowestCommonAncestor = function (root, p, q) {
+    let traverse = (curr) => {
+        if (curr.val > p.val && curr.val > q.val) {
+            return traverse(curr.left)
+        }
+        else if (curr.val < p.val && curr.val < q.val) {
+            return traverse(curr.right)
+        }
+        else {
+            return curr
+        }
+    }
+    return traverse(root)
+}
+
 //My Solution- if both pand q is greater than curr value then ans in right, if both less ands in left, if 1 bigger one smaller then this is the ans
 var lowestCommonAncestor = function (root, p, q) {
     let ans = null;
@@ -36,22 +52,6 @@ var lowestCommonAncestor = function (root, p, q) {
     return ans;
 
 };
-
-//Sirs Solution
-var lowestCommonAncestor = function (root, p, q) {
-    let traverse = (curr) => {
-        if (curr.val > p.val && curr.val > q.val) {
-            return traverse(curr.left)
-        }
-        else if (curr.val < p.val && curr.val < q.val) {
-            return traverse(curr.right)
-        }
-        else {
-            return curr
-        }
-    }
-    return traverse(root)
-}
 
 //Beter way of writing the same solution
 var lowestCommonAncestor = function (root, p, q) {

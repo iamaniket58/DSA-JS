@@ -21,12 +21,12 @@ var lowestCommonAncestor = function (root, p, q) {
         let left = traverse(curr.left)
         let right = traverse(curr.right)
         if (curr.val == p.val || curr.val == q.val) {
-            count++
+            count++;
         }
-        if((count+left+right)==2 && lca==null){ //lca==null- Update only once when lca doesn't exists
-            lca=curr;
+        if ((count + left + right) == 2 && lca == null) { //lca==null- Update only once when lca doesn't exists
+            lca = curr;
         }
-        return count+left+right
+        return count + left + right
 
     }
     traverse(root)
@@ -36,16 +36,16 @@ var lowestCommonAncestor = function (root, p, q) {
 var lowestCommonAncestor = function (root, p, q) {
     let ans = null
     let traverse = (curr) => {
-        if(!curr)return false
+        if (!curr) return false
         let left = traverse(curr.left)
         let right = traverse(curr.right)
         isCurrMatch = curr.val == p.val || curr.val == q.val
-        if(left && right){
-            ans=curr
+        if (left && right) {
+            ans = curr
             return
         }
-        if((left || right) && isCurrMatch){
-            ans=curr
+        if ((left || right) && isCurrMatch) {
+            ans = curr
             return
         }
 
