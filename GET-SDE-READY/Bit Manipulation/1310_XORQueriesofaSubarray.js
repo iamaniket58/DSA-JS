@@ -39,3 +39,16 @@ var xorQueries = function (nums, queries) {
     return ans;
 };
 
+var xorQueries = function (arr, queries) {
+    let array = [];
+    for (let i = 0; i < queries.length; i++) {
+        let q1 = queries[i][0];
+        let q2 = queries[i][1];
+        let xor = 0;
+        for (let j = q1; j <= q2; j++) {
+            xor = xor ^ arr[j];
+        }
+        array.push(xor)
+    }
+    return array;
+};

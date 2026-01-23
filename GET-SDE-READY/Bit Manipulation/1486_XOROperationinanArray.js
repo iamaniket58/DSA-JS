@@ -23,3 +23,24 @@ var xorOperation = function (n, start) {
     }
     return xorResult;
 };
+
+//Revision
+var xorOperation = function (n, start) {
+    let arr = [];
+    let xor=0;
+    for (let i = 0; i < n; i++) {
+        arr[i] = start + 2 * i;
+    }
+    for (let i = 0; i < n; i++) {
+        xor=xor^arr[i];
+    }
+    return xor;
+
+};
+var xorOperation = function (n, start) {
+    let xor=0;
+    for (let i = 0; i < n; i++) {
+        xor = xor ^ (start + 2 * i);
+    }
+    return xor;
+};

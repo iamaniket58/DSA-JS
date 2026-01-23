@@ -3,8 +3,6 @@
  * @return {number}
  */
 
-
-
 //Optimized
 var totalHammingDistance = function (nums) {
     let ans = 0;
@@ -25,8 +23,26 @@ var totalHammingDistance = function (nums) {
     return ans;
 };
 
-//Bruite Force- Time Limit Exceeds
+//Bruite-Force
 var totalHammingDistance = function (nums) {
+    let totalHamming = 0;
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            let xor = nums[i] ^ nums[j];
+            let count = 0;
+            while (xor != 0) {
+                if (xor & 1) count++;
+                xor = xor >> 1;
+            }
+            totalHamming += count;
+
+        }
+    }
+    return totalHamming;
+};
+
+//Bruite Force- Time Limit Exceeds
+var totalHammingDistance1 = function (nums) {
     let ans = 0;
     for (let i = 0; i < nums.length - 1; i++) {
         for (let j = i + 1; j < nums.length; j++) {
@@ -58,3 +74,4 @@ function countSetBitsByConvertingToBinary(num) {
     return count
 
 }
+console.log(totalHammingDistance([4, 14, 2]))
