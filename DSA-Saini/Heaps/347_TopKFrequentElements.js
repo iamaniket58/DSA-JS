@@ -20,15 +20,15 @@ var topKFrequent = function (nums, k) {
     //     map.set(num,(map.get(num) || 0)+1)
     // }
 
-    let minPQ=new MinPriorityQueue(x=>x.freq); //priority according to Frequency
-    for(let [key, freq] of map){
-        minPQ.push({value:+key,freq:freq})
-        if(minPQ.size()>k){
+    let minPQ = new MinPriorityQueue(x => x.freq); //priority according to Frequency
+    for (let [key, freq] of map) {
+        minPQ.push({ value: +key, freq: freq })
+        if (minPQ.size() > k) {
             minPQ.pop() // minPQ.dequeue()
         }
     }
-    let ans=[]
-    while(minPQ.size()>0){
+    let ans = []
+    while (minPQ.size() > 0) {
         ans.push(minPQ.pop().value)
     }
     //or- This is also correct
@@ -38,25 +38,25 @@ var topKFrequent = function (nums, k) {
 };
 //Using priority Queue-Using Object
 var topKFrequent = function (nums, k) {
-    let obj={};
+    let obj = {};
     for (let i = 0; i < nums.length; i++) {
         if (!obj[nums[i]]) {
-           obj[nums[i]]=1
+            obj[nums[i]] = 1
         }
         else {
-           obj[nums[i]]++;
+            obj[nums[i]]++;
         }
     }
 
-    let minPQ=new MinPriorityQueue(x=>x.freq); //priority according to Frequency
-    for(let key in obj){
-        minPQ.push({value:+key,freq:obj[key]})
-        if(minPQ.size()>k){
+    let minPQ = new MinPriorityQueue(x => x.freq); //priority according to Frequency
+    for (let key in obj) {
+        minPQ.push({ value: +key, freq: obj[key] })
+        if (minPQ.size() > k) {
             minPQ.pop() // minPQ.dequeue()
         }
     }
-    let ans=[]
-    while(minPQ.size()>0){
+    let ans = []
+    while (minPQ.size() > 0) {
         ans.push(minPQ.pop().value)
     }
     //or- This is also correct
@@ -65,8 +65,8 @@ var topKFrequent = function (nums, k) {
 
 };
 // This is my complete solution — it uses a Map to count the frequency of elements, then organizes them into a 2D array (bucket sort), and finally traverses the array from the end to extract the top k frequent elements.
-var topKFrequent = function (nums, k) {
-     // Step 1: Count frequency of each number
+var topKFrequent1 = function (nums, k) {
+    // Step 1: Count frequency of each number
     let obj = {};
     for (let i = 0; i < nums.length; i++) {
         obj[nums[i]] = (obj[nums[i]] || 0) + 1
@@ -94,3 +94,23 @@ var topKFrequent = function (nums, k) {
     }
     return ans
 };
+
+//This is using MaxPriority Queue- Not recommended
+var topKFrequent = function (nums, k) {
+    let obj = {};
+    for (let num of nums) {
+        obj[num] = (obj[num] || 0) + 1;
+    }
+    let mq = new MaxPriorityQueue(x => x.freq);
+    for (let key in obj) {
+        mq.enqueue({ value: key, freq: obj[key] })
+    }
+
+    let ans = [];
+    for (let i = 0; i < k; i++) {
+        ans.push(+mq.dequeue().value);
+    }
+    return ans;
+
+};
+console.log(topKFrequent1([1, 2, 1, 2, 1, 2, 3, 1, 3, 2], 2))

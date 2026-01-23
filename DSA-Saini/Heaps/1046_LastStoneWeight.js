@@ -47,3 +47,18 @@ var lastStoneWeight = function (stones) {
     return maxHeap.front() ?? 0;
 
 };
+
+//Revision
+var lastStoneWeight = function (stones) {
+    let pq = new MaxPriorityQueue();
+    for (let num of stones) {
+        pq.enqueue(num);
+    }
+    while (pq.size() > 1) {
+        let stone1 = pq.dequeue();
+        let stone2 = pq.dequeue();
+        if (stone1 == stone2) continue;
+        pq.enqueue(stone1 - stone2);
+    }
+    return pq.front() ?? 0;
+};

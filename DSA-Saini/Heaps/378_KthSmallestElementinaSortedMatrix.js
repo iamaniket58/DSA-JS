@@ -52,3 +52,15 @@ var kthSmallest = function (matrix, k) {
     }
     return minHeap.pop().val;
 };
+
+//Bruite-Force
+var kthSmallest = function (matrix, k) {
+    let pq=new MaxPriorityQueue();
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            pq.enqueue(matrix[i][j]);
+            if(pq.size()>k)pq.dequeue();
+        }
+    }
+    return pq.front();
+};
