@@ -47,3 +47,35 @@ var permuteUnique = function(nums) {
     backtrack([]);
     return result;
 };
+
+//Revision- Best Solution
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permuteUnique = function (nums) {
+    nums.sort((a, b) => a - b);
+    let used = new Array(nums.length).fill(false);
+    let result = [];
+    let backtrack = (path) => {
+        if (path.length == nums.length) {
+            result.push([...path]);
+            return;
+        }
+        for (let i = 0; i < nums.length; i++) {
+            // if ((i > 0 && nums[i] == nums[i - 1]) || used[i]) continue;
+            if (used[i]) continue;
+            if (i > 0 && nums[i] === nums[i - 1] && !used[i - 1]) continue;
+
+            path.push(nums[i]);
+            used[i] = true;
+
+            backtrack(path);
+
+            path.pop();
+            used[i] = false;
+        }
+    }
+    backtrack([]);
+    return result;
+};

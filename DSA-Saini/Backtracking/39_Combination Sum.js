@@ -37,3 +37,22 @@ var combinationSum = function(arr, target) {
     backtracking(target,[],0)
     return result;
 };
+
+//Revision
+var combinationSum = function (candidates, target) {
+    let result = [];
+    let backtrack = (path, start, sum) => {
+        for (let i = start; i < candidates.length; i++) {
+            if (sum == target) {
+                result.push([...path]);
+                return;
+            }
+            if (sum > target) return;
+            path.push(candidates[i]);
+            backtrack(path, i, sum + candidates[i]);
+            path.pop();
+        }
+    }
+    backtrack([], 0, 0);
+    return result;
+};

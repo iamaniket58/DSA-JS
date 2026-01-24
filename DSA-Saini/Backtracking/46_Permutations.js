@@ -2,6 +2,27 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
+//Optimzed Version
+var permute = function (nums) {
+    let result = [];
+    let used = new Array(nums.length).fill(false);
+    let backtrack = (path) => {
+        if (path.length == nums.length) {
+            result.push([...path]);
+        }
+        for (let i = 0; i < nums.length; i++) {
+            if(used[i])continue;
+            path.push(nums[i]);
+            used[i]=true;
+            backtrack(path);
+            path.pop();
+            used[i]=false;
+        }
+    }
+    backtrack([]);
+    return result;
+};
+
 var permute = function (nums) {
     let result = [];
     let backtrack = (path) => {
@@ -21,7 +42,7 @@ var permute = function (nums) {
     return result
 };
 
-//This is my method which i inspired by Permutation II Solution, Here i m checking choices array
+//This is my method which is inspired by Permutation II Solution, Here i m checking choices array
 var permute = function(nums) {
     let result=[];
     let backtrack=(path,choices)=>{
