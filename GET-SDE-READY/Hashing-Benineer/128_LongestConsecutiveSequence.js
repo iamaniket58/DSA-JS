@@ -2,6 +2,8 @@
  * @param {number[]} nums
  * @return {number}
  */
+//3 ways to solve:- 1. Sorting, 2. Creating Set, 3. Creating table- Creaing Set is the best one
+
 //Revision
 var longestConsecutive = function (nums) {
     let set = new Set(nums);
@@ -161,6 +163,23 @@ var longestConsecutive = function (nums) {
         }
     }
     return maxCount > count ? maxCount : count;
+};
+
+//revision
+var longestConsecutive = function (nums) {
+    let set = new Set(nums);
+    let max = -Infinity;
+    for (let num of nums) {
+        let temp = num;
+        let count = 0
+        while (true) {
+            if (set.has(temp + 1)) count++;
+            else break;
+            temp++
+        }
+        if (count > max) max = count;
+    }
+    return max == -Infinity ? 0 : max + 1
 };
 console.log(longestConsecutive([100,4,200,1,3,2]))
 console.log(longestConsecutive([0,3,7,2,5,8,4,6,0,1]))
