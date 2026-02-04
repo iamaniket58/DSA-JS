@@ -22,6 +22,19 @@ var invertTree = function (root) {
     return root;
 };
 
+var invertTree = function (root) {
+    let traverse = (curr) => {
+        if (!curr) return;
+        let temp = curr.left;
+        curr.left = curr.right;
+        curr.right = temp;
+        traverse(curr.left);
+        traverse(curr.right);
+    }
+    traverse(root);
+    return root;
+};
+
 //Solve with Iterative when revision
 var invertTree1 = function (root) {
     if (!root) return root
@@ -36,6 +49,18 @@ var invertTree1 = function (root) {
     }
     return root;
 };
+
+    if (!root) return root
+    let q = [root];
+    while (q.length > 0) {
+        let curr = q.shift();
+        let temp = curr.left;
+        curr.left = curr.right;
+        curr.right = temp;
+        curr.left && q.push(curr.left)
+        curr.right && q.push(curr.right)
+    }
+    return root;
 
 
 //Test cases

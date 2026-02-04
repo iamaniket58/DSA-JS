@@ -2,6 +2,24 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
+
+//Best Solution 🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡🫡
+var groupAnagrams = function (strs) {
+    let obj = {};
+    for (s of strs) {
+        let freqArr = new Array(26).fill(0);
+        for (let i = 0; i < s.length; i++) {
+            let charCode = s.charCodeAt(i) - 97;
+            freqArr[charCode]++
+        }
+        let key = freqArr.join("#");
+        // console.log(key)
+        if (!obj[key]) obj[key] = [];
+        obj[key].push(s)
+    }
+    return Object.values(obj);
+};
+
 var groupAnagrams = function(strs) {
     let map=new Map();
     for(let i=0;i<strs.length;i++){

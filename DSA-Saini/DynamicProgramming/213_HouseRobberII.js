@@ -38,3 +38,20 @@ var rob = function (nums) {
     return Math.max(helper(0, n - 2), helper(1, n - 1))
 
 };
+
+//Revision
+var rob = function (nums) {
+    if (nums.length == 1) return nums[0];
+    if (nums.length == 2) return Math.max(nums[0], nums[1]);
+    return Math.max(robHelper1(0, nums.length - 2, nums), robHelper1(1, nums.length - 1, nums));
+};
+let robHelper1 = (start, end, nums) => {
+    // let dp = [nums[start], Math.max(nums[start], nums[start + 1])];
+    let dp=[];
+    dp[start] = nums[start];
+    dp[start + 1] = Math.max(nums[start], nums[start + 1])
+    for (let i = start + 2; i <= end; i++) {
+        dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1]);
+    }
+    return dp[end];
+}

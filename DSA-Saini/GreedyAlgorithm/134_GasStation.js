@@ -35,3 +35,23 @@ var canCompleteCircuit = function (gas, cost) {
     }
     return -1;
 };
+
+//Bruite Force- Revision
+var canCompleteCircuit = function (gas, cost) {
+    let n = gas.length;
+    for (let i = 0; i < n; i++) {
+        if (gas[i] < cost[i]) continue;
+        let totalGas = 0;
+        let j = i;
+        let traversed = false;
+        while (true) {
+            if (traversed && j == i) return i;
+            totalGas += gas[j] - cost[j];
+            if (totalGas < 0) break;
+            if (j == n - 1) j = -1;
+            j++;
+            traversed = true;
+        }
+    }
+    return -1;
+};

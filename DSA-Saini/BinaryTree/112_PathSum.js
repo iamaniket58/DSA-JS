@@ -26,7 +26,19 @@ var hasPathSum = function (root, targetSum) {
         return x || y
     }
     return traverse(root, targetSum)
-}
+};
+
+//Bottom- Up Approach- Revision
+var hasPathSum = function(root, targetSum) {
+    let traverse=(curr,sum)=>{
+        if(!curr)return false;
+        let currSum=sum+curr.val;
+        if(!curr.left && !curr.right && currSum==targetSum)return true;
+        return traverse(curr.left,currSum) ||
+            traverse(curr.right,currSum);
+    }
+    return traverse(root,0);
+};
 
 //Bottom Up Approach-More Cleaner
 var hasPathSum = function (root, targetSum) {
@@ -37,7 +49,7 @@ var hasPathSum = function (root, targetSum) {
     return hasPathSum(root.left, targetSum - root.val) ||
         hasPathSum(root.right, targetSum - root.val)
 }
-//Bottom Up-Revision
+//Top Down -Revision
     let traverse = (curr, sum) => {
 
         if (curr == null) return false;

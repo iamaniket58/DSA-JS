@@ -49,10 +49,7 @@ var permuteUnique = function(nums) {
 };
 
 //Revision- Best Solution
-/**
- * @param {number[]} nums
- * @return {number[][]}
- */
+
 var permuteUnique = function (nums) {
     nums.sort((a, b) => a - b);
     let used = new Array(nums.length).fill(false);

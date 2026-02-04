@@ -1,3 +1,5 @@
+Bottom Up means- What last node will return and based on that second last will do the calculation.
+
 // Define the TreeNode class
 function TreeNode(val, left = null, right = null) {
     this.val = val;

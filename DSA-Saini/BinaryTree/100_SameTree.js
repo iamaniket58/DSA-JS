@@ -44,6 +44,22 @@ var isSameTree = function (p, q) {
     // return q1.length == 0 && q2.length == 0;
 
 };
+//Revision
+var isSameTree = function (p, q) {
+    let queue = [p, q];
+    while(queue.length){
+        let c1=queue.shift();
+        let c2=queue.shift();
+        if(c1==null && c2==null)continue;
+        if(c1==null || c2==null)return false;
+
+        if(c1.val !=c2.val)return false;
+
+        queue.push(c1.left,c2.left,c1.right,c2.right);
+    }
+    return true;
+};
+
 //using 1 queue
 var isSameTree = function (p, q) {
     let queue = [p, q];

@@ -37,3 +37,35 @@ let transform=(matrix)=>{
         newArr.push(matrix[i].join(""))
     }
 }
+
+
+//My Solution-Revision
+var solveNQueens = function (n) {
+    let board = Array.from({ length: n }, () => Array(n).fill('.'));
+    let result = [];
+    let backtrack = (row, colSet, diagSet, antiDiagSet) => {
+        if (row == n) {
+            let len=result.length;
+            result[len]=[];
+            for (let brd of board) {
+                result[len].push(brd.join(""));
+            }
+        }
+        for (let col = 0; col < n; col++) {
+            if (!colSet.has(col) && !diagSet.has(row - col) && !antiDiagSet.has(row + col)) {
+                board[row][col] = "Q";
+                colSet.add(col);
+                diagSet.add(row - col);
+                antiDiagSet.add(row + col);
+                backtrack(row + 1, colSet, diagSet, antiDiagSet);
+                board[row][col] = ".";
+                colSet.delete(col);
+                diagSet.delete(row - col);
+                antiDiagSet.delete(row + col);
+            }
+        }
+    }
+    backtrack(0, new Set(), new Set(), new Set());
+    console.log(result);
+    return result;
+};

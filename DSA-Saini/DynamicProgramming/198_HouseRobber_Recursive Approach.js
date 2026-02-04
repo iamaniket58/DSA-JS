@@ -1,3 +1,16 @@
+//Revision-Actual recusrion - Best One
+var rob = function (nums) {
+    let map = {};
+    let traverse = (n) => {
+        if (n == 1) return Math.max(nums[0], nums[1]);
+        if (n == 0) return nums[0]
+        if (map[n] == undefined) {
+            map[n] = Math.max(traverse(n - 2) + nums[n], traverse(n - 1));
+        }
+        return map[n];
+    }
+    return traverse(nums.length - 1)
+};
 
 //Top-Down Approach using recursion
 var rob = function (nums) {
@@ -9,9 +22,9 @@ var rob = function (nums) {
             return;
         }
         let maxHere = Math.max(prevMaxRob + nums[i], maxRob);
-        recursion(i+1,maxHere,maxRob)
+        recursion(i + 1, maxHere, maxRob)
     }
-    recursion(0,0,0);
+    recursion(0, 0, 0);
     return ans;
 };
 //Top-Down Approach using recursion- Slight Modification
@@ -20,9 +33,9 @@ var rob = function (nums) {
     let recursion = (i, maxRob, prevMaxRob) => {
         if (i == n) return maxRob;
         let maxHere = Math.max(prevMaxRob + nums[i], maxRob);
-        return recursion(i+1,maxHere,maxRob)
+        return recursion(i + 1, maxHere, maxRob)
     }
-    return recursion(0,0,0);
+    return recursion(0, 0, 0);
 
 };
 
@@ -44,7 +57,7 @@ var rob = function (nums) {
 //Complete DP
 var rob = function (nums) {
     let dp = {};
-    let n=nums.length;
+    let n = nums.length;
     let dfs = (i) => {
         if (i >= n) return 0;
 

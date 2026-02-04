@@ -37,6 +37,19 @@ var maxDepth1 = function (root) {
     traverse(root, 1);
     return maxDepth;
 };
+function maxDepth(root) {
+    let maxDepth = -Infinity;
+    let traverse = (curr, depth) => {
+        if (curr == null) {
+            if (depth > maxDepth) maxDepth = depth;
+            return;
+        }
+        traverse(curr.left, depth + 1);
+        traverse(curr.right, depth + 1);
+    }
+    traverse(root, 0);
+    return maxDepth;
+};
 
 //Bottom-up Approach
 var maxDepth2 = function (root) {

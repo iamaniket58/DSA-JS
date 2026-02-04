@@ -27,3 +27,53 @@ var minCostClimbingStairs = function (cost) {
     // console.log(dp);
     return recursion(n);
 };
+
+//My Solution- All the below solution is my intuitive approach
+//Bottom-Up Approach- Cleaner
+var minCostClimbingStairs = function (cost) {
+    let dp = [cost[0], cost[1]];
+    let n = cost.length;
+    for (let i = 2; i <= n; i++) {
+        dp[i] = (Math.min(dp[i - 1], dp[i - 2])) +( cost[i] ?? 0);
+    }
+    return dp[n];
+};
+//nORMAL rECURSION
+var minCostClimbingStairs = function (cost) {
+    let traverse = (n) => {
+        if(n<=1)return cost[n];
+        let prev = traverse(n - 1);
+        let prev1 = traverse(n - 2);
+        return (Math.min(prev, prev1)) + (cost[n] ?? 0)
+    }
+    return traverse(cost.length);
+};
+
+//Top-Down Approach- Cleaner
+var minCostClimbingStairs = function (cost) {
+    let map = {};
+    let traverse = (n) => {
+        if (n <= 1) return cost[n];
+        if (map[n]==undefined) {
+            let prev = traverse(n - 1);
+            let prev1 = traverse(n - 2);
+            map[n] = Math.min(prev, prev1) + (cost[n] ?? 0)
+        }
+        return map[n];
+
+    }
+    return traverse(cost.length);
+};
+//Top Down Approach-Another way
+var minCostClimbingStairs = function (cost) {
+    let map = {};
+    let traverse = (n) => {
+        if (n <= 1) return cost[n];
+        if (map[n]==undefined) {
+            map[n] = Math.min(traverse(n - 1), traverse(n - 2)) + (cost[n] ?? 0)
+        }
+        return map[n];
+
+    }
+    return traverse(cost.length);
+};

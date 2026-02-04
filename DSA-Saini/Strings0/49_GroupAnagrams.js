@@ -2,6 +2,46 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
+//Best Solution
+var groupAnagrams = function (strs) {
+    let obj = {};
+    for (s of strs) {
+        let freqArr = new Array(26).fill(0);
+        for (let i = 0; i < s.length; i++) {
+            let charCode = s.charCodeAt(i) - 97;
+            freqArr[charCode]++
+        }
+        let key = freqArr.join("#");
+        // console.log(key)
+        if (!obj[key]) obj[key] = [];
+        obj[key].push(s)
+    }
+    return Object.values(obj);
+};
+
+//Optimized
+var groupAnagrams = function (strs) {
+    let obj = {};
+    for (let i = 0; i < strs.length; i++) {
+        // let key=strs[i].split("").sort().join("");
+        let frqArr = new Array(26).fill(0);
+        for (let s of strs[i]) {
+            let ch=s.charCodeAt(0)-97;
+            frqArr[ch]++
+        }
+        let key=frqArr;
+        // for(let k=0;k<26;k++){
+        //     key+=frqArr
+        // }
+        if (!obj[key]) {
+            obj[key] = [strs[i]];
+        }
+        else {
+            obj[key].push(strs[i])
+        }
+    }
+    return Array.from(Object.values(obj));
+};
 //Sir's Solution- Better than Others
 var groupAnagrams = function(strs) {
     let obj={};

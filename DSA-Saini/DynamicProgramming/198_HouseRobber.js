@@ -13,7 +13,7 @@ var rob = function (nums) {
     return dp[n - 1];
 };
 
-//Optimized Approach- Reduced Space Complexity
+//Using Variable- Optimized Approach- Reduced Space Complexity
 var rob = function (nums) {
     let n = nums.length;
     if (n == 1) return nums[0];

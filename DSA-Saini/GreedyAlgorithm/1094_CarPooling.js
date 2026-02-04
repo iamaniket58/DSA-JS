@@ -20,6 +20,17 @@ var carPooling = function (trips, capacity) {
     return true;
 };
 
+//Revision
+var carPooling = function (trips, capacity) {
+    let onboard = new Array(1000).fill(0);
+    for (let i = 0; i < trips.length; i++) {
+        for (let j = trips[i][1]; j < trips[i][2]; j++) {
+            onboard[j] += trips[i][0];
+            if(onboard[j]>capacity)return false;
+        }
+    }
+    return true;
+};
 
 //Re-think of this solution, when you revise
 var carPooling = function (trips, capacity) {
@@ -31,7 +42,7 @@ var carPooling = function (trips, capacity) {
             location[j] = location[j] + trips[i][0];
             if(location[j]>capacity)return false;
         }
-        location[to] = location[to] - trips[i][0];
+        // location[to] = location[to] - trips[i][0];
     }
     return true;
 };
@@ -44,7 +55,7 @@ var carPooling = function (trips, capacity) {
             location[j] = location[j] + passanger;
             if(location[j]>capacity)return false;
         }
-        location[to] = location[to] - passanger;
+        // location[to] = location[to] - passanger;
     }
     return true;
 };

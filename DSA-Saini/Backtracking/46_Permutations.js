@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-//Optimzed Version
+//Optimzed Version- Instead odf using inbuilt method(include) to check the array, another array with Fixed size has been checked in O(1)
 var permute = function (nums) {
     let result = [];
     let used = new Array(nums.length).fill(false);

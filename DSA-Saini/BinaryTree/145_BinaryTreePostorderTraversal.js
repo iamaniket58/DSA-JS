@@ -10,6 +10,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+//Using recusion
 var postorderTraversal = function (root) {
     let ans = [];
     function traversal(curr) {
@@ -40,6 +41,19 @@ var postorderTraversal = function (root) {
     }
     return ans;
 }
+//Using Iteration- 2 Stack- Technically 1 stack and 1 array
+var postorderTraversal = function (root) {
+    if(!root)return []
+    let ans = [];
+    let stack = [root];
+    while (stack.length) {
+        let curr = stack.pop();
+        ans.unshift(curr.val);
+        curr.left && stack.push(curr.left);
+        curr.right && stack.push(curr.right);
+    }
+    return ans;
+};
 
 //Using 1 stack
 var postorderTraversal = function (root) {
