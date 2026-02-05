@@ -10,6 +10,18 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+//Revision- Using recursion
+var rightSideView = function (root) {
+    let ans = [];
+    let traverse = (curr, depth) => {
+        if (!curr) return;
+        if(ans[depth]==undefined)ans.push(curr.val)
+        traverse(curr.right, depth + 1);
+        traverse(curr.left, depth + 1);
+    }
+    traverse(root, 0)
+    return ans;
+};
 
 //Sirs Solution-This is Amazing
 var rightSideView = function (root) {

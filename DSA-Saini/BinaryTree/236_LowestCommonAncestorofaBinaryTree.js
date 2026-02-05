@@ -54,7 +54,29 @@ var lowestCommonAncestor = function (root, p, q) {
     traverse(root)
     return ans;
 }
+//Practise
+var lowestCommonAncestor = function (root, p, q) {
+    let ans = null;
+    let traverse = (curr) => {
+        if (!curr) return false;
+        let left = traverse(curr.left);
+        if(left==-1)return -1
+        let right = traverse(curr.right);
+        if(left==-1)return -1
+        if (left && right && !ans) {
+            ans = curr;
+            return -1;
+        }
+        if ((left || right) && (curr.val == p.val || curr.val == q.val) && !ans) {
+            ans = curr;
+            return -1;
+        }
 
+        return left || right || curr.val == p.val || curr.val == q.val;
+    }
+    traverse(root);
+    return ans;
+};
 //Practise
 var lowestCommonAncestor = function (root, p, q) {
     let ans = null;
@@ -72,6 +94,7 @@ var lowestCommonAncestor = function (root, p, q) {
     traverse(root);
     return ans;
 };
+
 // ❌ bReaking for scenario ii in ques- DIdint work 
 var lowestCommonAncestor2 = function (root, p, q) {
     let lca = null;
