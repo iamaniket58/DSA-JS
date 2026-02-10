@@ -35,3 +35,15 @@ function DepthFirstSearchInGraph(root) {
     dfs(root);
     return result;
 }
+
+// Recusrion
+
+let dfs = (curr, visited, result) => {
+    visited.add(curr);
+    result.push(curr.val);
+    for (let n of curr.neighbors) {
+        if (!visited.has(n)) {
+            dfs(n,visited,result)
+        }
+    }
+}
