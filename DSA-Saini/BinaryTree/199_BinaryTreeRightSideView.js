@@ -10,7 +10,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-//Revision- Using recursion
+//Revision- (New Solutuon developed)ans will have only 1 element of each level which is rightmost element of that level
 var rightSideView = function (root) {
     let ans = [];
     let traverse = (curr, depth) => {
@@ -42,20 +42,42 @@ var rightSideView = function (root) {
     }
     return ans;
 }
-
-//Recursion
+//Revision 
 var rightSideView = function (root) {
+    if(!root)return [];
+    let q = [root];
     let ans = [];
-    let traverse = (curr, level) => {
-        if (curr == null) return;
-        if (ans[level] == undefined) ans.push(curr.val);
-        traverse(curr.right, level + 1);
-        traverse(curr.left, level + 1);
+    while (q.length > 0) {
+        let size = q.length;
+        for (let i = 0; i < size; i++) {
+            let curr=q.shift();
+            if(i==size-1)ans.push(curr.val);
+
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+        }
     }
-    traverse(root, 0);
     return ans;
 };
+//Revision-
+var rightSideView = function (root) {
+    if (!root) return [];
+    let q = [root];
+    let ans = [];
+    let level = -1;
+    while (q.length > 0) {
+        let size = q.length;
+        level += 1
+        for (let i = 0; i < size; i++) {
+            let curr = q.shift();
+            ans[level] = curr.val;
 
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+        }
+    }
+    return ans;
+};
 //Revision
 var rightSideView = function (root) {
     if (!root) return [];
@@ -77,7 +99,7 @@ var rightSideView = function (root) {
     return ans;
 };
 
-//This is compelly my solution using Queue
+//Bruite Force- This is competely my solution using Queue
 var rightSideView = function (root) {
     if (!root) return []
     let q = [root];

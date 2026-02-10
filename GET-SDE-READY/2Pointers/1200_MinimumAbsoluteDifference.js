@@ -2,6 +2,27 @@
  * @param {number[]} arr
  * @return {number[][]}
  */
+//One pass solution
+var minimumAbsDifference = function (arr) {
+    arr.sort((a, b) => a - b);
+    let minDiff = Infinity;
+    let ans = [];
+    for (let i = 1; i < arr.length; i++) {
+        let diff = arr[i] - arr[i - 1];
+        if (diff < minDiff) {
+            ans.length = 0;
+            ans.push([arr[i - 1], arr[i]]);
+        }
+        else if (diff == minDiff) {
+            ans.push([arr[i - 1], arr[i]])
+        }
+        else if (diff > minDiff) {
+            continue;
+        }
+        if (diff < minDiff) minDiff = diff;
+    }
+    return ans;
+};
 
 //Optimized Approach- My Solution
 var minimumAbsDifference = function (arr) {
@@ -19,6 +40,37 @@ var minimumAbsDifference = function (arr) {
     }
     return result;
 
+};
+//Using Map- Standard Solution
+var minimumAbsDifference = function (arr) {
+    arr.sort((a, b) => a - b);
+    let minDiff = Infinity;
+    let map = {};
+    for (let i = 1; i < arr.length; i++) {
+        let diff = arr[i] - arr[i - 1];
+        minDiff = Math.min(minDiff, diff);
+
+        if (!map[diff]) map[diff] = [];
+        map[diff].push([arr[i - 1], arr[i]]);
+    }
+    return map[minDiff];
+};
+
+//Without using Math.abs
+var minimumAbsDifference = function (arr) {
+    arr.sort((a, b) => a - b);
+    let minDiff = Infinity;
+    for (let i = 1; i < arr.length; i++) {
+        if ((arr[i] - arr[i - 1]) < minDiff) minDiff = (arr[i] - arr[i - 1]);
+    }
+    console.log(minDiff);
+    let ans = [];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] - arr[i - 1] == minDiff) {
+            ans.push([arr[i - 1], arr[i]])
+        }
+    }
+    return ans;
 };
 //Without using Math.abs
 var minimumAbsDifference = function (arr) {

@@ -24,6 +24,23 @@ var maxPathSum = function (root) {
     traverse(root)
     return max
 };
+//Revision- This is my solution
+var maxPathSum = function (root) {
+    let max = -Infinity;
+    let traverse = (curr) => {
+        if (!curr) return 0;
+        let left = traverse(curr.left);
+        if (left < 0) left = 0;
+        let right = traverse(curr.right);
+        if (right < 0) right = 0;
+        if ((left + right + curr.val) > max) {
+            max = (left + right + curr.val)
+        }
+        return left > right ? left + curr.val : right + curr.val;
+    }
+    traverse(root);
+    return max;
+};
 
 //My Solution while Revision
 var maxPathSum = function (root) {

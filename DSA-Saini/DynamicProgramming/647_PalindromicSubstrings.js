@@ -2,6 +2,42 @@
  * @param {string} s
  * @return {number}
  */
+//DP Tabulation
+var countSubstrings = function (s) {
+    let n = s.length;
+    let dp = Array.from({ length: n }, () => Array(n).fill(false));
+    let count = 0;
+
+    //For length 1
+    for (let i = 0; i < n; i++) {
+        dp[i][i] = true;
+        count++;
+    }
+
+    //for length 2
+    for (let i = 0; i < n - 1; i++) {
+        if (s[i] == s[i + 1]) {
+            dp[i][i+1] = true;
+            count++;
+        }
+    }
+
+    //for length3 and above
+    for (len = 3; len <= n; len++) {
+        for (let i = 0; i < n - len + 1; i++) {
+            let j = i + len - 1;
+            if (s[i] == s[j] && dp[i + 1][j - 1]) {
+                dp[i][j] = true;
+                count++;
+            }
+        }
+    }
+
+    return count;
+
+
+};
+
 //DP Solution-Tabulation
 var countSubstrings = function (s) {
     let dp = Array.from({ length: s.length }, () => Array(s.length).fill(false));

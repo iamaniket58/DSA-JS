@@ -30,8 +30,26 @@ var connect = function (root) {
     }
     return root;
 };
+//Revision-Iteration
+var connect = function (root) {
+    if(!root)return null;
+    let q = [root];
+    while (q.length) {
+        let size = q.length;
+        for (let i = 0; i < size; i++) {
+            let curr = q.shift();
+            if (i == size - 1) curr.next = null;
+            else {
+                curr.next = q[0];
+            }
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+        }
+    }
+    return root;
+};
 
-//This is my solution- first store all in a queue then traverse and connect all
+//Bruite Force- This is my solution- first store all in a queue then traverse and connect all
 var connect = function (root) {
     if (!root) return root
     let q = [root];

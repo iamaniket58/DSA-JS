@@ -35,6 +35,23 @@ var insertIntoBST = function (root, val) {
     traverse(root)
     return root
 };
+// Revision- My Method
+var insertIntoBST = function (root, val) {
+    if (!root) return new TreeNode(val);
+    let traverse = (curr) => {
+        if (val < curr.val) {
+            if (curr.left == null) curr.left = new TreeNode(val);
+            traverse(curr.left);
+        }
+        if (val > curr.val) {
+            if (curr.right == null) curr.right = new TreeNode(val);
+            traverse(curr.right);
+        }
+    }
+    traverse(root);
+    return root;
+};
+
 //Another way- Solve Return statement Mystery 
 var insertIntoBST2 = function (root, val) {
     if (!root) return new TreeNode(val)
@@ -63,7 +80,23 @@ var insertIntoBST3 = function (root, val) {
     }
     return root
 }
-
+//Revision
+var insertIntoBST = function (root, val) {
+    if (!root) return new TreeNode(val);
+    let traverse = (curr) => {
+        if (!curr) return -1;
+        if (val < curr.val) {
+            let left = traverse(curr.left);
+            if (left == -1) curr.left = new TreeNode(val);
+        }
+        else {
+            let right = traverse(curr.right);
+            if (right == -1) curr.right = new TreeNode(val);
+        }
+    }
+    traverse(root);
+    return root;
+};
 
 //Revision- Its not good method TBH
 var insertIntoBST = function (root, val) {

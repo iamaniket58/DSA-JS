@@ -54,3 +54,24 @@ var cloneGraph = function(root) {
     return clonedGraph;
 };
 
+//Revision
+var cloneGraph = function (node) {
+    if (!node) return null;
+    let map = new Map();
+    let clonedGraph = new _Node(node.val);
+    map.set(node, clonedGraph);
+    let q = [node];
+    while (q.length) {
+        let curr = q.shift();
+        for (let n of curr.neighbors) {
+            if (!map.has(n)) {
+                q.push(n);
+                map.set(n, new _Node(n.val));
+
+            }
+            map.get(curr).neighbors.push(map.get(n))
+        }
+    }
+    return clonedGraph;
+};
+

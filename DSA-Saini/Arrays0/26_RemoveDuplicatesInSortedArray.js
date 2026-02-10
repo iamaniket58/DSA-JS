@@ -1,3 +1,18 @@
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+//Revision- Optimized Solution
+var removeDuplicates = function (nums) {
+    let k = 0;
+    for (let i = 1; i < nums.length; i++) {
+        if (!(nums[i] == nums[k])) {
+           nums[k+1]=nums[i];
+           k++;
+        }
+    }
+    return k+1;
+};
 //My Solution
 function RemoveDuplicates(array) {
     let lengthArray = array.length;

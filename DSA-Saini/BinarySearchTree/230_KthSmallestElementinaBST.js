@@ -39,7 +39,7 @@ var kthSmallest2 = function (root, k) {
     return ans;
 }
 
-//Further Optimized- stop further loop
+//Further Optimized- stop further loop- Early Exit
 var kthSmallest = function (root, k) {
     let ans = null;
     let traversal = (curr) => {
@@ -66,6 +66,38 @@ var kthSmallest = function (root, k) {
     traversal(root)
     return ans
 }
+
+//Early Exit Solution
+var kthSmallest = function (root, k) {
+    let traverse = (curr) => {
+        if (!curr) return null;
+        let l = traverse(curr.left);
+        if (l != null) return l
+        k = k - 1
+        if (k == 0) return curr.val;
+        let r = traverse(curr.right);
+        if (r != null) return r;
+    }
+    return traverse(root);
+
+};
+
+//Iterative Solution
+var kthSmallest = function (root, k) {
+    let curr = root;
+    let stack = [];
+    while (curr || stack.length > 0) {
+        while (curr) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+        let top = stack.pop();
+        k--;
+        if (k == 0) return top.val;
+        curr = top.right;
+    }
+};
+
 
 //Test Cases
 function TreeNode(val, left = null, right = null) {
