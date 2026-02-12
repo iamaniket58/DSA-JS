@@ -131,7 +131,30 @@ var findItinerary = function (tickets) {
 
 // findItinerary([["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]])
 findItinerary1([["JFK","BAT"],["JFK","CAT"],["CAT","JFK"]])
-///////
+
+//Non-Working code for Edge Case but good for understanding
+var findItinerary = function (tickets) {
+    let graph = {};
+    for (let i = 0; i < tickets.length; i++) {
+        if (!graph[tickets[i][0]]) graph[tickets[i][0]] = [];
+        graph[tickets[i][0]].push(tickets[i][1]);
+    }
+
+    for (let key in graph) {
+        graph[key].sort();
+    }
+
+    let result = ["JFK"];
+    let traverse = (curr) => {
+        while ((graph[curr] || []).length>0) {
+            let peek = graph[curr].shift();
+            result.push(peek);
+            traverse(peek);
+        }
+    }
+    traverse('JFK')
+    return result;
+};
 // Explore the working of all 3 ways to understand working of loops while removing the elements
 let array = [2, 4, 6, 8];
 //1
