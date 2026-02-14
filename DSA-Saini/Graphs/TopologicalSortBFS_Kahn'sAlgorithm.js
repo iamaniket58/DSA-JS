@@ -1,23 +1,20 @@
 function topologicalSortBFS(n, graph) {
     let q = [];
-    let ans = [];
     let indegree = new Array(n).fill(0);
-    for (let [x, y] of graph) {
-        if (x != undefined) indegree[x]++;
-        if (y != undefined) indegree[y]++;
-    }
-    console.log(indegree)
-
     for (let i = 0; i < n; i++) {
-        if (indegree[i] == 0) q.push(i)
+        for (let node of graph[i]) {
+            indegree[node]++;
+        }
     }
-    console.log(q);
-
+    for (let i = 0; i < n; i++) {
+        if (indegree[i] == 0) q.push(i);
+    }
+    let ans = [];
     while (q.length) {
         let curr = q.shift();
-        for (let n of graph[curr]) {
-            indegree[n]--;
-            if (indegree[n] == 0) q.push(n);
+        for (let node of graph[curr]) {
+            indegree[node]--;
+            if (indegree[node] == 0) q.push(node)
         }
         ans.push(curr);
     }
@@ -27,7 +24,7 @@ function topologicalSortBFS(n, graph) {
 //Sir's Method- Enhanced SS by ChatGPT
 // n = number of vertices (0 to n-1)
 // graph = adjacency list, e.g. graph[2] = [3,4] means 2 → 3 and 2 → 4
-function topologicalSortBFS(n, graph) {
+function topologicalSortBFS1(n, graph) {
     // 1. Compute indegree of every node
     const indegree = new Array(n).fill(0);
 
@@ -71,6 +68,32 @@ function topologicalSortBFS(n, graph) {
     return topo;
 }
 
+//This code is incorrect for this sample input
+function topologicalSortBFS2(n, graph) {
+    let q = [];
+    let ans = [];
+    let indegree = new Array(n).fill(0);
+    for (let [x, y] of graph) {
+        if (x != undefined) indegree[x]++;
+        if (y != undefined) indegree[y]++;
+    }
+    console.log(indegree)
+
+    for (let i = 0; i < n; i++) {
+        if (indegree[i] == 0) q.push(i)
+    }
+    console.log(q);
+
+    while (q.length) {
+        let curr = q.shift();
+        for (let n of graph[curr]) {
+            indegree[n]--;
+            if (indegree[n] == 0) q.push(n);
+        }
+        ans.push(curr);
+    }
+    return ans;
+}
 
 let adj = [
     [],
