@@ -43,7 +43,33 @@ let dfs = (curr, visited, result) => {
     result.push(curr.val);
     for (let n of curr.neighbors) {
         if (!visited.has(n)) {
-            dfs(n,visited,result)
+            dfs(n, visited, result)
         }
     }
 }
+
+
+function DepthFirstSearchInGraph1(graph,src) {
+    let result = [];
+    let visited = new Set();
+    let dfs1 = (curr) => {
+        visited.add(curr);
+        result.push(curr)
+        for (let n of graph[curr]) {
+            if (!visited.has(n)) {
+                dfs(n);
+            }
+        }
+    }
+    dfs1(src);
+    return result;
+}
+const graph1 = {
+    0: [1, 2],
+    1: [0, 2],
+    2: [0, 1, 3, 4],
+    3: [2],
+    4:[2]
+
+}
+console.log(DepthFirstSearchInGraph1(graph1,0))

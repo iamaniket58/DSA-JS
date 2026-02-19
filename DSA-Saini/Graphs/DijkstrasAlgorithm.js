@@ -30,7 +30,7 @@ class MinHeap {
     heapifyUp(i) {
         while (i > 0) {
             let parentIndex = Math.floor((i - 1) / 2);
-            if (this.heap[i] < this.heap[parentIndex]) {
+            if (this.heap[i][1] < this.heap[parentIndex][1]) {
                 let temp = this.heap[i];
                 this.heap[i] = this.heap[parentIndex];
                 this.heap[parentIndex] = temp;
@@ -62,10 +62,10 @@ class MinHeap {
             let left = 2 * i + 1;
             let right = 2 * i + 2;
             let smallest = i;
-            if (left < n && this.heap[left] < this.heap[smallest]) {
+            if (left < n && this.heap[left][1] < this.heap[smallest][1]) {
                 smallest = left
             }
-            if (right < n && this.heap[right] < this.heap[smallest]) {
+            if (right < n && this.heap[right][1] < this.heap[smallest][1]) {
                 smallest = right
             }
             if (i != smallest) {
@@ -81,6 +81,7 @@ class MinHeap {
         }
     }
 }
+// We pop the minimum distance first because, with non-negative weights, once a node has the smallest distance among all remaining nodes, no future path can make it shorter — so its distance is final.
 function Dijkstras(graph, src) {
     let n = graph.length;
     let dist = new Array(n).fill(Infinity);

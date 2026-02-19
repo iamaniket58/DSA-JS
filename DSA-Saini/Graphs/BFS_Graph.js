@@ -25,11 +25,11 @@ function bfs1(graph, start) {
     let result = [];
     while (queue.length) {
         let node = queue.shift();
-        if (visited.has(node)) continue; //This line is not required
+        if (visited.has(node)) continue;
         visited.add(node);
         result.push(node);
         for (let n of graph[node]) {
-            if(!visited.has(n))queue.push(n);
+            if (!visited.has(n)) queue.push(n);
         }
     }
     return result;
@@ -43,4 +43,14 @@ const graph = {
     E: ['B']
 };
 
-console.log(bfs1(graph, 'A'));
+const graph1 = {
+    0: [1, 2],
+    1: [0, 2],
+    2: [0, 1, 3, 4],
+    3: [2],
+    4:[2]
+
+}
+
+// console.log(bfs1(graph, 'A'));
+console.log(bfs1(graph1, 0));
