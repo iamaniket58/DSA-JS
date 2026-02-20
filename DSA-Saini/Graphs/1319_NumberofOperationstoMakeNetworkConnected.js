@@ -83,3 +83,45 @@ let bfs = (src, visited, graph) => {
         }
     }
 }
+
+var makeConnected = function(n, connections) {
+    if (connections.length < n - 1) return -1;
+
+    let parent = new Array(n).fill(0).map((_, i) => i);
+    let rank = new Array(n).fill(0);
+
+    function find(x) {
+        if (parent[x] !== x) {
+            parent[x] = find(parent[x]);  // Path compression
+        }
+        return parent[x];
+    }
+
+    function union(x, y) {
+        let rootX = find(x);
+        let rootY = find(y);
+
+        if (rootX === rootY) return false;
+
+        if (rank[rootX] > rank[rootY]) {
+            parent[rootY] = rootX;
+        } else if (rank[rootX] < rank[rootY]) {
+            parent[rootX] = rootY;
+        } else {
+            parent[rootY] = rootX;
+            rank[rootX]++;
+        }
+
+        return true;
+    }
+
+    let components = n;
+
+    for (let [a, b] of connections) {
+        if (union(a, b)) {
+            components--;
+        }
+    }
+
+    return components - 1;
+};
