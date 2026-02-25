@@ -35,7 +35,22 @@ let serialize = (curr) => {
     Traverse(curr)
     return hash
 }
-
+// Hashing-GPT
+var isSubtree = function(root, subRoot) {
+    
+    function serialize(node) {
+        if (!node) return "-#";
+        
+        return "-" + node.val +
+               serialize(node.left) +
+               serialize(node.right);
+    }
+    
+    const rootStr = serialize(root);
+    const subRootStr = serialize(subRoot);
+    
+    return rootStr.includes(subRootStr);
+};
 
 //using Bruite Force
 var isSubtree = function (root, subRoot) {
@@ -94,6 +109,27 @@ var isSubtree = function (root, subRoot) {
     }
     traverse(root);
     return ans;
+};
+
+//Bruite-Force- Multiple Recursion 😂
+var isSubtree = function(root, subRoot) {
+    
+    // Helper function to check if two trees are identical
+    function isSameTree(p, q) {
+        if (!p && !q) return true;
+        if (!p || !q) return false;
+        if (p.val !== q.val) return false;
+        
+        return isSameTree(p.left, q.left) &&
+               isSameTree(p.right, q.right);
+    }
+    
+    if (!root) return false;
+    
+    if (isSameTree(root, subRoot)) return true;
+    
+    return isSubtree(root.left, subRoot) ||
+           isSubtree(root.right, subRoot);
 };
 
 
