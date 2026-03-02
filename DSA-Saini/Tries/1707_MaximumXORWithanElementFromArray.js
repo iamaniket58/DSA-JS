@@ -74,3 +74,35 @@ var maximizeXor = function (nums, queries) {
     }
     return ans;
 };
+
+// You are using a JavaScript object (hash map) for every node.
+
+// For this problem:
+
+// Max nums length = 10^5
+
+// Each insert = 32 steps
+
+// Total nodes ≈ 3.2 million worst case
+
+// Using {} for every node causes:
+
+// Hash lookup overhead
+
+// Hidden class transitions
+
+// High GC pressure
+
+// That is why you're getting TLE.
+
+// ✅ The Fix (Very Important)
+
+// Use a fixed-size array instead of object.
+
+// Change:
+
+// this.children = {};
+
+// To:
+
+// this.children = [null, null];
