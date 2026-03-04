@@ -6,12 +6,25 @@ function SelectionSort(array) {
                 min = j
             }
         }
-        temp = array[min];
+        let temp = array[min];
         array[min] = array[i];
         array[i] = temp
     }
     return array
 }
+
+//Final Complexity Summary   
+// | Case         | Complexity |
+// | ------------ | ---------- |
+// | Best Case    | O(n²)       |
+// | Average Case | O(n²)      |
+// | Worst Case   | O(n²)      |
+
+//Space Complexity
+// O(1)
+
+
+
 // console.log(SelectionSort([7, 9, 8, 2, 5]));
 
 function SelectionSort1(array) {
@@ -35,19 +48,19 @@ function SelectionSort1(array) {
 
 
 //This is not selection Sort because it swaps aloy inside the Loop
-function Sorting(arr){
-    let n=arr.length;
-    for(let i=0;i<n-1;i++){
-        let min=i;
-        for(let j=i+1;j<n;j++){
-            if(arr[j]<arr[min]){
-                let temp=arr[min];
-                arr[min]=arr[j];
-                arr[j]=temp;
+function Sorting(arr) {
+    let n = arr.length;
+    for (let i = 0; i < n - 1; i++) {
+        let min = i;
+        for (let j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min]) {
+                let temp = arr[min];
+                arr[min] = arr[j];
+                arr[j] = temp;
             }
         }
     }
     return arr;
 }
 // console.log(Selection_Sort([7,2,5,4,1]));
-console.log("Result",Selection_Sort([4, 2, 2, 1]));
+console.log("Result", Selection_Sort([4, 2, 2, 1]));

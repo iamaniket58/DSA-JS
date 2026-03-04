@@ -15,6 +15,20 @@ var maxProfit = function(prices) {
     }
     return maxProfit;
 };
+var maxProfit = function (prices) {
+    let minPrice = Infinity;
+    let maxProfit = 0;
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[i] > minPrice) {
+            let diff = prices[i] - minPrice;
+            maxProfit = Math.max(diff, maxProfit);
+        }
+        else {
+            minPrice = prices[i];
+        }
+    }
+    return maxProfit;
+};
 
 //Optimized
 var maxProfit = function (prices) {
@@ -63,7 +77,7 @@ var maxProfit = function (prices) {
     return max;
 };
 
-
+//Bruite Force
 var maxProfit = function (prices) {
     let greater = -Infinity;
     for (let i = 0; i < prices.length; i++) {

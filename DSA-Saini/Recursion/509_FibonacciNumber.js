@@ -1,12 +1,15 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+
 //using Recusrsion
 var fib = function (n) {
-
-    
-    if(n==1 || n==0)return n
-    return fib(n-1)+fib(n-2)
+    if (n == 1 || n == 0) return n
+    return fib(n - 1) + fib(n - 2)
 };
 //Using Normal logic
-var fib1= function (n) {
+var fib1 = function (n) {
     let arr = [0, 1]
     for (let i = 2; i <= n; i++) {
         arr[i] = arr[i - 1] + arr[i - 2]
@@ -34,25 +37,38 @@ var fib = function (n) {
 
 let store = {};
 var fib = function (n) {
-    if (n <= 1)  return n;
-    if(!store[n]){
-        store[n]=fib(n - 1)+fib(n-2);
+    if (n <= 1) return n;
+    if (!store[n]) {
+        store[n] = fib(n - 1) + fib(n - 2);
     }
     return store[n];
 };
 
 //using Variable a and b
-var fib2=function(n){
-    if(n==0 || n==1)return n
-    let a=0;
-    let b=1;
-    for(let i=0;i<n-1;i++){
-        let c=a+b;
-        a=b;
-        b=c;
+var fib2 = function (n) {
+    if (n == 0 || n == 1) return n
+    let a = 0;
+    let b = 1;
+    for (let i = 0; i < n - 1; i++) {
+        let c = a + b;
+        a = b;
+        b = c;
     }
     return b
 }
+
+//using only 2 variable- no 3rd variable
+var fib3 = function (n) {
+    if (n == 0 || n == 1) return n
+    let a = 0;
+    let b = 1;
+    for (let i = 0; i < n - 1; i++) {
+        b = a + b;
+        a = b - a
+    }
+    return b
+}
+
 
 //using only 2 variable- no 3rd variable
 var fib3=function(n){
@@ -65,3 +81,13 @@ var fib3=function(n){
     }
     return b
 }
+
+let map1 = {};
+var fib = function (n) {
+    if (n <= 1) return n;
+    if (!map1[n]) {
+        let temp = fib(n - 1) + fib(n - 2);
+        map1[n] = temp;
+    }
+    return map1[n];
+};
