@@ -10,6 +10,43 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
+//The Optimzed approach to the above method
+var addTwoNumbers=function(l1,l2){
+    let carry=0;
+    let senitel=new ListNode();
+    let digit=senitel;
+    while(l1 || l2 || carry!=0){
+        let sum=(!l1?0:l1.val)+(!l2?0:l2.val)+carry;
+        digit.next=new ListNode(sum%10);
+        carry=Math.floor(sum/10);
+        digit=digit.next;
+        l1=l1 && l1.next;
+        l2=l2 && l2.next;
+
+    }
+    return senitel.next;
+};
+
+var addTwoNumbers = function (l1, l2) {
+    let head = new ListNode();
+    let curr = head;
+    let carry = 0;
+    while (l1 || l2 || carry) {
+        let val1 = l1?.val || 0;
+        let val2 = l2?.val || 0;
+        let sum = val1 + val2 + carry;
+
+        curr.next = new ListNode(sum % 10);
+        carry = Math.floor(sum / 10);
+
+        curr = curr.next;
+        l1 = l1 && l1.next;
+        l2 = l2 && l2.next;
+
+    }
+    return head.next;
+};
+
 //Naive approach
 var addTwoNumbers = function (l1, l2) {
     let c1 = l1;
@@ -53,40 +90,6 @@ var addTwoNumbers = function (l1, l2) {
     return head.next;
 };
 
-//The Optimzed approach to the above method
-var addTwoNumbers=function(l1,l2){
-    let carry=0;
-    let senitel=new ListNode();
-    let digit=senitel;
-    while(l1 || l2 || carry!=0){
-        let sum=(!l1?0:l1.val)+(!l2?0:l2.val)+carry;
-        digit.next=new ListNode(sum%10);
-        carry=Math.floor(sum/10);
-        digit=digit.next;
-        l1=l1 && l1.next;
-        l2=l2 && l2.next;
-
-    }
-    return senitel.next;
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ////Test Cases
 
 function ListNode(val = 0, next = null) {
@@ -115,5 +118,5 @@ function printLinkedList(head) {
 }
 let head1 = createLinkedList([3, 4, 9]);
 let head2 = createLinkedList([4, 8, 1, 9]);
-printLinkedList(addTwoNumbers(head1, head2)); 
+// printLinkedList(addTwoNumbers(head1, head2)); 
 console.log();

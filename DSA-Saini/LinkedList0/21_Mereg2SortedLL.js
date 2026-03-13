@@ -41,57 +41,57 @@ var mergeTwoLists = function (list1, list2) {
     return sentinel.next;
 };
 
-var mergeTwoLists = function(l1, l2) {
-    if(!l1)return l2
-    if(!l2) return l1
-    let curr=null;
-    if(l1.val<=l2.val){
-        curr=l1;
-        l1=l1.next;
+var mergeTwoLists = function (l1, l2) {
+    if (!l1) return l2
+    if (!l2) return l1
+    let curr = null;
+    if (l1.val <= l2.val) {
+        curr = l1;
+        l1 = l1.next;
     }
-    else{
-        curr=l2;
-        l2=l2.next
+    else {
+        curr = l2;
+        l2 = l2.next
     }
-    let sorted=curr;
-    while(l1 && l2){
-        if(l1.val<=l2.val){
-            curr.next=l1;
-            l1=l1.next;
-            curr=curr.next;
+    let sorted = curr;
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
+            curr.next = l1;
+            l1 = l1.next;
+            curr = curr.next;
         }
-        else{
-            curr.next=l2;
-            l2=l2.next;
-            curr=curr.next;
+        else {
+            curr.next = l2;
+            l2 = l2.next;
+            curr = curr.next;
         }
     }
-    if(!l1)curr.next=l2
-    else curr.next=l1;
-    return sorted;  
+    if (!l1) curr.next = l2
+    else curr.next = l1;
+    return sorted;
 };
 
 // by using dummy Node
-var mergeTwoLists1 = function(l1, l2) {
-    if(!l1)return l2
-    if(!l2) return l1
-    let dummy=new ListNode();
-    let curr=dummy;
-    while(l1 && l2){
-        if(l1.val<=l2.val){
-            curr.next=l1;
-            l1=l1.next;
-            curr=curr.next;
+var mergeTwoLists1 = function (l1, l2) {
+    if (!l1) return l2
+    if (!l2) return l1
+    let dummy = new ListNode();
+    let curr = dummy;
+    while (l1 && l2) {
+        if (l1.val <= l2.val) {
+            curr.next = l1;
+            l1 = l1.next;
+            curr = curr.next;
         }
-        else{
-            curr.next=l2;
-            l2=l2.next;
-            curr=curr.next;
+        else {
+            curr.next = l2;
+            l2 = l2.next;
+            curr = curr.next;
         }
     }
-    if(!l1)curr.next=l2
-    else curr.next=l1;
-    return dummy.next;  
+    if (!l1) curr.next = l2
+    else curr.next = l1;
+    return dummy.next;
 };
 
 
@@ -139,5 +139,5 @@ function printLinkedList(head) {
 }
 let head1 = createLinkedList([2]);
 let head2 = createLinkedList([1]);
-printLinkedList(mergeTwoLists(head1, head2)); 
+printLinkedList(mergeTwoLists(head1, head2));
 console.log();

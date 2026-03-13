@@ -11,23 +11,6 @@
  * @param {ListNode} headB
  * @return {ListNode}
  */
-var getIntersectionNode = function (headA, headB) {
-    let c1 = headA;
-    let mySet = new Set();
-    while (c1 != null) {
-        // if(mySet.has(c1))return c1;
-        mySet.add(c1);
-        c1 = c1.next;
-    }
-
-    let c2 = headB;
-    while (c2) {
-        if (mySet.has(c2)) return c2;
-        mySet.add(c2);
-        c2 = c2.next;
-    }
-    return null
-};
 //Slight Improvised- Avoid adding to set again
 var getIntersectionNode = function (headA, headB) {
     let set = new Set();
@@ -45,6 +28,24 @@ var getIntersectionNode = function (headA, headB) {
     }
     return null;
 };
+
+var getIntersectionNode = function (headA, headB) {
+    let c1 = headA;
+    let mySet = new Set();
+    while (c1 != null) {
+        mySet.add(c1);
+        c1 = c1.next;
+    }
+
+    let c2 = headB;
+    while (c2) {
+        if (mySet.has(c2)) return c2;
+        mySet.add(c2);
+        c2 = c2.next;
+    }
+    return null
+};
+
 
 //Interesting Solution
 var getIntersectionNode = function (headA, headB) {

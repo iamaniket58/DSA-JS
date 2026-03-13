@@ -9,33 +9,45 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function(head) {
-    let prev=null;
-    let current=head;
-   // let next=current.next;
-    while(current !=null){
-        temp=current.next;
-        current.next=prev;
-        prev=current;
-        current=temp;
-        //next=current.next;
+var reverseList = function (head) {
+    let prev = null;
+    let curr = head;
+    while (curr != null) {
+        let next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
     }
-    return head=prev;
+    return head = prev;
+};
+
+var reverseList = function (head) {
+    let prev = null;
+    let current = head;
+
+    while (current != null) {
+        let temp = current.next;
+        current.next = prev;
+        prev = current;
+        current = temp;
+
+    }
+    return head = prev;
 };
 
 //This is completely my solution--temp is getting handled outside loop
-var reverseList1 = function(head) {
-    if(head==null)return null
-    let prev=null
-    let curr=head;
-    let temp=curr.next
-    while(curr!=null){
-       curr.next=prev;
-       prev=curr;
-       curr=temp;
-       temp=curr?.next
+var reverseList = function (head) {
+    if (!head) return head;
+    let prev = null;
+    let curr = head;
+    let next = curr.next;
+    while (curr != null) {
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+        next = curr?.next
     }
-    return prev
+    return head = prev;
 };
 
 

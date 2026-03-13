@@ -41,6 +41,33 @@ var isPalindrome = function (head) {
 
 };
 
+//revision
+var isPalindrome = function (head) {
+    let slow = head;
+    let fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+    let curr = slow;
+    let prev = null;
+    while (curr != null) {
+        let next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+    }
+    let head2 = prev;
+    while (head2 != null) {
+        if (head.val != head2.val) {
+            return false;
+        }
+        head = head.next;
+        head2 = head2.next;
+    }
+    return true;
+};
+
 function ListNode(val, next = null) {
     this.val = val;
     this.next = next;

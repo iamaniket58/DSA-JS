@@ -24,6 +24,21 @@ var oddEvenList = function(head) {
     return head;
 };
 
+var oddEvenList = function (head) {
+    if (!head) return null;
+    let headA = curr1 = head;
+    let headB = curr2 = head.next;
+    while (curr1 && curr2 && curr1.next && curr2.next) {
+        curr1.next = curr1.next.next;
+        curr2.next = curr2.next.next;
+        curr1 = curr1.next;
+        curr2 = curr2.next;
+
+    }
+    curr1.next = headB;
+    return headA;
+};
+
 //During revision
 var oddEvenList = function (head) {
     if(head==null)return head;

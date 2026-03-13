@@ -11,59 +11,62 @@
  */
 
 //using fast and slow pointer
-var middleNode = function(head) {
-    let slow=head,fast=head; //slow
-    while(fast!=null && fast.next!=null){
-        slow=slow.next;
-        fast=fast.next.next;
+var middleNode = function (head) {
+    let slow = head, fast = head; //slow
+    
+    while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
     }
     return slow;
 };
 
-//converting into an array
-var middleNode1=function(head){
-    let nodes=[];
-    let current=head;
-    let i=0;
-    while(current!=null){
-        nodes.push(current);
-        current=current.next;
+//Uisng Size
+var middleNode = function (head) {
+    let size = 0;
+    let current = head;
+    while (current != null) {
+        size++;
+        current = current.next;
     }
-    let mid=Math.floor(nodes.length/2);
+    current = head;
+    let i = 0;
+    let mid = Math.floor(size / 2);
+    while (i < mid) {
+        current = current.next;
+        i++;
+    }
+    return current;
+};
+
+//converting into an array
+var middleNode1 = function (head) {
+    let nodes = [];
+    let current = head;
+    let i = 0;
+    while (current != null) {
+        nodes.push(current);
+        current = current.next;
+    }
+    let mid = Math.floor(nodes.length / 2);
     return nodes[mid];
 }
 
 //same as above- just using i insetad of push
-var middleNode2=function(head){
-    let nodes=[];
-    let current=head;
-    let i=0;
-    while(current!=null){
-        nodes[i]=current; 
-        current=current.next;
-        i++; 
+var middleNode2 = function (head) {
+    let nodes = [];
+    let current = head;
+    let i = 0;
+    while (current != null) {
+        nodes[i] = current;
+        current = current.next;
+        i++;
     }
-    let mid=Math.floor(nodes.length/2);
+    let mid = Math.floor(nodes.length / 2);
     return nodes[mid];
 }
 
-//Uisng Size
-var middleNode = function(head) {
-    let size=0
-    let curr1=head;
-    while(curr1!=null){
-        curr1=curr1.next
-        size++
-    }
-    let mid=Math.floor(size/2)
-    let i=0
-    let curr=head
-    while(i<mid){
-        curr=curr.next;
-        i++
-    }
-    return curr;
-};
+
 
 //Test cases Below
 

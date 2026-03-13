@@ -25,7 +25,7 @@ var rotate = function (nums, k) {
 };
 //Reverse the array, then reverse the k part and then reverse the other part.
 var rotate = function (nums, k) {
-        k = k % nums.length;
+    k = k % nums.length;
     let l = 0;
     let r = nums.length - 1;
     while (l < r) {
@@ -59,8 +59,8 @@ var rotate = function (nums, k) {
 
 };
 
-// Remove from back and put it in front - 1 test case failed
-var rotateq = function (nums, k) {
+// TLE- Remove from back and put it in front - 1 test case failed
+var rotate1 = function (nums, k) {
     for (let i = 0; i < k; i++) {
         nums.unshift(nums.pop())
     }

@@ -68,7 +68,7 @@ MyLinkedList.prototype.addAtIndex = function (index, val) {
   if (index < 0 || index > this.size) return;
   if (index == 0) {
     this.addAtHead(val);
-    return; 
+    return;
   }
   let current = this.head;
   let i = 0;

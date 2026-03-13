@@ -10,6 +10,26 @@
  * @param {number} val
  * @return {ListNode}
  */
+//Sentinel Node Solution
+var removeElements = function (head, val) {
+    let sentinal = new ListNode();
+    sentinal.next = head;
+    let prev = sentinal;
+    let curr = head;
+    while (curr) {
+        if (curr.val == val) {
+            prev.next = curr.next;
+            curr = curr.next;
+        }
+        else {
+            prev = curr;
+            
+            curr = curr.next;
+        }
+
+    }
+    return sentinal.next;
+};
 
 //My Solution Two pointers solution
 var removeElements = function (head, val) {
