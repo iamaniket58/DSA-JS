@@ -1,6 +1,32 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxFreqSum = function (s) {
+    let consonantMap = {};
+    let vowelsMap = {};
+    let maxContonantFreq = 0;
+    let maxVowelsFreq = 0;
+    let vowelsSet = new Set(['a', 'e', 'i', 'o', 'u']);
+    
+    for (let str of s) {
+        if (vowelsSet.has(str)) {
+            vowelsMap[str] = (vowelsMap[str] || 0) + 1;
+            if (vowelsMap[str] > maxVowelsFreq) {
+                maxVowelsFreq = vowelsMap[str]
+            }
+        }
+        else {
+            consonantMap[str] = (consonantMap[str] || 0) + 1;
+            if (consonantMap[str] > maxContonantFreq) {
+                maxContonantFreq = consonantMap[str]
+            }
+        }
+    }
+    return maxContonantFreq + maxVowelsFreq;
+};
 var maxFreqSum1 = function (s) {
     let set = new Set(['a', 'e', 'i', 'o', 'u']);
-    //let map=new Map();
     let obj = {};
     for (let i = 0; i < s.length; i++) {
         obj[s[i]] = (obj[s[i]] || 0) + 1;
@@ -38,6 +64,8 @@ var maxFreqSum = function (s) {
     return maxVowel + maxConst;
 };
 
+
+//Above Solution is oKay
 //Revision- Bruite Force
 var maxFreqSum = function (s) {
     let vowelSet = new Set(['a', 'e', 'i', 'o', 'u']);
@@ -51,7 +79,7 @@ var maxFreqSum = function (s) {
             ConsonentObj[s[i]] = (ConsonentObj[s[i]] || 0) + 1
         }
     }
-    console.log(vowelObj, ConsonentObj)
+    // console.log(vowelObj, ConsonentObj)
     let maxVowel = 0;
     for (let key in vowelObj) {
         if (vowelObj[key] > maxVowel) maxVowel = vowelObj[key]

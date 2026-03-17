@@ -1,6 +1,22 @@
-
+/**
+ * @param {string} s
+ * @return {number}
+ */
 //My Solution
 //Iterate from last
+var lengthOfLastWord = function (s) {
+    let isCharFound = false;
+    let length = 0;
+    for (let i = s.length - 1; i >= 0; i--) {
+        if (s[i] != " ") {
+            isCharFound = true;
+            length++
+        }
+        else if (isCharFound) break;
+    }
+    return length;
+};
+
 var lengthOfLastWord = function (s) {
     let str = ''
     let x = false;
@@ -19,13 +35,13 @@ var lengthOfLastWord = function (s) {
 //Revision
 var lengthOfLastWord = function (s) {
     let count = 0;
-    let isCharSeen=false;
+    let isCharSeen = false;
     for (let i = s.length - 1; i >= 0; i--) {
         if (s[i] == " " && !isCharSeen) continue;
 
         if (s[i] != " ") {
             count++;
-            isCharSeen=true
+            isCharSeen = true
         }
         else break;
 
@@ -56,7 +72,7 @@ var lengthOfLastWord2 = function (s) {
     while (n >= 0) {
         if (s[n] != " ") {
             length += 1;
-            n-=1
+            n -= 1
         }
         else {
             break;
@@ -70,13 +86,13 @@ var lengthOfLastWord3 = function (s) {
     let n = s.length - 1
     while (n >= 0) {
         if (s[n] != " ") break;
-        n-=1;
+        n -= 1;
     }
     let length = 0;
     while (n >= 0) {
         if (s[n] == " ") break;
-        length+=1;
-        n-=1;
+        length += 1;
+        n -= 1;
     }
     return length;
 };
@@ -85,21 +101,21 @@ console.log(lengthOfLastWord2('this is  awesome   '));
 //Video 2- 1 For looop Almost same as my solution
 var lengthOfLastWordVideo2 = function (s) {
     let n = s.length - 1
-    let count=0
+    let count = 0
     while (n >= 0) {
-        if(s[n]!=" ")count+=1;
-        else if(count>0)break;
-        n-=1
+        if (s[n] != " ") count += 1;
+        else if (count > 0) break;
+        n -= 1
     }
 };
 
 //using For Loop
 var lengthOfLastWordVideo2 = function (s) {
-    let count=0
-   for(let i=s.length-1;i>=0;i--){
-    if(s[i]!=" ")count++;
-    else if (count>0)break;
-   }
+    let count = 0
+    for (let i = s.length - 1; i >= 0; i--) {
+        if (s[i] != " ") count++;
+        else if (count > 0) break;
+    }
 };
 
 

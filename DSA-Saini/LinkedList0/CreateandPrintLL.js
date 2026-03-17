@@ -26,7 +26,7 @@ let head1 = createLinkedList([3, 4, 9]);
 printLinkedList(head1)
 //This is how head looks
 //From AddToWatch
-head = {
+head2 = {
     val: 3,
     next: {
         val: 4,
@@ -36,3 +36,11 @@ head = {
         },
     },
 }
+
+let head=new ListNode(3);
+head.next=new ListNode(4);
+head.next.next=new ListNode(5); 
+head.next.next.next=new ListNode(6); 
+head.next.next.next.next=new ListNode(7); 
+head.next.next.next.next.next = head.next.next;
+console.log(head)

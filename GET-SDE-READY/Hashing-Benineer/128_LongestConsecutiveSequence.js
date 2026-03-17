@@ -18,6 +18,23 @@ var longestConsecutive = function (nums) {
     }
     return maxCount;
 };
+var longestConsecutive = function (nums) {
+    let set = new Set(nums);
+    let maxCount = -Infinity;
+    for (let num of set) {
+        let n = num;
+        let count = 1;
+        if (!set.has(n - 1)) {
+            while (set.has(n + 1)) {
+                count++;
+                n++;
+            }
+            maxCount = Math.max(maxCount, count);
+        }
+
+    }
+    return maxCount == -Infinity ? 0 : maxCount;
+};
 
 //Iterate over the Set instead of the original nums array (to skip duplicate checks altogether):
 var longestConsecutive = function (nums) {
@@ -166,6 +183,21 @@ var longestConsecutive = function (nums) {
 };
 
 //revision
+var longestConsecutive = function (nums) {
+    let set = new Set(nums);
+    let maxCount = -Infinity;
+    for (let num of nums) {
+        let n = num;
+        let count = 1;
+        while (set.has(n + 1)) {
+            count++;
+            n++;
+        }
+        maxCount = Math.max(maxCount, count);
+    }
+    return maxCount== -Infinity?0:maxCount;
+};
+
 var longestConsecutive = function (nums) {
     let set = new Set(nums);
     let max = -Infinity;
