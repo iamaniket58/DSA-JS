@@ -16,6 +16,16 @@ var removeDuplicates = function (nums) {
 var removeDuplicates = function (nums) {
     let x = 0;
     for (let i = 1; i < nums.length; i++) {
+        if (nums[i] != nums[i - 1]) { // if (nums[i] > nums[x]) --This also is correct
+            nums[++x] = nums[i];
+        }
+    }
+    return x + 1;
+};
+
+var removeDuplicates = function (nums) {
+    let x = 0;
+    for (let i = 1; i < nums.length; i++) {
         if (nums[i] != nums[i - 1]) {
             nums[x + 1] = nums[i];
             x++;

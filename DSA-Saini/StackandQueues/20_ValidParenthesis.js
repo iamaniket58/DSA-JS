@@ -2,6 +2,23 @@
  * @param {string} s
  * @return {boolean}
  */
+//Revision
+var isValid = function (s) {
+    let map = { '(': ')', '{': '}', '[': ']' };
+    let stack = [];
+    for (let st of s) {
+        if (map[st]) {
+            stack.push(st)
+        }
+        else {
+            if (map[stack.pop()] != st) {
+                return false;
+            }
+        }
+    }
+    return stack.length==0; //This will handle a case where there is no close bracket for the open one Ex: s="["
+};
+
 var isValid = function(s) {
     let obj={'(':')','{':'}','[':']'}
     let stack=[];

@@ -2,7 +2,28 @@
  * @param {number} x
  * @return {number}
  */
+//Edge Case:- -8463847412
+//Best Solution
+var reverse = function (x) {
+    let reverse = 0;
+    let intMax = (2 ** 31) - 1;
+    let intMin = -(2 ** 31);
 
+    let limit = x < 0 ? Math.abs(intMin) : intMax;
+
+    let num = Math.abs(x);
+
+    while (num > 0) {
+        let rem = num % 10;
+
+        if (reverse * 10 + rem > limit) return 0;
+
+        reverse = reverse * 10 + rem;
+        num = Math.floor(num / 10);
+    }
+
+    return x < 0 ? -reverse : reverse;
+};
 var reverse = function (x) {
     let isNegative = false;
     let max = (2 ** 31) - 1;
@@ -44,25 +65,8 @@ var reverse = function (x) {
 
     return rev;
 };
-var reverse = function (x) {
-    let min = (-2) ** 31;
-    let max = (2 ** 31) - 1;
-    let rev = 0;
-    let isNegative = false;
-    if (x < 0) {
-        x = x * -1;
-        isNegative = true;
-    }
-    while (x > 0) {
-        let rem = x % 10;
-        rev = rev * 10 + rem;
-        x = Math.floor(x / 10);
-    }
-    if (rev < min || rev > max) return 0;
 
-    return isNegative ? rev * -1 : rev;
-
-};
+//This Edge Case is missing :- -8463847412 :: Ans=-2147483648
 var reverse = function (x) {
     let min = -(2 ** 31);
     let max = (2 ** 31) - 1;
@@ -86,6 +90,48 @@ var reverse = function (x) {
 
     return isNegative ? -rev : rev;
 };
+//This Edge Case is missing :- -8463847412 :: Ans=-2147483648
+var reverse = function (x) {
+    let reverse = 0;
+    let intMax = (2 ** 31) - 1;
+    let intMin = -(2 ** 31);
+    let num = Math.abs(x);
+    while (num > 0) {
+        let rem = num % 10;
+        if (reverse * 10 + rem > intMax) return 0;
+        reverse = reverse * 10 + rem;
+        num = Math.floor(num / 10)
+    }
+    // if(reverse<intMin || reverse> intMax)return 0;
+    return x < 0 ? reverse * -1 : reverse;
+};
+
+//Below Code will not work in an interview
+function ReverseIntegerDup(n) {
+    let original=n
+    let reverse = 0
+    n = Math.abs(n) // n=n*-1
+    while (n > 0) {
+        reverse = reverse * 10 + (n % 10)
+        n = parseInt(n / 10)
+    }
+    let limit=2**31
+    if (reverse>limit-1 || reverse< -limit) return 0 
+    return original >= 0 ? reverse : -reverse
+}
+var reverse = function (x) {
+    let reverse = 0;
+    let intMax = (2 ** 31) - 1;
+    let intMin = -(2 ** 31);
+    let num = Math.abs(x);
+    while (num > 0) {
+        reverse = reverse * 10 + (num % 10);
+        num = Math.floor(num / 10)
+    }
+    if(reverse<intMin || reverse> intMax)return 0;
+    return x < 0 ? reverse * -1 : reverse;
+};
+
 function ReverseInteger(n) {
     reverse = 0
     let isNegative = false
@@ -99,18 +145,25 @@ function ReverseInteger(n) {
     }
     return !isNegative ? reverse : reverse * -1
 }
-//console.log(ReverseInteger(-183))
 
-function ReverseIntegerDup(n) {
-    let original=n
-    let reverse = 0
-    n = Math.abs(n) // n=n*-1
-    while (n > 0) {
-        reverse = reverse * 10 + (n % 10)
-        n = parseInt(n / 10)
+var reverse = function (x) {
+    let min = (-2) ** 31;
+    let max = (2 ** 31) - 1;
+    let rev = 0;
+    let isNegative = false;
+    if (x < 0) {
+        x = x * -1;
+        isNegative = true;
     }
-    let limit=2**31
-    if (reverse>limit-1 || reverse< -limit) return 0 
-    return original >= 0 ? reverse : -reverse
-}
+    while (x > 0) {
+        let rem = x % 10;
+        rev = rev * 10 + rem;
+        x = Math.floor(x / 10);
+    }
+    if (rev < min || rev > max) return 0;
+
+    return isNegative ? rev * -1 : rev;
+
+};
+//console.log(ReverseInteger(-183))
 console.log(ReverseIntegerDup(1534236469))

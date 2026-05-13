@@ -61,4 +61,55 @@ MyStack.prototype.empty = function() {
  */
 
 
+//Revision
+
+var MyStack = function () {
+    this.queue1 = [];
+    this.queue2 = [];
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function (x) {
+    this.queue1.push(x);
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function () {
+    if (this.queue1.length == 0) return null;
+    while (this.queue1.length > 1) {
+        this.queue2.push(this.queue1.shift());
+    }
+    let poped = this.queue1.shift();
+    this.queue1 = this.queue2;
+    this.queue2 = [];
+    return poped;
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function () {
+    if (this.queue1.length == 0) return null;
+    while (this.queue1.length > 1) {
+        this.queue2.push(this.queue1.shift());
+    }
+    let last = this.queue1[0];
+    this.queue2.push(this.queue1.shift());
+    this.queue1 = this.queue2;
+    this.queue2=[];
+    return last;
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function () {
+    return this.queue1.length == 0;
+};
+
 
