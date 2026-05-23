@@ -2,17 +2,17 @@
 var rotateRight = function (head, k) {
     //Find length of the LL to control the number of rotation
     //Handle cases where rotation is unnecessary
-    let size=0;
-    let c=head
-    while(c){
+    let size = 0;
+    let c = head
+    while (c) {
         size++;
-        c=c.next
+        c = c.next
     }
-    k=k%size
+    k = k % size
 
     //Do operation
     for (let i = 0; i < k; i++) {
-        if(head==null || k==0 || head.next==null)return head
+        if (head == null || k == 0 || head.next == null) return head
         let curr = head;
         while (curr.next.next != null) {
             curr = curr.next
@@ -80,7 +80,7 @@ function printLinkedList(head) {
     }
     console.log(result.join(" -> "));
 }
-let head1 = createLinkedList([1, 2,3,4,5]);
+let head1 = createLinkedList([1, 2, 3, 4, 5]);
 //let head2 = createLinkedList([1]);
 printLinkedList(rotateRight(head1, 2));
 console.log();

@@ -4,14 +4,14 @@
  */
 
 //revision
-var maxProfit = function(prices) {
-    let minPrice=prices[0];
-    let maxProfit=0;
-    for(let i=1;i<prices.length;i++){
-        if(prices[i]>minPrice){
-            maxProfit=Math.max(maxProfit,prices[i]-minPrice)
+var maxProfit = function (prices) {
+    let minPrice = prices[0];
+    let maxProfit = 0;
+    for (let i = 1; i < prices.length; i++) {
+        if (prices[i] > minPrice) {
+            maxProfit = Math.max(maxProfit, prices[i] - minPrice)
         }
-        minPrice=Math.min(minPrice,prices[i])
+        minPrice = Math.min(minPrice, prices[i])
     }
     return maxProfit;
 };
@@ -48,7 +48,7 @@ var maxProfit = function (prices) {
     return maxPrice;
 };
 //Optimixed- GPT
-var maxProfit = function(prices) {
+var maxProfit = function (prices) {
     let minPrice = Infinity;
     let maxProfit = 0;
 

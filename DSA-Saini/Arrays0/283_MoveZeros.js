@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {void} Do not return anything, modify nums in-place instead.
  */
+//Swapping
 var moveZeroes = function (nums) {
     let x = 0;
     for (let i = 0; i < nums.length; i++) {
@@ -13,6 +14,7 @@ var moveZeroes = function (nums) {
         }
     }
 };
+
 //This is sir's Solution without Swapping
 var moveZeroes = function (nums) {
     let i = j = 0;
@@ -29,6 +31,18 @@ var moveZeroes = function (nums) {
     while (j < nums.length) {
         nums[j++] = 0
     }
+};
+
+//Revision
+var moveZeroes = function (nums) {
+    let k = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] != 0) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+    while (k < nums.length) nums[k++] = 0;
 };
 
 //This is my solution- same as above

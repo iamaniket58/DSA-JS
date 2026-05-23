@@ -1,5 +1,41 @@
 let a2 = [1, 3, 4, 8, 9], a1 = [2, 4, 6, 7, 8, 9, 11]
 let array = []
+function merge2SortedArrays(arr1, arr2) {
+    let nums = [];
+    let i = 0, j = 0;
+
+    for (let x = 0; x < arr1.length + arr2.length; x++) {
+        if (j >= arr2.length || (i < arr1.length && arr1[i] <= arr2[j])) {
+            nums[x] = arr1[i];
+            i++;
+        } else {
+            nums[x] = arr2[j];
+            j++;
+        }
+    }
+
+    return nums;
+}
+
+function merge2SortedArrays(arr1,arr2){
+    let nums=[];
+    let i=0,j=0;
+    while(i<arr1.length && j<arr2.length){
+        if(arr1[i]<=arr2[j]){
+            nums.push(arr1[i]);
+            i++;
+        }
+        else{
+            nums.push(arr2[j]);
+            j++;
+        }
+    }
+    while(i<arr1.length)nums.push(arr1[i++]);
+    while(j<arr2.length)nums.push(arr2[j++]);
+    return nums;
+}
+
+
 //This is the first method i could think
 function Merge2SortedArray(a1, a2) {
     let x = 0, y = 0
