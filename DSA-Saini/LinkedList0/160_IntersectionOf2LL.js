@@ -59,6 +59,27 @@ var getIntersectionNode = function (headA, headB) {
     return pA
 };
 
+var getIntersectionNode = function (headA, headB) {
+    let c1 = headA;
+    let c2 = headB;
+    while (c1 != c2) {
+        if (c1) {
+            c1 = c1.next;
+        }
+        else {
+            c1 = headB;
+        }
+        if (c2) {
+            c2 = c2.next;
+        }
+        else {
+            c2 = headA;
+        }
+
+    }
+    return c1;
+};
+
 //This one is bad solution-Bruite Force Approach
 var getIntersectionNode = function (headA, headB) {
     let c1 = headA;

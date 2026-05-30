@@ -2,13 +2,26 @@
 * @param {number} x
 * @return {number}
 */
+//Check all 3 Methods of doing
+//revision
 var mySqrt = function (x) {
-    let i = 1
-    while (true) {
-        let n = i * i
-        if (n > x) return i - 1;
-        i += 1
+    if (x <= 1) return x;
+    let left = 1;   //l=2 // It is also correct
+    let right = Math.floor(x / 2);
+    let ans = 0;
+    while (left <= right) {
+        let mid = left + Math.floor((right - left) / 2);
+        let sqr = mid * mid;
+        if (x > sqr) {
+            ans = mid;               //Store the answer of do r or l-1 at last
+            left = mid + 1;
+        }
+        else if (sqr > x) {
+            right = mid - 1;
+        }
+        else return mid;
     }
+    return ans;
 };
 
 var mySqrt1 = function (x) {
@@ -18,7 +31,7 @@ var mySqrt1 = function (x) {
     let ans = 1;
     while (right >= left) {
         // let mid = Math.floor((left + right) / 2);
-        let mid = Math.floor(left + (right-left) / 2); //No Overflow
+        let mid = Math.floor(left + (right - left) / 2); //No Overflow
         if (mid * mid == x) return mid;
         else if (mid * mid > x) {
             right = mid - 1
@@ -31,4 +44,32 @@ var mySqrt1 = function (x) {
     //return ans
     return r
 };
+var mySqrt = function (x) {
+    if (x < 2) return x
+    let l = 0;
+    let r = Math.floor(x / 2);
+    while (l <= r) {
+        let m = Math.floor((l + r) / 2);
+        let sqr = m * m;
+        if (sqr == x) return m;
+        else if (sqr < target) {
+            l = m + 1;
+        }
+        else {
+            r = m - 1
+        }
+    }
+    return l - 1
+};
+
+//Bruite Force
+var mySqrt = function (x) {
+    let i = 1
+    while (true) {
+        let n = i * i
+        if (n > x) return i - 1;
+        i += 1
+    }
+};
+
 console.log(mySqrt1(20))

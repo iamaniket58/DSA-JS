@@ -3,6 +3,20 @@
  * @param {character} x
  * @return {number[]}
  */
+
+var findWordsContaining = function (words, x) {
+    let ans = [];
+    for (let i = 0; i < words.length; i++) {
+        for (let s of words[i]) {
+            if (s == x) {
+                ans.push(i);
+                break;
+            }
+        }
+    }
+    return ans;
+};
+
 var findWordsContaining = function (words, x) {
     let arr = [];
     for (let i = 0; i < words.length; i++) {
@@ -16,6 +30,7 @@ var findWordsContaining = function (words, x) {
     }
     return arr;
 };
+
 //Revision
 var findWordsContaining = function (words, x) {
     let ans = [];
@@ -29,6 +44,7 @@ var findWordsContaining = function (words, x) {
     }
     return ans;
 };
+
 //Using Set- Not agood way
 var findWordsContaining = function (words, x) {
     let ans = [];
@@ -38,6 +54,7 @@ var findWordsContaining = function (words, x) {
     }
     return ans;
 };
+
 //Way2
 var findWordsContaining = function (words, x) {
     let arr = [];

@@ -10,6 +10,51 @@
  * @param {number} n
  * @return {ListNode}
  */
+//Revison
+var removeNthFromEnd = function(head, n) {
+    let size = 0;
+    let curr = head;
+
+    while (curr) {
+        size++;
+        curr = curr.next;
+    }
+
+    // remove first node
+    if (size === n) {
+        return head.next;
+    }
+
+    curr = head;
+
+    for (let i = 0; i < size - n - 1; i++) {
+        curr = curr.next;
+    }
+
+    curr.next = curr.next.next;
+
+    return head;
+};
+
+var removeNthFromEnd = function (head, n) {
+    let size = 0;
+    let curr = head;
+    while (curr) {
+        size++;
+        curr = curr.next;
+    }
+    let i = 0;
+    let sentinal = new ListNode();
+    sentinal.next = head
+    curr = sentinal;
+    while (i < size - n) {
+        curr = curr.next;
+        i++;
+    }
+    curr.next = curr.next?.next;
+    return sentinal.next
+};
+
 //Without Sentinel Node
 var removeNthFromEnd = function (head, n) {
     let size = 0;
@@ -49,3 +94,4 @@ var removeNthFromEnd = function (head, n) {
     curr.next = curr.next.next;
     return sentinel.next;
 };
+

@@ -35,8 +35,20 @@ var numJewelsInStones = function(jewels, stones) {
     }
     return count;
 };
+//using 2 for loops- Jewels First
+var numJewelsInStones = function (jewels, stones) {
+    let size=0;
+    for (let i = 0; i < jewels.length; i++) {
+        for (let j = 0; j < stones.length; j++) {
+            if(stones[j]==jewels[i]){
+                size++;
+            }
+        }
+    }
+    return size;
+};
 
-//using 2 for loops
+//using 2 for loops- Stone First
 var numJewelsInStones = function (jewels, stones) {
     let count = 0;
     for (let i = 0; i < stones.length; i++) {

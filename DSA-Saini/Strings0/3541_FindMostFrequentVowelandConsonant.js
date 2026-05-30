@@ -3,6 +3,26 @@
  * @return {number}
  */
 var maxFreqSum = function (s) {
+    let vow = {};
+    let cons = {};
+    let set = new Set(['a', 'e', 'i', 'o', 'u']);
+    let maxVow = 0;
+    let maxCons = 0;
+    for (let i = 0; i < s.length; i++) {
+        if (set.has(s[i])) {
+            vow[s[i]] = (vow[s[i]] || 0) + 1;
+            if (vow[s[i]] > maxVow) maxVow = vow[s[i]];
+        }
+        else {
+            cons[s[i]] = (cons[s[i]] || 0) + 1;
+            if (cons[s[i]] > maxCons) maxCons = cons[s[i]];
+
+        }
+    }
+    return maxVow + maxCons;
+};
+
+var maxFreqSum = function (s) {
     let consonantMap = {};
     let vowelsMap = {};
     let maxContonantFreq = 0;

@@ -21,6 +21,31 @@ var reverseStr1 = function (l, k) {
     return s.join("");
 };
 
+//above solution using while loop
+
+var reverseStr = function (s, k) {
+    let array = s.split("");
+    let left = 0;
+    let right = k - 1;
+    while (left < array.length) {
+        let l = left;
+        let r = right > array.length ? array.length - 1 : right;
+        while (l < r) {
+            let temp = array[l];
+            array[l] = array[r];
+            array[r] = temp;
+            l++;
+            r--;
+        }
+        left = left + 2 * k;
+        right = left + k - 1;
+
+    }
+    return array.join("")
+
+};
+
+
 //Revision
 var reverseStr = function (s, k) {
     let arr = s.split("");
@@ -45,20 +70,21 @@ let reverse = (arr, start, end) => {
     }
 }
 //Sir's Solution- My Solution is better
-var reverseStr = function(s, k) {
+var reverseStr = function (s, k) {
     s = s.split("");
 
-    for(let x = 0; x < s.length; x = x + (2*k)){
+    for (let x = 0; x < s.length; x = x + (2 * k)) {
         let n = k;
-        let mid = Math.floor(n/2);
-        for(let i = 0; i < mid; i++) {
-            let temp = s[x+i];
-            s[x+i] = s[x+n-i-1];
-            s[x+n-i-1] = temp;
+        let mid = Math.floor(n / 2);
+        for (let i = 0; i < mid; i++) {
+            let temp = s[x + i];
+            s[x + i] = s[x + n - i - 1];
+            s[x + n - i - 1] = temp;
         }
     }
 
     return s.join("");
 };
 // console.log(reverseStr('abcdefg', 2));
+
 console.log(reverseStr1('abcdefgh', 3));

@@ -23,6 +23,19 @@ var hasCycle = function(head) {
     return false;
 };
 
+var hasCycle = function(head) {
+    let curr=head;
+    let set=new Set();
+    while(curr){
+        if(!set.has(curr)){
+            set.add(curr);
+        }
+        else return true;
+        curr=curr.next;
+    }
+    return false;
+};
+
 //Test cases
 
 function createLinkedList(values) {

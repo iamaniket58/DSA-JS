@@ -92,7 +92,7 @@ var evalRPN = function (tokens) {
             let value2 = +stack.pop();
             let value1 = +stack.pop();
             let ans = eval(`${value1}${tokens[i]} ${value2}`);
-            ans=Math.trunc(ans)
+            ans = Math.trunc(ans)
             stack.push(ans);
         }
         else {
@@ -101,4 +101,36 @@ var evalRPN = function (tokens) {
     }
     console.log(stack);
     return +stack.pop();
+};
+
+//Revision
+var evalRPN = function (tokens) {
+    let stack = [];
+    let set = new Set(['+', '-', '*', '/']);
+    for (let tok of tokens) {
+        if (!set.has(tok)) {
+            stack.push(+tok);
+        }
+        else {
+            let elem2 = stack.pop();
+            let elem1 = stack.pop();
+            let ans;
+            switch (tok) {
+                case '+':
+                    ans = elem1 + elem2;
+                    break;
+                case '-':
+                    ans = elem1 - elem2;
+                    break;
+                case '*':
+                    ans = elem1 * elem2;
+                    break;
+                case '/':
+                    ans = Math.trunc(elem1 / elem2);
+                    break;
+            }
+            stack.push(ans);
+        }
+    }
+    return stack.pop();
 };

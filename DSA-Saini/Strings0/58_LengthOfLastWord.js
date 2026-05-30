@@ -2,6 +2,33 @@
  * @param {string} s
  * @return {number}
  */
+
+//Revision
+var lengthOfLastWord = function (s) {
+    let n = s.length;
+    let size=0;
+    for (let i = n - 1; i >= 0; i--) {
+        if(s[i]==" " && size!=0)return size;
+        else if(s[i]!=" ")size++;
+    }
+    return size;
+};
+
+var lengthOfLastWord = function (s) {
+    let n = s.length;
+    let i = n - 1;
+    let size = 0;
+    while (s[i] == " ") {
+        i--;
+    }
+    while (s[i] && s[i] != " ") {
+        size++;
+        i--;
+    }
+    return size;
+
+};
+
 //My Solution
 //Iterate from last
 var lengthOfLastWord = function (s) {

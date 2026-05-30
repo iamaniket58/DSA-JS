@@ -30,6 +30,42 @@ var removeElements = function (head, val) {
     }
     return sentinal.next;
 };
+//Sirs Solution using Senitel node
+var removeElements = function (head, val) {
+    //Sirs solution using
+    let sentinel = new ListNode();
+    sentinel.next = head;
+
+    let prev = sentinel;
+    while (prev.next != null) {
+        if (prev.next.val === val) {
+            prev.next = prev.next.next;
+        }
+        else {
+            prev = prev.next
+        }
+    }
+    return sentinel.next
+};
+
+//Pointers approach without Sentinal
+var removeElements = function (head, val) {
+    let sentinal = new ListNode();
+    sentinal.next = head;
+    let prev = sentinal;
+    let curr = head;
+    while (curr) {
+        if (curr.val == val) {
+            prev.next = curr.next;
+            curr = curr.next;
+        }
+        else {
+            prev = prev.next;
+            curr = curr.next;
+        }
+    }
+    return sentinal.next;
+};
 
 //My Solution Two pointers solution
 var removeElements = function (head, val) {
@@ -51,6 +87,7 @@ var removeElements = function (head, val) {
     return head
 };
 
+//Solution using Only 1 pointer
 var removeElements1 = function (head, val) {
     if (head == null) return head;
     let current = head;
@@ -64,27 +101,19 @@ var removeElements1 = function (head, val) {
     if (head.val == val) head = head.next
     return head;
 };
-
-
-//Sirs Solution using Senitel node
 var removeElements = function (head, val) {
-    //Sirs solution using
-    let sentinel = new ListNode();
-    sentinel.next = head;
-
-    let prev = sentinel;
-    while (prev.next != null) {
-        if (prev.next.val === val) {
-            prev.next = prev.next.next;
+    if(!head)return null;
+    let curr = head;
+    while (curr && curr.next) {
+        if (curr.next.val == val) {
+            curr.next = curr.next.next;
         }
         else {
-            prev = prev.next
+            curr = curr.next;
         }
     }
-    return sentinel.next
+    return head.val==val?head.next:head;
 };
-
-
 
 
 

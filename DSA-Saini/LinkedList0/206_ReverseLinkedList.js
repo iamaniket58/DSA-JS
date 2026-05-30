@@ -9,7 +9,7 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-var reverseList = function (head) {
+var reverseListx = function (head) {
     let prev = null;
     let curr = head;
     while (curr != null) {
@@ -64,7 +64,7 @@ head.next.next = new ListNode(3);
 head.next.next.next = new ListNode(4);
 head.next.next.next.next = new ListNode(5);
 
-let reversed = reverseList(head);
+let reversed = reverseListx(head);
 
 function printList(head) {
     let current = head;

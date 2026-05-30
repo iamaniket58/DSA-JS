@@ -75,3 +75,19 @@ var isValid = function(s) {
     }
     return stack.length==0;
 };
+
+//Revision
+var isValid = function (s) {
+    let obj = { '(': ')', '{': '}', '[': ']' };
+    let stack = [];
+    for (let st of s) {
+        if (st in obj) {
+            stack.push(st);
+        }
+        else {
+            let elem = stack.pop();
+            if (!elem || obj[elem] != st) return false;
+        }
+    }
+    return stack.length == 0;
+};

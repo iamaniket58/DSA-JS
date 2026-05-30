@@ -11,18 +11,34 @@
  * @param {number} n
  * @return {number}
  */
-var guessNumber = function(n) {
-    let l=1;
-    let r=n
-    while(r>=l){
-        let mid=l+Math.floor((r-l)/2);
-        const response=guess(mid);
-        if(response==0)return mid;
-        else if(response==1){
-            l=mid+1
+var guessNumber = function (n) {
+    let l = 1;
+    let r = n;
+    while (l <= r) {
+        let m = Math.floor(l + (r - l) / 2);
+        let res = guess(m);
+        if (res == 0) return m;
+        else if (res == -1) {
+            r = m - 1;
         }
-        else{
-            r=mid-1
+        else {
+            l = m + 1;
+        }
+    }
+};
+
+var guessNumber = function (n) {
+    let l = 1;
+    let r = n
+    while (r >= l) {
+        let mid = l + Math.floor((r - l) / 2);
+        const response = guess(mid);
+        if (response == 0) return mid;
+        else if (response == 1) {
+            l = mid + 1
+        }
+        else {
+            r = mid - 1
         }
     }
 };
