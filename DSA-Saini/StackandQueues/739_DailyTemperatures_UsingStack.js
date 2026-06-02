@@ -1,3 +1,26 @@
+/**
+ * @param {number[]} temperatures
+ * @return {number[]}
+ */
+//Revision
+var dailyTemperatures = function (temperatures) {
+    let stack = [];
+    let ans = [];
+    for (let i = temperatures.length - 1; i >= 0; i--) {
+        while (stack.length && (temperatures[i] >= temperatures[stack[stack.length - 1]])) {
+            stack.pop();
+        }
+        if (stack.length > 0) {
+            ans[i] = stack[stack.length - 1] - i;
+        }
+        else {
+            ans[i] = 0;
+        }
+        stack.push(i);
+    }
+    return ans;
+};
+
 //My Solution using 2 stack
 var dailyTemperatures = function (temperatures) {
 
@@ -45,23 +68,24 @@ var dailyTemperatures = function (temperatures) {
 var dailyTemperatures = function (arr) {
 
     let stack = []; //It stores Index
-    let n=arr.length;
+    let n = arr.length;
     let ans = Array(n).fill(0);
-    stack.push(n-1)
+    stack.push(n - 1)
 
     for (let i = arr.length - 2; i >= 0; i--) {
-        while(stack.length!=0){
-            if(arr[i]>=arr[stack[stack.length-1]]){
+        while (stack.length != 0) {
+            if (arr[i] >= arr[stack[stack.length - 1]]) {
                 stack.pop()
             }
-            else{
-                ans[i]=stack[stack.length-1]-i;
+            else {
+                ans[i] = stack[stack.length - 1] - i;
                 break;
             }
         }
-        if(!stack.length){
-            ans[i]=0
+        if (!stack.length) {
+            ans[i] = 0
         }
+        stack.push(i);
     }
     return ans
 }

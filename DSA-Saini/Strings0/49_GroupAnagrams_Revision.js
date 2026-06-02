@@ -13,7 +13,6 @@ var groupAnagrams = function (strs) {
             freqArr[charCode]++
         }
         let key = freqArr.join("#");
-        // console.log(key)
         if (!obj[key]) obj[key] = [];
         obj[key].push(s)
     }
@@ -81,7 +80,7 @@ var groupAnagrams = function (strs) {
             let ch=s.charCodeAt(0)-97;
             frqArr[ch]++
         }
-        let key=frqArr;
+        let     =frqArr;
         // for(let k=0;k<26;k++){
         //     key+=frqArr
         // }
@@ -98,10 +97,8 @@ var groupAnagrams = function (strs) {
 
 
 
-
-
 //It can be ignored as its bruite force
-//My Solution suring Revision- Too Bruite-Force
+//My Solution during Revision- Too Bruite-Force
 var groupAnagrams = function (strs) {
     let ans = [];
     let indexSet = new Set();
@@ -133,3 +130,72 @@ let isAnagram = (str1, str2) => {
     }
     return true;
 }
+
+//------------------Revision2--------------------------------
+
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+ //Using Sorted String as a Key
+var groupAnagrams = function (strs) {
+    let map = {};
+    for (let str of strs) {
+        let key = str.split("").sort().join("");
+        if (map[key]) {
+            map[key].push(str);
+        }
+        else {
+            map[key] = [str];
+        }
+    }
+    let ans = [];
+    for (let key in map) {
+        ans.push(map[key]);
+    }
+    return ans;  //  return Object.values(map)
+};
+
+//Using Freq Array as key
+var groupAnagrams = function (strs) {
+    let map = {};
+    for (let str of strs) {
+        let key = new Array(26).fill(0);
+        for(let s of str){
+            key[s.charCodeAt(0)-97]++
+        }
+        if (map[key]) {
+            map[key].push(str);
+        }
+        else {
+            map[key] = [str];
+        }
+    }
+    let ans = [];
+    for (let key in map) {
+        ans.push(map[key]);
+    }
+    return ans;
+};
+//Join FreqArrayto form a Key
+var groupAnagrams = function (strs) {
+    let map = {};
+    for (let str of strs) {
+        let freqArr = new Array(26).fill(0);
+        for(let s of str){
+            freqArr[s.charCodeAt(0)-97]++
+        }
+        let key=freqArr.join("#");
+        if (map[key]) {
+            map[key].push(str);
+        }
+        else {
+            map[key] = [str];
+        }
+    }
+    let ans = [];
+    for (let key in map) {
+        ans.push(map[key]);
+    }
+    return ans;
+};

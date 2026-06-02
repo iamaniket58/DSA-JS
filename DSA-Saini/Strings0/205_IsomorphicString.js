@@ -3,42 +3,81 @@
  * @param {string} t
  * @return {boolean}
  */
+
 //Revision
-var isIsomorphic = function(s, t) {
-    if(s.length!=t.length)return false;
-    let mappingObjectST={};
-    let mappingObjectTS={};
-    for(let i=0;i<s.length;i++){
-        if(!mappingObjectST[s[i]]){
-            mappingObjectST[s[i]]=t[i];
+var isIsomorphic = function (s, t) {
+    let map = {};
+    let set = new Set();
+    for (let i = 0; i < s.length; i++) {
+        if (!map[s[i]] && !set.has(t[i])) {
+            map[s[i]] = t[i];
+            set.add(t[i]);
         }
-        if(!mappingObjectTS[t[i]]){
-            mappingObjectTS[t[i]]=s[i];
+        else if(map[s[i]]){
+            if(map[s[i]] !=t[i])return false;
+        }
+        else return false;
+    }
+    return true;
+};
+
+//Revision
+var isIsomorphic = function (s, t) {
+    let mapst = {};
+    let mapts = {};
+    for (let i = 0; i < s.length; i++) {
+        if (!mapst[s[i]]) {
+            if (!mapts[t[i]]) {
+                mapst[s[i]] = t[i];
+                mapts[t[i]] = s[i];
+            }
+            else {
+                if (mapts[t[i]] != s[i]) return false;
+            }
+        }
+        else {
+            if (mapst[s[i]] != t[i]) return false;
         }
     }
-    if(Object.keys(mappingObjectST).length != Object.keys(mappingObjectTS).length)return false; // Failed Test Case: "badc", "baba
-    let str="";
-    for(let i=0;i<s.length;i++){
-        str+=mappingObjectST[s[i]]
+    return true;
+};
+
+//Revision
+var isIsomorphic = function (s, t) {
+    if (s.length != t.length) return false;
+    let mappingObjectST = {};
+    let mappingObjectTS = {};
+    for (let i = 0; i < s.length; i++) {
+        if (!mappingObjectST[s[i]]) {
+            mappingObjectST[s[i]] = t[i];
+        }
+        if (!mappingObjectTS[t[i]]) {
+            mappingObjectTS[t[i]] = s[i];
+        }
     }
-    return str==t;
+    if (Object.keys(mappingObjectST).length != Object.keys(mappingObjectTS).length) return false; // Failed Test Case: "badc", "baba
+    let str = "";
+    for (let i = 0; i < s.length; i++) {
+        str += mappingObjectST[s[i]]
+    }
+    return str == t;
 };
 
 
 //Here i am storing the mapping of s and t. Then Replacing s with t and storing in str, then matching with t and returning
 //1 case handling- even values in object should not be duplicated, for that i used Set to compare
-var isIsomorphic = function(s, t) {
-    let obj={};
-    let set=new Set();
-    if(s.length!=t.length)return false;
-    for(let i=0;i<s.length;i++){
-        if(!obj[s[i]]){
-            obj[s[i]]=t[i];
-            if(set.has(t[i]))return false;
+var isIsomorphic = function (s, t) {
+    let obj = {};
+    let set = new Set();
+    if (s.length != t.length) return false;
+    for (let i = 0; i < s.length; i++) {
+        if (!obj[s[i]]) {
+            obj[s[i]] = t[i];
+            if (set.has(t[i])) return false;
             set.add(t[i]);
         }
-        else{
-            if(obj[s[i]] !=t[i])return false;
+        else {
+            if (obj[s[i]] != t[i]) return false;
         }
     }
     // let str=''
@@ -52,19 +91,19 @@ var isIsomorphic = function(s, t) {
 };
 
 //Solution 2 using 2 map
-var isIsomorphic1 = function(s, t) {
-    let mapStoT={};
-    let mapTtoS={};
-    for(let i=0;i<s.length;i++){
-        if(!mapStoT[s[i]] && !mapTtoS[t[i]]){
-            mapStoT[s[i]]=t[i];
-            mapTtoS[t[i]]=s[i];
+var isIsomorphic1 = function (s, t) {
+    let mapStoT = {};
+    let mapTtoS = {};
+    for (let i = 0; i < s.length; i++) {
+        if (!mapStoT[s[i]] && !mapTtoS[t[i]]) {
+            mapStoT[s[i]] = t[i];
+            mapTtoS[t[i]] = s[i];
         }
-        else if(s[i]!=mapTtoS[t[i]])return false;
-        else if(t[i]!=mapStoT[s[i]])return false
+        else if (s[i] != mapTtoS[t[i]]) return false;
+        else if (t[i] != mapStoT[s[i]]) return false
     }
 }
-cons
+
 //Simpler version of(Solution 2 using 2 map) 
 var isIsomorphic = function (s, t) {
     let objST = {};
@@ -74,11 +113,11 @@ var isIsomorphic = function (s, t) {
             objST[s[i]] = t[i];
             objTS[t[i]] = s[i];
         }
-        else if(objST[s[i]]){
-            if(objST[s[i]] !=t[i])return false;
+        else if (objST[s[i]]) {
+            if (objST[s[i]] != t[i]) return false;
         }
-        else if(objTS[t[i]]){
-            if(objTS[t[i]] !=s[i])return false;
+        else if (objTS[t[i]]) {
+            if (objTS[t[i]] != s[i]) return false;
         }
     }
     return true;

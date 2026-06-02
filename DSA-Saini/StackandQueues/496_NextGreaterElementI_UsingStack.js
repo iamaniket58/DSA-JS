@@ -1,3 +1,27 @@
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+//Revision
+var nextGreaterElement = function (nums1, nums2) {
+    let stack = [];
+    let nextGreater = {};
+    for (let i = nums2.length - 1; i >= 0; i--) {
+        while (nums2[i] > stack[stack.length - 1]) {
+            stack.pop();
+        }
+        nextGreater[nums2[i]] = (stack[stack.length - 1] ?? -1);
+        stack.push(nums2[i]);
+    }
+    
+    let ans = [];
+    for (let num of nums1) {
+        ans.push(nextGreater[num]);
+    }
+    return ans;
+};
+
 var nextGreaterElement = function (nums1, nums2) {
     //Stack Solution
     let stack = [];
@@ -76,20 +100,20 @@ var nextGreaterElement = function (nums1, nums2) {
     let map = { [nums2[nums2.length - 1]]: -1 };
     for (let i = nums2.length - 2; i >= 0; i--) {
         let top = stack[stack.length - 1];
-        if(nums2[i]<top){
-            map[nums2[i]]=top;
+        if (nums2[i] < top) {
+            map[nums2[i]] = top;
         }
-        else{
-            while(stack.length && nums2[i]>stack[stack.length-1])stack.pop();
-            if(stack.length==0) map[nums2[i]]=-1;
-            else{
-                 map[nums2[i]]=stack[stack.length-1];
+        else {
+            while (stack.length && nums2[i] > stack[stack.length - 1]) stack.pop();
+            if (stack.length == 0) map[nums2[i]] = -1;
+            else {
+                map[nums2[i]] = stack[stack.length - 1];
             }
         }
         stack.push(nums2[i]);
     }
-    let ans=[];
-    for(let i=0;i<nums1.length;i++){
+    let ans = [];
+    for (let i = 0; i < nums1.length; i++) {
         ans.push(map[nums1[i]]);
     }
     console.log(map);

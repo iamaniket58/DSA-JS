@@ -2,7 +2,7 @@
  * @param {string[]} strs
  * @return {string}
  */
-//Revision- My Solution- ]
+//Revision- My Solution
 var longestCommonPrefix = function (strs) {
     let common = strs[0];
     for (let i = 1; i < strs.length; i++) {
@@ -21,40 +21,79 @@ var longestCommonPrefix = function (strs) {
     }
     return common;
 };
+console.log(longestCommonPrefix2(["flower", "flow", "flight"]))
 
-
-console.log(longestCommonPrefix2(["flower","flow","flight"]))
 //Sir's Solution- Best
-var longestCommonPrefix = function(strs) {
-   for(let i=0;i<strs[0].length;i++){
-        let char=strs[0][i];
+var longestCommonPrefix = function (strs) {
+    for (let i = 0; i < strs[0].length; i++) {
+        let char = strs[0][i];
+
         //Traversing over Array of strings and comparing each elements
-        for(let j=1;j<strs.length;j++){
+        for (let j = 1; j < strs.length; j++) {
             if (i >= strs[j].length || strs[j][i] !== char) {
-                return strs[0].slice(0,i)
+                return strs[0].slice(0, i)
             }
         }
-   }
-   return strs[0]
+    }
+    return strs[0]
 };
 
 
 //Not so good Approach
-var longestCommonPrefix2 = function(strs) {
-    let array=strs[0].split("");
-    let maxT=0
-    for(let i=1;i<strs.length;i++){
-        if(strs[i]=="") return ""; // ["abab","aba",""]
-        for(let j=0;j<strs[i].length;j++){
-            maxT=j
-            if(strs[i][j]!=array[j]){
-                array.length=j;
+var longestCommonPrefix2 = function (strs) {
+    let array = strs[0].split("");
+    let maxT = 0
+    for (let i = 1; i < strs.length; i++) {
+        if (strs[i] == "") return ""; // ["abab","aba",""]
+        for (let j = 0; j < strs[i].length; j++) {
+            maxT = j
+            if (strs[i][j] != array[j]) {
+                array.length = j;
             }
         }
         //This is written to pass the below test case
-        if(maxT+1<array.length){ //["ab", "a"]
-            array.length=maxT+1;
+        if (maxT + 1 < array.length) { //["ab", "a"]
+            array.length = maxT + 1;
         }
     }
     return array.join('');
 };
+
+//Revision
+var longestCommonPrefix = function (strs) {
+    let elem = strs[0];
+    let count = Infinity;
+    for (let i = 1; i < strs.length; i++) {
+        if (strs[i] == "") return "";
+        for (let j = 0; j < strs[i].length; j++) {
+            if (strs[i][j] != elem[j]) {
+                count = Math.min(count, j);
+                break;
+            }
+            else if (j == strs[i].length - 1) {
+                count = Math.min(count, j + 1);
+            }
+        }
+    }
+    return elem.slice(0, count);
+};
+
+var longestCommonPrefix = function (strs) {
+    let elem = strs[0];
+    for (let i = 1; i < strs.length; i++) {
+        let match = "";
+        for (let j = 0; j < strs[i].length; j++) {
+            if (strs[i][j] == elem[j]) {
+                match += strs[i][j];
+            }
+            else break;
+        }
+        elem=match
+    }
+    return elem;
+};
+//TestCase
+//["abab","aba",""]
+// ["cir","car"]
+// ["ab", "a"]
+// [""]
