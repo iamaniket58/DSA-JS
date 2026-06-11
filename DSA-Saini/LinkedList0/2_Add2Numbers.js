@@ -32,6 +32,23 @@ var addTwoNumbers = function (l1, l2) {
     let curr = head;
     let carry = 0;
     while (l1 || l2 || carry) {
+        let sum = carry + (l1?.val ?? 0) + (l2?.val ?? 0);
+        curr.next = new ListNode(sum % 10);
+        carry = Math.floor(sum / 10);
+
+        curr = curr.next;
+        l1 = l1?.next;
+        l2 = l2?.next;
+
+    }
+    return head.next;
+};
+
+var addTwoNumbers = function (l1, l2) {
+    let head = new ListNode();
+    let curr = head;
+    let carry = 0;
+    while (l1 || l2 || carry) {
         let val1 = l1?.val || 0;
         let val2 = l2?.val || 0;
         let sum = val1 + val2 + carry;

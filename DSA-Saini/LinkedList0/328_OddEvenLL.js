@@ -56,6 +56,47 @@ var oddEvenList = function (head) {
 
 };
 
+//Revision
+var oddEvenList = function (head) {
+    if(!head)return null;
+    let headodd = head;
+    let headEven = head.next;
+    let odd = head;
+    let even = head.next;
+    while (odd && even) {
+        odd.next = even.next;
+        if (even.next) {
+            even.next = even.next.next;
+        }
+        else {
+            even.next = null;
+        }
+        odd = odd.next;
+        even = even.next;
+    }
+    let curr = headodd;
+    while (curr.next) {
+        curr = curr.next;
+    }
+    curr.next = headEven;
+    return headodd;
+};
+var oddEvenList = function (head) {
+    if (!head) return null;
+    let head2 = head.next;
+    let odd = head;
+    let even = head.next;
+    while (odd && even && even.next) {
+        odd.next = even.next;
+        even.next = even.next.next;
+
+        odd = odd.next;
+        even = even.next;
+    }
+    odd.next = head2;
+    return head;
+};
+
 //Test Cases
 
 function ListNode(val, next = null) {

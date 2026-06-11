@@ -1,3 +1,41 @@
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+//Revision
+var rotateRight = function (head, k) {
+    if(!head)return null;
+    let size = 0;
+    let curr = head;
+    while (curr) {
+        size++;
+        curr = curr.next;
+    }
+    k = k % size;
+    curr = head;
+    let i = 0;
+    while (i < size - k - 1) {
+        curr = curr.next;
+        i++;
+    }
+    let tail = head;
+    while (tail.next) {
+        tail = tail.next;
+    }
+    tail.next=head;
+    head=curr.next;
+    curr.next=null;
+    return head;
+};
+
 //Working afster Revision- Not working solution
 var rotateRight = function (head, k) {
     //Find length of the LL to control the number of rotation

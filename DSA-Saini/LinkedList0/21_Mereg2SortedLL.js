@@ -10,6 +10,33 @@
  * @param {ListNode} list2
  * @return {ListNode}
  */
+//revision
+var mergeTwoLists = function (list1, list2) {
+    let sentinal = new ListNode();
+    let curr = sentinal;
+    while (list1 && list2) {
+        if (list1.val <= list2.val) {
+            curr.next = new ListNode(list1.val);
+            list1 = list1.next;
+        }
+        else {
+            curr.next = new ListNode(list2.val);
+            list2 = list2.next;
+        }
+        curr = curr.next;
+    }
+    while (list1) {
+        curr.next = new ListNode(list1.val);
+        list1 = list1.next;
+        curr = curr.next;
+    }
+    while (list2) {
+        curr.next = new ListNode(list2.val);
+        list2 = list2.next;
+        curr = curr.next;
+    }
+    return sentinal.next;
+};
 
 //Revision
 var mergeTwoLists = function (list1, list2) {
