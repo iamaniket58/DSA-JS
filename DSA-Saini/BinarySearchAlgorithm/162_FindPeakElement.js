@@ -1,5 +1,7 @@
-
-
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
 
 //This is just finding the Maxm O(n)
 var findPeakElement = function (nums) {
@@ -13,10 +15,6 @@ var findPeakElement = function (nums) {
 };
 
 //Using Binary Search
-/**
- * @param {number[]} nums
- * @return {number}
- */
 var findPeakElement = function (nums) {
 
     let l = 0;
@@ -30,21 +28,17 @@ var findPeakElement = function (nums) {
             r = mid;
         }
     }
-    return r
+    return r //l- Both Correct
 }
 
 //Solution to break the myth
-/**
- * @param {number[]} nums
- * @return {number}
- */
 var findPeakElement = function (nums) {
 
     let l = 0;
     let r = nums.length - 1;
     while (l <= r) {
         let mid = Math.floor(l + (r - l) / 2);
-        if(l==r)return r
+        if (l == r) return r
         if (nums[mid + 1] > nums[mid]) {
             l = mid + 1
         }
@@ -54,3 +48,13 @@ var findPeakElement = function (nums) {
     }
     return r
 }
+
+//Bruite Force
+var findPeakElement = function (nums) {
+    if (nums.length == 1) return 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (i == 0 && nums[i] > nums[i + 1]) return i;
+        else if (i == nums.length - 1 && nums[i] > nums[i - 1]) return i;
+        else if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) return i;
+    }
+};

@@ -4,7 +4,8 @@
  * @param {number} x
  * @return {number[]}
  */
-//Binary Search- Wroking
+//Binary Search- Working
+//Search the starting point of the window
 var findClosestElements = function (arr, k, x) {
     let l = 0;
     let r = arr.length - 1;
@@ -18,6 +19,24 @@ var findClosestElements = function (arr, k, x) {
         }
     }
     return arr.slice(l, l + k)
+};
+
+//Failed Test Case- [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4]
+var findClosestElements = function (arr, k, x) {
+    //Binary Search to find the starting point of the window
+    let l = 0;
+    let r = arr.length - 1;
+    while (l < r) {
+        let mid = l + Math.floor((r - l) / 2);
+        if (Math.abs(x - arr[mid]) > Math.abs(x - arr[mid + k])) {
+            l = mid + 1;
+        }
+        else {
+            r = mid;
+        }
+    }
+    return arr.slice(l, l + k);
+
 };
 //using Binary Search-Most efficient- Math.abs is not working as expected
 var findClosestElements = function (arr, k, x) {
@@ -38,7 +57,8 @@ var findClosestElements = function (arr, k, x) {
         }
     }
     return arr.slice(l, l + k)
-}
+};
+
 console.log(findClosestElements([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 4], 4, 3))
 
 //using two poinetrs in Linear search- ChatGpt
@@ -55,9 +75,26 @@ var findClosestElements1 = function (arr, k, x) {
     }
     return arr.slice(l, r + 1)
 };
+//Revision
+//Bruite Force
+// Compute absolute difference of each element from x, sort by closeness, pick the k nearest elements, then restore their original order and return the values.
+var findClosestElements = function (arr, k, x) {
+    let diff = [];
+    for (let i = 0; i < arr.length; i++) {
+        diff.push([Math.abs(arr[i] - x), arr[i], i])
+    }
+    // console.log(diff);
+    diff.sort((a, b) => a[0] - b[0]);
+    // console.log(diff);
+    let ans = [];
+    for (let i = 0; i < k; i++) {
+        ans.push([diff[i][1], diff[i][2]]);
+    }
+    // console.log(ans);
+    return ans.sort((a, b) => a[1] - b[1]).map(x => x[0]);
+};
 
-
-//unsloved- linear search-sliding window
+//unsloved- linear search-sliding window- Sir asks to do this Method
 var findClosestElements2 = function (arr, k, x) {
     let l = 0;
     let r = k - 1;

@@ -30,7 +30,7 @@ var findPeakElement = function (nums) {
             r = m
         }
     }
-    return l;
+    return l; //r- Both corect
 };
 
 

@@ -111,6 +111,7 @@ var solution = function (isBadVersion) {
     };
 };
 
+//Best version for this solution
 //Revision- Check the Condition of (l<r) and how to do these kind of problems
 var solution = function (isBadVersion) {
     /**

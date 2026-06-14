@@ -12,6 +12,35 @@ var singleNonDuplicate = function (nums) {
     return nums[nums.length - 1]
 };
 
+//Revision
+var singleNonDuplicate = function (nums) {
+    let l = 0;
+    let r = nums.length - 1;
+    while (l < r) {
+        let mid = l + Math.floor((r - l) / 2);
+        if (nums[mid - 1] == nums[mid]) {
+            if (mid % 2 == 0) { //Understand this
+                r = mid - 2;
+            }
+            else {
+                l = mid + 1;
+            }
+        }
+        else if (nums[mid + 1] == nums[mid]) {
+            if (mid % 2 == 0) {
+                l = mid + 2;
+            }
+            else {
+                r = mid - 1;
+            }
+        }
+        else {
+            return nums[mid];
+        }
+    }
+    return nums[l];
+};
+
 //Usinng Binary Search
 var singleNonDuplicate = function (nums) {
 
@@ -24,8 +53,8 @@ var singleNonDuplicate = function (nums) {
             return nums[mid]
         }
         if (nums[mid] == nums[mid - 1]) { //Pair in Left
-            let numberElemLeft = mid - 1 - l
-            if (numberElemLeft % 2 == 1) { //Ans in Left
+            let leftCount = mid - 1 - l
+            if (leftCount % 2 == 1) { //Ans in Left
                 r = mid - 2
             }
             else {  //Ans in right
@@ -33,8 +62,8 @@ var singleNonDuplicate = function (nums) {
             }
         }
         else if (nums[mid] == nums[mid + 1]) { //Pair in Right
-            let numberElemLeft = mid - l;
-            if (numberElemLeft % 2 == 1) {
+            let leftCount = mid - l;
+            if (leftCount % 2 == 1) {
                 r = mid - 1;
             }
             else {
@@ -54,8 +83,8 @@ var singleNonDuplicate = function (nums) {
     while (l <= r) {
         let mid = l + Math.floor((r - l) / 2);
         if (nums[mid] == nums[mid - 1]) { //Pair in Left
-            let numberElemLeft = mid - 1 - l
-            if (numberElemLeft % 2 == 1) { //Ans in Left
+            let leftCount = mid - 1 - l
+            if (leftCount % 2 == 1) { //Ans in Left
                 r = mid - 2
             }
             else {  //Ans in right
@@ -63,8 +92,8 @@ var singleNonDuplicate = function (nums) {
             }
         }
         else if (nums[mid] == nums[mid + 1]) { //Pair in Right
-            let numberElemLeft = mid - l;
-            if (numberElemLeft % 2 == 1) {
+            let leftCount = mid - l;
+            if (leftCount % 2 == 1) {
                 r = mid - 1;
             }
             else {
