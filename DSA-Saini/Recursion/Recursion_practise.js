@@ -4,6 +4,8 @@ function sum(num, i) {
     return num[i] + sum(num, i + 1);
 }
 console.log(sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0));
+
+
 //Sum of all Odd numbers in a n array
 function sumOfOdd(num, i) {
     if (i >= num.length) return 0;
@@ -11,6 +13,8 @@ function sumOfOdd(num, i) {
     return (isOdd ? num[i] : 0) + sumOfOdd(num, i + 1);
 }
 console.log(sumOfOdd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 0));
+
+
 
 //Factorial using Recursion
 function factorial(num) {
