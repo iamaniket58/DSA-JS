@@ -7,16 +7,17 @@ var permute = function (nums) {
     let result = [];
     let used = new Array(nums.length).fill(false);
     let backtrack = (path) => {
+        
         if (path.length == nums.length) {
             result.push([...path]);
         }
         for (let i = 0; i < nums.length; i++) {
-            if(used[i])continue;
+            if (used[i]) continue;
             path.push(nums[i]);
-            used[i]=true;
+            used[i] = true;
             backtrack(path);
             path.pop();
-            used[i]=false;
+            used[i] = false;
         }
     }
     backtrack([]);
@@ -43,19 +44,19 @@ var permute = function (nums) {
 };
 
 //This is my method which is inspired by Permutation II Solution, Here i m checking choices array
-var permute = function(nums) {
-    let result=[];
-    let backtrack=(path,choices)=>{
-        if(path.length==nums.length){
+var permute = function (nums) {
+    let result = [];
+    let backtrack = (path, choices) => {
+        if (path.length == nums.length) {
             result.push([...path]);
             return;
         }
-        for(let i=0;i<choices.length;i++){
+        for (let i = 0; i < choices.length; i++) {
             path.push(choices[i]);
-            backtrack(path,[...choices.slice(0,i),...choices.slice(i+1)]);
+            backtrack(path, [...choices.slice(0, i), ...choices.slice(i + 1)]);
             path.pop()
         }
     }
-    backtrack([],nums);
+    backtrack([], nums);
     return result;
 };

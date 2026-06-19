@@ -1,3 +1,23 @@
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function (nums) {
+    let ans = [];
+    let n = nums.length;
+    let totalSubset = 1 << n //n=3 then totalSubset=8
+    for (let i = 0; i < totalSubset; i++) {
+        let res = [];
+        for (let j = 0; j < 32; j++) {
+            if (i & (1 << j)) {
+                res.push(nums[j])
+            }
+        }
+        ans.push([...res]);
+    }
+    return ans;
+};
+
 function subsets(nums) {
     let n = nums.length;
     let total = 1 << n;   // 2^n

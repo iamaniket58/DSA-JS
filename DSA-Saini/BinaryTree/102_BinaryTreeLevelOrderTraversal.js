@@ -13,7 +13,7 @@
 
 //This Solution is developed by by me.
 var levelOrder = function (root) {
-    if(!root)return [];
+    if (!root) return [];
     let q = [[root, 0]];
     let ans = [];
     while (q.length) {
@@ -44,6 +44,23 @@ var levelOrder = function (root) {
 
     }
     return ans
+};
+var levelOrder = function (root) {
+    if(!root)return [];
+    let q = [root];
+    let ans = [];
+    while (q.length) {
+        let len = q.length;
+        let temp=[];
+        for (let i = 0; i < len; i++) {
+            let curr = q.shift();
+            temp.push(curr.val);
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+        }
+        ans.push([...temp])
+    }
+    return ans;
 };
 
 //Recursion

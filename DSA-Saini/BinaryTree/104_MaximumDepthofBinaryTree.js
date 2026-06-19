@@ -11,7 +11,7 @@
  * @return {number}
  */
 
-//Top-Down Approach
+//Top-Down Approach- My Solution
 var maxDepth = function (root) {
     if (!root) return 0
     let max = 0
@@ -24,6 +24,20 @@ var maxDepth = function (root) {
     Traverse(root, 0)
     return max + 1;
 };
+
+//Revision
+var maxDepth = function (root) {
+    if(!root)return 0;
+    let max = 0;
+    let traverse = (curr, len) => {
+        if (len > max) max = len;
+        curr.left && traverse(curr.left, len + 1);
+        curr.right && traverse(curr.right, len + 1);
+    }
+    traverse(root, 1);
+    return max;
+};
+
 //Revision- TopDown
 var maxDepth1 = function (root) {
     if(!root)return 0;
@@ -37,6 +51,7 @@ var maxDepth1 = function (root) {
     traverse(root, 1);
     return maxDepth;
 };
+
 function maxDepth(root) {
     let maxDepth = -Infinity;
     let traverse = (curr, depth) => {
@@ -63,6 +78,13 @@ var maxDepth2 = function (root) {
 
     return maxDepth(root);
 }
+//Revision
+var maxDepth = function (root) {
+    if (!root) return 0;
+    let left = maxDepth(root.left);
+    let right = maxDepth(root.right);
+    return Math.max(left, right) + 1;
+};
 
 
 

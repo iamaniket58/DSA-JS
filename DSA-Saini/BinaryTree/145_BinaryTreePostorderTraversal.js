@@ -40,10 +40,23 @@ var postorderTraversal = function (root) {
         ans.push(s2.pop())
     }
     return ans;
-}
+};
 //Using Iteration- 2 Stack- Technically 1 stack and 1 array
 var postorderTraversal = function (root) {
-    if(!root)return []
+    if(!root)return [];
+    let ans = [];
+    let stack = [root];
+    while (stack.length) {
+        let curr = stack.pop();
+        ans.push(curr.val);
+        curr.left && stack.push(curr.left);
+        curr.right && stack.push(curr.right);
+    }
+    return ans.reverse();
+};
+//Using Iteration- 2 Stack Unshift- Technically 1 stack and 1 array
+var postorderTraversal = function (root) {
+    if (!root) return []
     let ans = [];
     let stack = [root];
     while (stack.length) {
@@ -56,6 +69,32 @@ var postorderTraversal = function (root) {
 };
 
 //Using 1 stack
+//Revision
+var postorderTraversal = function (root) {
+    let ans = [];
+    let stack = [];
+    let curr = root;
+    let lastElement = null;
+    while (stack.length || curr) {
+        while (curr) {
+            stack.push(curr);
+            curr = curr.left;
+        }
+        let top = stack[stack.length - 1];
+        if (top.right && top.right != lastElement) {
+            curr = top.right;
+        }
+        else {
+            let elem = stack.pop();
+            ans.push(elem.val);
+            lastElement = elem;
+        }
+
+    }
+    return ans;
+};
+
+//Using 1 Stack
 var postorderTraversal = function (root) {
 
     let ans = [];

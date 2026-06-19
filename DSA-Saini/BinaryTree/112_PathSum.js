@@ -29,15 +29,15 @@ var hasPathSum = function (root, targetSum) {
 };
 
 //Bottom- Up Approach- Revision
-var hasPathSum = function(root, targetSum) {
-    let traverse=(curr,sum)=>{
-        if(!curr)return false;
-        let currSum=sum+curr.val;
-        if(!curr.left && !curr.right && currSum==targetSum)return true;
-        return traverse(curr.left,currSum) ||
-            traverse(curr.right,currSum);
+var hasPathSum = function (root, targetSum) {
+    let traverse = (curr, sum) => {
+        if (!curr) return false;
+        let currSum = sum + curr.val;
+        if (!curr.left && !curr.right && currSum == targetSum) return true;
+        return traverse(curr.left, currSum) ||
+            traverse(curr.right, currSum);
     }
-    return traverse(root,0);
+    return traverse(root, 0);
 };
 
 //Bottom Up Approach-More Cleaner
@@ -49,7 +49,10 @@ var hasPathSum = function (root, targetSum) {
     return hasPathSum(root.left, targetSum - root.val) ||
         hasPathSum(root.right, targetSum - root.val)
 }
+
+
 //Top Down -Revision
+var hasPathSum = function (root, targetSum) {
     let traverse = (curr, sum) => {
 
         if (curr == null) return false;
@@ -63,6 +66,7 @@ var hasPathSum = function (root, targetSum) {
 
     }
     return traverse(root, 0);
+};
 
 //This is sirs solution to Top-Down Approach-Similar to mine but writing style is bit different
 var hasPathSum = function (root, targetSum) {
