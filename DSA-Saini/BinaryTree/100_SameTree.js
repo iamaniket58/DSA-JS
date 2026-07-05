@@ -20,6 +20,16 @@ var isSameTree = function (p, q) {
         isSameTree(p.left, q.left) &&
         isSameTree(p.right, q.right)
 }
+var isSameTree = function (p, q) {
+    let traverse = (curr1, curr2) => {
+        if (!curr1 && !curr2) return true;
+        if (!curr1 || !curr2) return false;
+        return curr1.val == curr2.val &&
+            traverse(curr1.left, curr2.left) &&
+            traverse(curr1.right, curr2.right);
+    }
+    return traverse(p,q);
+};
 
 //Iteration
 var isSameTree = function (p, q) {
@@ -35,7 +45,8 @@ var isSameTree = function (p, q) {
         q1.push(c1.left)
         q1.push(c1.right)
         q2.push(c2.left)
-        q2.push(c2.right)
+        q2.push(c2.right)  //   queue.push(curr1.left, curr2.left); //Same Same
+                            // queue.push(curr1.right, curr2.right);
     }
     if (q1.length == 0 && q2.length == 0) {
         return true

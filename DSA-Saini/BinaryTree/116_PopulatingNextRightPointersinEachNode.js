@@ -12,6 +12,37 @@
  * @param {_Node} root
  * @return {_Node}
  */
+
+//Revision
+var connect = function (root) {
+    if (!root) return root;
+    let q = [root];
+    while (q.length) {
+        let qlen = q.length;
+        for (let i = 0; i < qlen; i++) { //Skip last element
+            let curr = q.shift();
+            if (i < qlen - 1) {
+                let next = q[0];
+                curr.next = next;
+            }
+            curr.left && q.push(curr.left);
+            curr.right && q.push(curr.right);
+        }
+    }
+    return root
+};
+//Revision- Recursion
+var connect = function (root) {
+    if (!root || !root.left || !root.right) {
+        return root;
+    }
+    root.left.next = root.right;
+    root.right.next = root.next?.left ?? null;
+    connect(root.left);
+    connect(root.right);
+    return root;
+};
+
 //Iteration-Revision
 var connect = function (root) {
     if (!root) return null;

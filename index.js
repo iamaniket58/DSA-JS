@@ -1,25 +1,19 @@
-/**
- * @param {number[]} coins
- * @param {number} amount
- * @return {number}
- */
-var coinChange = function (coins, amount) {
-    let backtrack = (remainingSum, count) => {
-
-        if (remainingSum == 0) return count;
-        if (remainingSum < 0) return -1;
-
-        let minLength = Infinity;
-        for (let i = 0; i < coins.length; i++) {
-
-            let result = backtrack(remainingSum - coins[i], count + 1);
-            if (result != -1) {
-                minlength = Math.min(minLength, result);
+var minimumOperations = function (nums) {
+    let min;
+    let count = 0;
+    while (nums.reduce((a, b) => a + b) != 0) {
+        min = Infinity;
+        count++;
+        for (let num of nums) {
+            if (num != 0) {
+                min = Math.min(num, min);
             }
         }
-
-        return minLength == Infinity ? -1 : minLength
+        for (let i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] - min;
+        }
     }
-    return backtrack(amount, 0);
+    return count;
+
 };
-console.log(coinChange([1, 2, 5], 6))
+console.log(minimumOperations([1,5,0,3,5]))

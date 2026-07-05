@@ -2,6 +2,40 @@
  * @param {number[]} nums
  * @return {number[]}
  */
+//Revision
+var nextGreaterElements = function (nums) {
+    let arr = [...nums, ...nums];
+    console.log(arr);
+    let ans = [];
+    let stack = [];
+    for (let i = arr.length - 1; i >= 0; i--) {
+        while (stack.length && arr[i] >= stack[stack.length - 1]) {
+            stack.pop();
+        }
+        ans[i] = stack[stack.length - 1] ?? -1;
+        stack.push(arr[i]);
+    }
+    return ans.slice(0, nums.length);
+};
+var nextGreaterElements = function (nums) {
+    let arr = [];
+    let n = nums.length;
+    for (let i = 0; i < nums.length; i++) {
+        arr[i] = nums[i];
+        arr[n + i] = nums[i];
+    }
+    let ans = [];
+    let stack = [];
+    for (let i = arr.length - 1; i >= 0; i--) {
+        while (stack.length && arr[i] >= stack[stack.length - 1]) {
+            stack.pop();
+        }
+        ans[i] = stack[stack.length - 1] ?? -1;
+        stack.push(arr[i]);
+    }
+    return ans.slice(0, nums.length);
+};
+
 var nextGreaterElements = function (nums) {
     let arr = [...nums, ...nums];
     let stack = [];

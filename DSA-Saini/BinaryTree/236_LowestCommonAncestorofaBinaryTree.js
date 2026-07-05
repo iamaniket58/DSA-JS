@@ -11,6 +11,23 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
+//Revision
+var lowestCommonAncestor = function (root, p, q) {
+    let lca = null;
+    let recursion = (curr) => {
+        if (!curr) return false;
+        let left = recursion(curr.left);
+        let right = recursion(curr.right);
+
+        let isFound = (curr.val == p.val || curr.val == q.val);
+        if (left && right && !lca) lca = curr;
+        if ((left || right) && isFound && !lca) lca = curr;
+
+        return left || right || isFound;
+    }
+    recursion(root);
+    return lca;
+};
 
 //This is amazing
 var lowestCommonAncestor = function (root, p, q) {
@@ -39,7 +56,9 @@ var lowestCommonAncestor = function (root, p, q) {
         if (!curr) return false
         let left = traverse(curr.left)
         let right = traverse(curr.right)
+
         isCurrMatch = curr.val == p.val || curr.val == q.val
+
         if (left && right) {
             ans = curr
             return

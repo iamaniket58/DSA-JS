@@ -110,6 +110,24 @@ var isSubtree = function (root, subRoot) {
     traverse(root);
     return ans;
 };
+//My Method- Bruite Force
+var isSubtree = function (root, subRoot) {
+    let preOrder = (curr) => {
+        if (!curr) return false;
+        if (curr.val == subRoot.val) {
+            let res = isSameTree(curr, subRoot)
+            if (res) return true
+        }
+        return preOrder(curr.left) ||
+            preOrder(curr.right);
+    }
+    return preOrder(root);
+};
+function isSameTree(p, q) {
+    if (!p && !q) return true;
+    if (!p || !q) return false;
+    return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+}
 
 //Bruite-Force- Multiple Recursion 😂
 var isSubtree = function(root, subRoot) {

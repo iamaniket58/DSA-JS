@@ -23,6 +23,24 @@ var twoSum2=function(nums,target){
 
 console.log(twoSum2([2, 7, 11, 15],9))
 
+//Backtracking Solution for 2-Sum 😂😂😂😂😂😂
+var twoSum = function (nums, target) {
+    let ans = [];
+    let backtrack = (path, index, sum) => {
+        if (sum == target && path.length==2) {
+            ans = [...path];
+            return;
+        }
+        if (path.length > 2 ) return;
+        for (let i = index; i < nums.length; i++) {
+            path.push(i);
+            backtrack(path, i + 1, sum + nums[i]);
+            path.pop();
+        }
+    }
+    backtrack([], 0, 0);
+    return ans;
+};
 
 
 //Bruite-Force Approach- Not Optimal Solution

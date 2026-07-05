@@ -10,6 +10,21 @@
  * @param {TreeNode} root
  * @return {TreeNode}
  */
+
+//Revision
+var invertTree = function (root) {
+    let traverse = (curr) => {
+        if (!curr) return null;
+        let left = traverse(curr.left);
+        let right = traverse(curr.right);
+        curr.right = left;
+        curr.left = right;
+
+        return curr;
+    }
+    return traverse(root);
+};
+
 var invertTree = function (root) {
     if (!root) return root
 

@@ -26,7 +26,7 @@ var searchMatrix = function (matrix, target) {
     }
     return false;
 };
-
+//Just treat it like an array
 //Treat the 2D matrix as a flattened sorted array of size (m * n).
 // Perform Binary Search on the virtual array:
 var searchMatrix = function (matrix, target) {

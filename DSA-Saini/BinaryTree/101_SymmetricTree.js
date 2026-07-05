@@ -10,6 +10,18 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
+//Revision
+var isSymmetric = function (root) {
+    let traverse = (root1, root2) => {
+        if (!root1 && !root2) return true;
+        if (!root1 || !root2) return false;
+        return root1.val == root2.val &&
+            traverse(root1.left, root2.right) &&
+            traverse(root1.right, root2.left);
+    }
+    return traverse(root.left, root.right);
+};
+
 var isSymmetric = function (root) {
     function isMirror(left, right) {
         if (!left && !right) { //If both are null then its symmetry
@@ -51,7 +63,7 @@ var isSymmetric2 = function (root) {
         if (pair1.val != pair2.val) return false;
 
         q.push(pair1.left, pair2.right);
-        q.push(pair1.right, pair2.left)
+        q.push(pair1.right, pair2.left);
     }
     return true
 

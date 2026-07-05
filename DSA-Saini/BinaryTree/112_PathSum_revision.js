@@ -54,3 +54,20 @@ var hasPathSum = function (root, targetSum) {
     }
     return traverse(root, 0);
 };
+//Bottom- Up Approach- Revision
+var hasPathSum = function (root, targetSum) {
+    if(!root)return false;
+    if (root.val == targetSum && !root.left && !root.right) return true;
+    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
+};
+
+//Bottom Up, Sum seen till now
+var hasPathSum = function (root, targetSum) {
+    let traverse = (curr, sum) => {
+        if (!curr) return false;
+        let newSum = curr.val + sum;
+        if (newSum == targetSum && !curr.left && !curr.right) return true;
+        return traverse(curr.left, newSum) || traverse(curr.right, newSum);
+    }
+    return traverse(root,0);
+};

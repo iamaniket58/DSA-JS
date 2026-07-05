@@ -10,6 +10,23 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+//Revision
+var maxPathSum = function (root) {
+    let max = -Infinity;
+    let traverse = (curr) => {
+        if (!curr) return 0;
+        let left = traverse(curr.left);
+        let right = traverse(curr.right);
+        if(left<0)left=0;
+        if(right<0)right=0;
+        if ((left+right+curr.val) > max) max = (left+right+curr.val);
+        return  Math.max(left, right) + curr.val;
+    }
+    traverse(root);
+    return max;
+};
+
 var maxPathSum = function (root) {
     let max = -Infinity
     let traverse = (curr) => {

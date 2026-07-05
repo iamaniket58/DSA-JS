@@ -14,7 +14,7 @@ var goodNodes = function (root) {
     let count = 0;
     let traverse = (curr, max) => {
         if (!curr) return;
-        if (curr.val >= max) { //If will work at both the places
+        if (curr.val >= max) { //It will work at both the places
             count++
         }
         traverse(curr.left, max > curr.val ? max : curr.val)
@@ -46,7 +46,7 @@ var goodNodes = function (root) {
     return count
 };
 
-//Revision
+//Revision-- Just the check some stuff
 var goodNodes = function (root) {
     let count = 0;
     let traverse = (curr, arr) => {
