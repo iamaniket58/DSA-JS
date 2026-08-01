@@ -64,12 +64,12 @@ var isValidBST = function (root) {
 //Revision
 var isValidBST = function (root) {
     let traverse = (curr, h, l) => {
-        if(!curr)return true;
+        if (!curr) return true;
         let val1 = val2 = true;
-        if (h !=null) {
+        if (h != null) {
             val1 = curr.val < h
         }
-        if (l !=null) {
+        if (l != null) {
             val2 = curr.val > l
         }
         return val1 && val2 &&
@@ -89,6 +89,21 @@ var isValidBST = function (root) {
         return traverse(curr.left, curr.val, low) &&
             traverse(curr.right, high, curr.val);
 
+    }
+    return traverse(root, null, null);
+};
+
+//Revision
+var isValidBST = function (root) {
+    let traverse = (curr, lower, higher) => {
+        if (!curr) return true;
+        if (lower != null && curr.val <= lower) return false;
+        if (higher != null && curr.val >= higher) return false;
+
+        let left = traverse(curr.left, lower, curr.val);
+        let right = traverse(curr.right, curr.val, higher);
+
+        return left && right;
     }
     return traverse(root, null, null);
 };

@@ -11,7 +11,31 @@
  * @param {number} val
  * @return {TreeNode}
  */
-
+//Revision
+var searchBST = function (root, val) {
+    if (!root) return null;
+    if (root.val == val) return root;
+    else if (val > root.val) {
+        return searchBST(root.right, val)
+    }
+    else {
+        return searchBST(root.left, val)
+    }
+};
+//Iterative-Recommended ✅✅✅✅
+var searchBST = function (root, val) {
+    let curr = root;
+    while (curr) {
+        if (curr.val == val) return curr;
+        if (curr.val > val) {
+            curr = curr.left;
+        }
+        else {
+            curr = curr.right;
+        }
+    }
+    return null;
+};
 //Revision
 var searchBST = function (root, val) {
     let traverse = (curr) => {

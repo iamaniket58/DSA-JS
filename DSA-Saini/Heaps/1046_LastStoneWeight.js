@@ -10,10 +10,10 @@ var lastStoneWeight = function (stones) {
         let y = stones.pop();
         let x = stones.pop();
         if (y > x) {
-            stones.push(y - x)
+            stones.push(y - x);
         }
     }
-    return stones[0]
+    return stones[0];
 
 };
 

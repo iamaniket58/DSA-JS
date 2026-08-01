@@ -29,6 +29,33 @@ var lowestCommonAncestor = function (root, p, q) {
     return lca;
 };
 
+//When you cannot store the value in lca Variable- Bottom up 🔥🔥
+var lowestCommonAncestor = function (root, p, q) {
+    if (!root) return null;
+    let left = lowestCommonAncestor(root.left, p, q);
+    let right = lowestCommonAncestor(root.right, p, q);
+
+    let isCurr = (root.val == p.val || root.val == q.val)
+    if (left && right) return root;
+    if (isCurr) return root;
+
+    return left || right;
+};
+
+//When you cannot store the value in lca Variable- Bottom up 🔥🔥
+var lowestCommonAncestor = function (root, p, q) {
+    if (!root) return null;
+
+    if (root.val == p.val || root.val == q.val) return root;
+
+    let left = lowestCommonAncestor(root.left, p, q);
+    let right = lowestCommonAncestor(root.right, p, q);
+
+    if (left && right) return root;
+
+    return left || right;
+};
+
 //This is amazing
 var lowestCommonAncestor = function (root, p, q) {
     let lca = null;
