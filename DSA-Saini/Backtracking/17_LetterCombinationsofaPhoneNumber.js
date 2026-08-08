@@ -2,6 +2,32 @@
  * @param {string} digits
  * @return {string[]}
  */
+
+//Revision
+var letterCombinations = function (digits) {
+    let result = [];
+    let map = { 2: "abc", 3: "def", 4: "ghi", 5: "jkl", 6: "mno", 7: "pqrs", 8: "tuv", 9: "wxyz" };
+    let arr = [];
+    for (let digit of digits) {
+        arr.push(map[digit])
+    }
+    // console.log(arr);
+    let backtrack = (path, index) => {
+        if (path.length == arr.length) {
+            result.push(path.join(""));
+            return;
+        }
+        if (index >= arr.length) return; //You can even comment this line
+        for (let i = 0; i < arr[index].length; i++) {
+            path.push(arr[index][i]);
+            backtrack(path, index + 1);
+            path.pop();
+        }
+    }
+    backtrack([], 0);
+    return result;
+};
+
 var letterCombinations = function (digits) {
     let letters = {
         2: 'abc',
@@ -76,4 +102,5 @@ var letterCombinations = function (digits) {
     backtrack([], 0);
     return result;
 };
+
 console.log(letterCombinations("23"))

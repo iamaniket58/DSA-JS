@@ -60,3 +60,38 @@ var permute = function (nums) {
     backtrack([], nums);
     return result;
 };
+
+
+
+//Bizzare
+// Your code cannot be corrected with just a few small changes because the approach itself is incorrect for generating permutations.
+
+// The main issue is that you're trying to reconstruct the permutation from the used array.
+// Permutation 1: [1,2,3]
+// Permutation 2: [3,2,1]
+var permute = function (nums) {
+    let result = [];
+    let used = new Array(10).fill(false);
+    let backtrack = (elements) => {
+        if (elements == nums.length) {
+           let arr=[];
+           for(let i=0;i<used.length;i++){
+            if(used[i]){
+                arr.push(i);
+            }
+           }
+           result.push([...arr]);
+        };
+        for (let i = 0; i < nums.length; i++) {
+            // if (path.includes(nums[i])) continue;
+            if (!used[nums[i]]) {
+                used[nums[i]] = true
+                backtrack(elements + 1);
+                used[nums[i]] = false
+            }
+
+        }
+    }
+    backtrack(0);
+    return result;
+};

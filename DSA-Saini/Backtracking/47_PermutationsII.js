@@ -21,6 +21,34 @@ var permuteUnique = function (nums) {
     backtracking([],nums);
     return result;
 };
+//My Solution 💪💪💪💪💪
+var permuteUnique = function (nums) {
+    let n = nums.length;
+    nums.sort((a, b) => a - b);
+    let unique = new Array(n).fill(false);
+    let result = [];
+
+    let backtrack = (path) => {
+        if (path.length == nums.length) {
+            result.push([...path]);
+            return;
+        }
+        for (let i = 0; i < n; i++) {
+            if (i > 0 && nums[i] == nums[i - 1] && !unique[i - 1]) continue;
+
+            if (!unique[i]) {
+                path.push(nums[i]);
+                unique[i] = true
+                backtrack(path);
+                path.pop();
+                unique[i] = false;
+            }
+
+        }
+    }
+    backtrack([]);
+    return result;
+};
 
 //GPT Solution
 var permuteUnique = function(nums) {
