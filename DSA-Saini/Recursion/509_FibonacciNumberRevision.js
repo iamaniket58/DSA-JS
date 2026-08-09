@@ -10,11 +10,11 @@ var fib = function (n) {
     return dp[n];
 };
 
-	//Using recurion
-	var fib = function (n) {
-		if (n <= 1) return n
-		return fib(n - 1) + fib(n - 2);
-	};
+//Using recurion
+var fib = function (n) {
+    if (n <= 1) return n
+    return fib(n - 1) + fib(n - 2);
+};
 
 //Using DP
 let map = {};
@@ -28,7 +28,7 @@ var fib = function (n) {
 
 //Using only Variables
 var fib = function (n) {
-	if (n == 0) return 0;
+    if (n == 0) return 0;
     let a = 0;
     let b = 1;
     for (let i = 2; i <= n; i++) {
@@ -38,6 +38,16 @@ var fib = function (n) {
     }
     return b;
 };
+
+//Claude
+function fibIterative(n) {
+    if (n <= 1) return n;
+    let a = 0, b = 1;
+    for (let i = 2; i <= n; i++) {
+        [a, b] = [b, a + b];
+    }
+    return b;
+}
 
 //Using only 2 variables
 var fib = function (n) {
