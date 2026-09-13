@@ -1,24 +1,31 @@
 /**
- * @param {string} s
- * @param {number} k
- * @return {string}
+ * @param {string[][]} tickets
+ * @return {string[]}
  */
-
-var reverseStr = function(s, k) {
-    s = s.split("");
-
-    for(let x = 0; x < s.length; x = x + (2*k)){
-        let n = k;
-        let mid = Math.floor(n/2);
-        for(let i = 0; i < mid; i++) {
-            let temp = s[x+i];
-            s[x+i] = s[x+n-i-1];
-            s[x+n-i-1] = temp;
-        }
+var findItinerary = function (tickets) {
+    let graph = {};
+    for (let [from, to] of tickets) {
+        if (!graph[from]) graph[from] = [];
+        graph[from].push(to);
     }
+    //Sort it
+    for (let key in graph) {
+        graph[key].sort();
+    }
+    console.log(graph);
+    let q = ["JFK"];
+    let ans = [];
+    while (q.length) {
+        let curr = q.shift();
+        console.log(curr);
 
-    return s.join("");
+        ans.push(curr);
+        if ((graph[curr] ?? []).length > 0) {
+            q.push(graph[curr].shift());
+        }
+        else break
+    }
+    return ans;
 };
-
-
-console.log(reverseStr("abcdefgh",3))
+let tickets = [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]];
+console.log(findItinerary(tickets));

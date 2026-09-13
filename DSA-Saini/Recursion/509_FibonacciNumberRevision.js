@@ -2,6 +2,7 @@
  * @param {number} n
  * @return {number}
  */
+//DP-Bottom up
 var fib = function (n) {
     let dp = [0, 1];
     for (let i = 2; i <= n; i++) {
@@ -16,7 +17,7 @@ var fib = function (n) {
     return fib(n - 1) + fib(n - 2);
 };
 
-//Using DP
+//Using DP- Top Down
 let map = {};
 var fib = function (n) {
     if (n <= 1) return n
@@ -24,6 +25,50 @@ var fib = function (n) {
         map[n] = fib(n - 1) + fib(n - 2);
     }
     return map[n]
+};
+//Top Down using Array
+var fib = function (n, store = new Array(n + 1).fill(-1)) {
+    if (n <= 1) return n;
+    if (store[n] == -1) {
+        store[n] = fib(n - 1, store) + fib(n - 2, store);
+    }
+    return store[n];
+
+};
+
+//GPT- Top Down using an array
+var fib = function(n) {
+    let memo = new Array(n + 1).fill(-1);
+
+    const solve = (n) => {
+        // Base cases
+        if (n <= 1) {
+            return n;
+        }
+
+        // Already calculated
+        if (memo[n] !== -1) {
+            return memo[n];
+        }
+
+        // Calculate and store
+        memo[n] = solve(n - 1) + solve(n - 2);
+
+        return memo[n];
+    };
+
+    return solve(n);
+};
+var fib = function (n) {
+    let dp = new Array(n + 1).fill(-1);
+    let fibo = (i) => {
+        if (i <= 1) return i;
+        if (dp[i] == -1) {
+            dp[i] = fibo(i - 1) + fibo(i - 2);
+        }
+        return dp[i];
+    }
+    return fibo(n);
 };
 
 //Using only Variables

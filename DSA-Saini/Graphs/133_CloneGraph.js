@@ -10,6 +10,34 @@
  * @param {_Node} node
  * @return {_Node}
  */
+//Notes:reffer to Notes to know what happens when we using obj={} instead of new map()
+
+//Revision- My Solution after bit of struggle 💪💪🔥🔥
+var cloneGraph = function (node) {
+    if(!node)return node;
+    let cloned = new Node(node.val);
+    let visited = new Map();
+    visited.set(node, cloned);
+    let q = [node];
+    while (q.length) {
+        let curr = q.shift();
+        for (let n of curr.neighbors) {
+            if (!visited.has(n)) {
+                q.push(n);
+                let clone = new Node(n.val);
+                visited.set(n,clone)
+            }
+            // if (!visited.has(n)) {
+            //     let clone = new Node(n.val);
+            //     visited.set(n, clone);
+
+            // }
+            visited.get(curr).neighbors.push(visited.get(n));
+        }
+    }
+    return cloned;
+};
+
 //Using Queue
 var cloneGraph = function(root) {
     if(!root)return null;

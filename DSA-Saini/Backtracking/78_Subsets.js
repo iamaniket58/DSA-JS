@@ -32,5 +32,22 @@ var subsets1 = function (nums) {
     }
     return ans;
 };
+//Striver's Solution, Either take the element or don't take
+var subsets = function (nums) {
+    let result = [];
+    let backtrack = (path, start) => {
+        if (start == nums.length) {
+            result.push([...path]);
+            return;
+        }
+        path.push(nums[start]);
+        backtrack(path, start + 1);
+        path.pop();
+        backtrack(path, start + 1);
+    }
+    backtrack([], 0);
+    return result;
+};
+
 let nums = [1, 2, 3]
 console.log(subsets(nums))

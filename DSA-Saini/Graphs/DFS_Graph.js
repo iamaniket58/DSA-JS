@@ -35,6 +35,39 @@ function DepthFirstSearchInGraph(root) {
     dfs(root);
     return result;
 }
+function DepthFirstSearch(node) {
+    let visited = new Set();
+    let ans = [];
+    let dfs = (curr) => {
+        visited.add(curr);
+        ans.push(curr);
+        for (let n of graph[curr]) {
+            if (!visited.has(n)) {
+                dfs(n);
+            }
+        }
+    }
+    dfs(node);
+    return ans;
+
+}
+function DepthFirstSearchInGraph(root) {
+    if (!root) return [];
+    let visited = new Set();
+    visited.add(root);
+    let result = [];
+    let dfs = (curr) => {
+        result.push(curr.val)
+        for (let n of curr.neighbors) {
+            if (!visited.has(n)) {
+                visited.add(n);
+                dfs(n)
+            }
+        }
+    }
+    dfs(root);
+    return result;
+}
 
 // Recusrion
 

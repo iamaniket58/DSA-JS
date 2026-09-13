@@ -1,3 +1,4 @@
+
 /**
  * @param {number[]} cost
  * @return {number}
@@ -26,6 +27,20 @@ var minCostClimbingStairs = function (cost) {
     }
     // console.log(dp);
     return recursion(n);
+};
+var minCostClimbingStairs = function (cost) {
+    let map = {};
+    let fn = (n) => {
+        if (n <= 1) return 0;
+        if (map[n]==undefined) {
+            let left = fn(n - 1) + cost[n - 1];
+            let right = fn(n - 2) + cost[n - 2];
+            map[n] = Math.min(left, right);
+        }
+        return map[n];
+    }
+    return fn(cost.length);
+
 };
 
 //My Solution- All the below solution is my intuitive approach
