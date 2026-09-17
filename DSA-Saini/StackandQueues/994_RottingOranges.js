@@ -21,7 +21,6 @@ var orangesRotting = function (grid) {
     while (q.length) {
         minutes++;
         let qlength = q.length;
-        console.log(q);
         for (let i = 0; i < qlength; i++) {
             let [row, col] = q.shift();
             if (col > 0 && grid[row][col - 1] == 1) {
@@ -49,10 +48,10 @@ var orangesRotting = function (grid) {
             if (grid[row][col] == 1) return -1;
         }
     }
-    return minutes == 0 ? minutes : minutes - 1;
+    return minutes == 0 ? minutes : minutes - 1; //Becz last pushed item to queueue is to be ignored
 };
 
-var orangesRotting = function (grid) {
+var orangesRotting1 = function (grid) {
     let m = grid.length;
     let n = grid[0].length;
     let queue = [];
@@ -99,4 +98,4 @@ var orangesRotting = function (grid) {
     return maxMinute;
 };
 
-console.log(orangesRotting(grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]))
+console.log(orangesRotting1(grid = [[2, 1, 1], [1, 1, 0], [0, 1, 1]]))
