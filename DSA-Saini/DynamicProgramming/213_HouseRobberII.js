@@ -2,6 +2,25 @@
  * @param {number[]} nums
  * @return {number}
  */
+//Used Recursion in the 
+var rob = function (nums) {
+    let n = nums.length;
+    if (n == 1) return nums[0];
+    if (n == 2) return Math.max(nums[0], nums[1]);
+    return Math.max(robHelper(nums.slice(0, n - 1)), robHelper(nums.slice(1, n)))
+};
+function robHelper(arr) {
+    let map = {};
+    let recursion = (n) => {
+        if (n == 0) return arr[0];
+        if (n == 1) return Math.max(arr[0], arr[1]);
+        if (map[n] == undefined) {
+            map[n] = Math.max(recursion(n - 2) + arr[n], recursion(n - 1));
+        }
+        return map[n];
+    }
+    return recursion(arr.length - 1)
+}
 var rob = function(nums) {
     let n=nums.length
     if(n==1)return nums[0];

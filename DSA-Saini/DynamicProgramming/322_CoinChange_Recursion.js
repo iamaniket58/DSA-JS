@@ -150,3 +150,24 @@ var coinChange = function (coins, amount) {
     }
     return -1;
 };
+
+// Revision-Backtracking- TLE
+var coinChange = function (coins, amount) {
+    let min = Infinity;
+    let bt = (start, path, sum) => {
+        if (sum > amount) return;
+        if (sum == amount) {
+            if (path.length < min) {
+                min = path.length;
+            }
+            return;
+        }
+        for (let i = start; i < coins.length; i++) {
+            path.push(coins[i]);
+            bt(i, path, sum + coins[i]);
+            path.pop();
+        }
+    }
+    bt(0, [], 0);
+    return min == Infinity ? -1 : min;
+};

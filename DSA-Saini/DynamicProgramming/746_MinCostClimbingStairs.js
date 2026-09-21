@@ -53,7 +53,8 @@ var minCostClimbingStairs = function (cost) {
     }
     return dp[n];
 };
-//nORMAL rECURSION
+
+//Normal Recursion
 var minCostClimbingStairs = function (cost) {
     let traverse = (n) => {
         if(n<=1)return cost[n];

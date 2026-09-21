@@ -52,4 +52,21 @@ var coinChange = function (coins, amount) {
     return dp[amount]==Infinity?-1:dp[amount];
 
 };
+
+//Revision
+var coinChange = function (coins, amount) {
+    let n = coins.length;
+    let arr = new Array(amount + 1);
+    arr[0] = 0;
+    for (let i = 1; i <= amount; i++) {
+        let min = Infinity;
+        for (let j = 0; j < coins.length; j++) {
+            if (i >= coins[j] ) {
+                min = Math.min(min, arr[i - coins[j]] + 1)
+            }
+        }
+        arr[i] = min;
+    }
+    return arr[amount] == Infinity ? -1 : arr[amount];
+};
 console.log(coinChange([1, 2, 5], 11))

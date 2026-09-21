@@ -19,8 +19,6 @@ var lengthOfLIS1 = function (nums) {
     }
     return maxSubseq;
 };
-console.log(lengthOfLIS1([10, 9, 2, 5, 3, 7, 101, 18]))
-
 //Recursion/Backtracking Solution
 var lengthOfLIS = function (nums) {
     let n = nums.length;
@@ -56,6 +54,7 @@ var lengthOfLIS = function(nums) {
     return sub.length;
 };
 
+console.log(lengthOfLIS1([10, 9, 2, 5, 3, 7, 101, 18]))
 
 
 

@@ -39,4 +39,25 @@ var subsetsWithDup = function (nums) {
     backtrack([], 0);
     return result;
 };
+
+//Used Temp array
+var subsetsWithDup = function (nums) {
+    nums.sort((a, b) => a - b);
+    let result = [];
+    let backtrack = (start, path) => {
+        let temp=[];
+        for(let n of path){
+            temp.push(n);
+        }
+        result.push(temp);
+        for (let i = start; i < nums.length; i++) {
+            if(i>start && nums[i]==nums[i-1])continue;
+            path.push(nums[i]);
+            backtrack(i + 1, path);
+            path.pop();
+        }
+    }
+    backtrack(0, []);
+    return result;
+};
 console.log(subsetsWithDup([1,2,2]))
