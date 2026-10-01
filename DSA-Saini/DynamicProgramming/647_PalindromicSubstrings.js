@@ -69,9 +69,39 @@ var countSubstrings = function (s) {
     return count;
 };
 
+//Revision
+var countSubstrings = function (s) {
+    let n = s.length;
+    let count=0;
+    let dp = Array.from({ length: n }, () => new Array(n));
 
+    for (let i = 0; i < n; i++) {
+        dp[i][i] = true;
+        count++;
+        if (i < n - 1 && s[i] == s[i + 1]) {
+            dp[i][i + 1] = true;
+            count++;
+        }
+        else {
+            dp[i][i + 1] = false;
+        }
 
-
+    }
+    // console.log(dp)
+    for (let len = 3; len <= n; len++) {
+        for (let i = 0; i < n - len + 1; i++) {
+            let j = i + len - 1;
+            if(s[i]==s[j] && dp[i+1][j-1]){
+                dp[i][j]=true;
+                count++;
+            }
+            else{
+                dp[i][j]=false;
+            }
+        }
+    }
+    return count;
+};
 //Bruite Force Approach- Find all substring first and check if it is Palindrome
 var countSubstrings = function (s) {
     let count=0;
@@ -95,6 +125,26 @@ let isPalindrome = (str) => {
     return true;
 }
 
+//Revision- Bruite Force
+var countSubstrings = function (s) {
+    let count = 0;
+    for (let i = 0; i < s.length; i++) {
+        let temp = ''
+        for (let j = i; j < s.length; j++) {
+            temp += s[j];
+            if (isPalindrome(temp)) count++;
+        }
+    }
+    return count;
+};
+function isPalindrome(str) {
+    let l = 0;
+    let r = str.length - 1;
+    while (l < r) {
+        if(str[l++]!=str[r--])return false;
+    }
+    return true;
+}
 //Code to find all the substing in a string
 function findAllSubstring(s) {
     let substring = [];

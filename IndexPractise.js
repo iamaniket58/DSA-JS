@@ -1,34 +1,23 @@
 /**
- * @param {number[][]} mat
- * @return {number[][]}
+ * @param {string} s
+ * @return {number}
  */
-var updateMatrix = function (mat) {
-    let m = mat.length;
-    let n = mat[0].length;
-    let q = [];
-    let ans = Array.from({ length: m }, () => Array(n).fill(Infinity));
-    //Push all the zeros to the queue
-    for (let i = 0; i < m; i++) {
-        for (let j = 0; j < n; j++) {
-            if (mat[i][j] == 0) {
-                ans[i][j] = 0
-                q.push([i, j]);
-            }
+var numDecodings = function (s) {
+    let dp = {};
+    let dfs = (remS) => {
+        if(remS=='')return 1;
+        let n = remS.length;
+        let ld = Number(remS[n - 1]);
+        let sld = Number(remS[n - 2] + remS[n - 1]);
+        let ans=0;
+        if(ld>0){
+            ans+=dfs(remS.substring(0,n-1));
         }
-    }
-    console.log(ans);
-    let i = 0;
-    while (i < q.length) {
-        let [row, col] = q[i++];
-
-        for (let i = 0; i < m; i++) {
-            for (let j = 0; j < n; j++) {
-                if (mat[i][j] == 1) {
-                    ans[i][j] = Math.min(ans[i][j], Math.abs((i - row)) + Math.abs((j - col)));
-                }
-            }
+        if(sld>9 && sld<=26){
+            ans+=dfs(remS.substring(0,n-2));
         }
+        return ans;
     }
-    return ans;
+    return dfs(s);
 };
-console.log(updateMatrix([[0,0,0],[0,1,0],[0,0,0]]))
+console.log(numDecodings('2'));

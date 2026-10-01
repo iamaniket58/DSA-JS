@@ -34,10 +34,6 @@ var isPalindrome = (str) => {
 
 
 //Almost same as above did it when doing revison
-/**
- * @param {string} s
- * @return {string[][]}
- */
 var partition = function (s) {
     let result = [];
     let backtrack = (path, remainingString) => {

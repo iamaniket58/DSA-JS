@@ -11,13 +11,12 @@ var letterCombinations = function (digits) {
     for (let digit of digits) {
         arr.push(map[digit])
     }
-    // console.log(arr);
     let backtrack = (path, index) => {
         if (path.length == arr.length) {
             result.push(path.join(""));
             return;
         }
-        if (index >= arr.length) return; //You can even comment this line
+        if (index >= arr.length) return; 
         for (let i = 0; i < arr[index].length; i++) {
             path.push(arr[index][i]);
             backtrack(path, index + 1);
@@ -55,6 +54,7 @@ var letterCombinations = function (digits) {
     backtracking([], 0)
     return result;
 };
+
 var letterCombinations = function (digits) {
     if (!digits) return []
     let result = [];
@@ -77,7 +77,6 @@ var letterCombinations = function (digits) {
     backtrack("", 0);
     return result;
 };
-
 
 //This is using Path as an array not as string
 var letterCombinations = function (digits) {

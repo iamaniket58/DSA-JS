@@ -49,10 +49,6 @@ var numDecodings = function (s) {
     return fn(s);
 };  
 //DP-Another way
-/**
- * @param {string} s
- * @return {number}
- */
 var numDecodings = function (s) {
     let dp = {};
     let fn = (remS) => {
@@ -79,6 +75,59 @@ var numDecodings = function (s) {
     }
     return fn(s);
 };
+
+//DP-Revision
+var numDecodings = function (s) {
+    let map = {};
+    let dfs = (rem) => {
+        if (map[rem] == undefined) {
+            let n = rem.length;
+            if (n == 0 || rem == '') return 1;
+            let str = Number(rem[n - 1]);
+            let s = 0;
+            if (str > 0) {
+                s = dfs(rem.substring(0, n - 1));
+            }
+
+            let r = 0;
+            if (n > 1) {
+                let str2 = Number(rem[n - 2] + rem[n - 1]);
+                if (str2 > 9 && str2 <= 26) {
+                    r = dfs(rem.substring(0, n - 2));
+                }
+
+            }
+
+            map[rem] = s + r;
+        }
+        return map[rem];
+    }
+    return dfs(s);
+};
+//Normal Recursion- time Limit Exceeded and might fail for future test cases
+//Revision
+var numDecodings = function (s) {
+    let count = 0;
+    let dfs = (rem) => {
+        // console.log(rem)
+        if (rem == '0') return;
+        let n = rem.length;
+        if (n == 1 || n == 0) {
+            count++;
+            return;
+        }
+        let str = Number(rem[n - 1]);
+        str > 0 && dfs(rem.substring(0, n - 1));
+        let str2 = Number(rem[n - 2] + rem[n - 1]);
+        if (str2 > 9 && str2 <= 26) {
+            dfs(rem.substring(0, n - 2));
+        }
+
+    }
+    dfs(s);
+    return count;
+};
+
 //Normal Recursion- time Limit Exceeded and might fail for future test cases
 var numDecodings = function (s) {
     let count = 0;

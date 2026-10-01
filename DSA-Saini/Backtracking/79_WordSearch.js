@@ -42,7 +42,6 @@ var exist = function (board, word) {
 //Returing from recursion, instead of storing the value
 
 var exist = function (board, word) {
-    let result = false;
     let m = board.length;
     let n = board[0].length;
     let backtrack = (i, j, nextIndex) => {

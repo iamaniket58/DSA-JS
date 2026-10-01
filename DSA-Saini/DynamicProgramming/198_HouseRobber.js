@@ -39,10 +39,7 @@ var rob = function (nums) {
     }
     return b;
 };
-
-
-
-
+;
 //This is wrong- Started with this Recusrion
 var rob = function (nums) {
     let n = nums.length;

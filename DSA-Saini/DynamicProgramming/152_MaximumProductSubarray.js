@@ -7,14 +7,18 @@ var maxProduct = function (nums) {
     let maxProdSoFar = nums[0];
     let minProdSoFar = nums[0];
     let totalMax = nums[0];
+
     for (let i = 1; i < nums.length; i++) {
         let maxProdSoFarCopy = maxProdSoFar;
+
         maxProdSoFar = Math.max(nums[i], maxProdSoFar * nums[i], minProdSoFar * nums[i]);
         minProdSoFar = Math.min(nums[i], maxProdSoFarCopy * nums[i], minProdSoFar * nums[i]);
-        if(maxProdSoFar>totalMax){
-            totalMax=maxProdSoFar;
+        
+        if (maxProdSoFar > totalMax) {
+            totalMax = maxProdSoFar;
         }
     }
+
     return totalMax;
 };
 //Another way
