@@ -3,6 +3,45 @@
  * @param {number} amount
  * @return {number}
  */
+//Revison
+var coinChange = function (coins, amount) {
+    let arr = new Array(amount + 1).fill(Infinity);
+    arr[0] = 0;
+    //This is Optional
+    for (let coin of coins) {
+        arr[coin] = 1;
+    }
+    for (let i = 0; i <= amount; i++) {
+        if (arr[i] == Infinity) {
+            let min = Infinity;
+            for (let coin of coins) {
+                if ((i - coin) >= 0) {
+                    min = Math.min(min, arr[i - coin])
+                }
+            }
+            arr[i] = min + 1;
+        }
+    }
+    return arr[amount] == Infinity ? -1 : arr[amount];
+};
+
+//Doing same as above after removing unnecessary code
+var coinChange = function (coins, amount) {
+    let arr = new Array(amount + 1).fill(Infinity);
+    arr[0] = 0;
+    for (let i = 1; i <= amount; i++) {
+        let min = Infinity;
+        for (let coin of coins) {
+            if ((i - coin) >= 0) {
+                min = Math.min(min, arr[i - coin])
+            }
+        }
+        arr[i] = min + 1;
+
+    }
+    return arr[amount] == Infinity ? -1 : arr[amount];
+};
+
 //Sir's Solution
 var coinChange = function (coins, amount) {
     let n = coins.length;

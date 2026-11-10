@@ -64,7 +64,6 @@ var validPath = function (n, edges, source, destination) {
         map[x].push(y);
         map[y].push(x);
     }
-    console.log(map)
     let visited = new Set([source]);
     let result = false;
     let dfs = (curr) => {

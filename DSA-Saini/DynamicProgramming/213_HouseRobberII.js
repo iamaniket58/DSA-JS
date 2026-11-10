@@ -74,3 +74,21 @@ let robHelper1 = (start, end, nums) => {
     }
     return dp[end];
 }
+
+//Revision
+var rob = function (nums) {
+    if (nums.length == 1) return nums[0];
+    return Math.max(robbery(nums, 0, nums.length - 2), robbery(nums, 1, nums.length - 1));
+};
+function robbery(nums, start, end) {
+    let map = {};
+    function fn(n) {
+        if (n == start) return nums[start];
+        if (n == start + 1) return Math.max(nums[start], nums[start + 1]);
+        if (map[n] == undefined) {
+            map[n] = Math.max(fn(n - 1), fn(n - 2) + nums[n]);
+        }
+        return map[n];
+    }
+    return fn(end);
+}

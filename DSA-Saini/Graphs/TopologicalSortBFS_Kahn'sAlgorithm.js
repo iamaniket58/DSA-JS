@@ -20,6 +20,38 @@ function topologicalSortBFS(n, graph) {
     }
     return ans;
 }
+//Revision- Optimized
+function topologicalSortBFS(n, graph) {
+    let indegree = new Array(n).fill(0);
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < graph[i].length; j++) {
+            indegree[graph[i][j]]++;
+        }
+    }
+
+    let q = [];
+    for (let i = 0; i < n; i++) {
+        if (indegree[i] == 0) {
+            q.push(i);
+        }
+    }
+    let ans = [];
+    let font = 0;
+    while (font < q.length) {
+        let curr = q[font++];
+        ans.push(curr);
+        for (let n of graph[curr]) {
+            indegree[n]--;
+            if (indegree[n] == 0) q.push(n);
+        }
+
+    }
+    if(ans.length!=n){
+        console.log("Graph has cycle, Topological Sort is not possible");
+        return [];
+    }
+    return ans;
+}
 
 //Sir's Method- Enhanced SS by ChatGPT
 // n = number of vertices (0 to n-1)
@@ -68,33 +100,6 @@ function topologicalSortBFS1(n, graph) {
     return topo;
 }
 
-//This code is incorrect for this sample input
-function topologicalSortBFS2(n, graph) {
-    let q = [];
-    let ans = [];
-    let indegree = new Array(n).fill(0);
-    for (let [x, y] of graph) {
-        if (x != undefined) indegree[x]++;
-        if (y != undefined) indegree[y]++;
-    }
-    console.log(indegree)
-
-    for (let i = 0; i < n; i++) {
-        if (indegree[i] == 0) q.push(i)
-    }
-    console.log(q);
-
-    while (q.length) {
-        let curr = q.shift();
-        for (let n of graph[curr]) {
-            indegree[n]--;
-            if (indegree[n] == 0) q.push(n);
-        }
-        ans.push(curr);
-    }
-    return ans;
-}
-
 let adj = [
     [],
     [],
@@ -103,4 +108,4 @@ let adj = [
     [0, 1],
     [0, 2]
 ];
-console.log(topologicalSortBFS(6, adj))
+console.log(topologicalSortBFS2(6, adj))

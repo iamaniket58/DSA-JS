@@ -25,6 +25,31 @@ const graph = [
     [],
 ];
 // console.log(ShortestDistance(graph,0))
+function shortestDistance(n, graph, src, dest) {
+    let dist = new Array(n).fill(-1);
+    let q = [src];
+
+    dist[src] = 0;
+    let front = 0;
+
+    while (front < q.length) {
+        let curr = q[front++];
+
+        if (curr === dest) {
+            return dist[curr];
+        }
+
+        for (let neighbor of graph[curr]) {
+            if (dist[neighbor] === -1) {
+                dist[neighbor] = dist[curr] + 1;
+                q.push(neighbor);
+            }
+        }
+    }
+
+    return -1; // Destination is unreachable
+}
+
 
 //Find Path of the shortest distance between source to Destination
 function ShortestDistancePath(graph, src, destination) {

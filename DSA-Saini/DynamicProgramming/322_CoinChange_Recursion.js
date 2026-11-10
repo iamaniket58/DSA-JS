@@ -3,6 +3,26 @@
  * @param {number} amount
  * @return {number}
  */
+//Revision
+var coinChange = function (coins, amount) {
+    let map = {};
+    let recursion = (n) => {
+        if (n < 0) return Infinity;
+        if (n == 0) return 0;
+        if (map[n] == undefined) {
+            let min = Infinity;
+            for (let i = 0; i < coins.length; i++) {
+                min = Math.min(recursion(n - coins[i]), min)
+            }
+            map[n] = min + 1;
+        }
+        return map[n];
+
+    }
+    let minCoins = recursion(amount);
+    return minCoins == Infinity ? -1 : minCoins;
+};
+
 //Using DP
 var coinChange = function (coins, amount) {
     let dp = {};
@@ -149,6 +169,21 @@ var coinChange = function (coins, amount) {
         if (amount == 0) return count;
     }
     return -1;
+};
+
+var coinChange = function (coins, amount) {
+    coins.sort((a, b) => b - a);
+    let totalCoins = 0;
+    let i = 0;
+    while (amount > 0 && i < coins.length) {
+        if (amount >= coins[i]) {
+            totalCoins += Math.floor(amount / coins[i]);
+            amount = amount % coins[i];
+        }
+        i++;
+    }
+    if (amount > 0) return -1;
+    return totalCoins;
 };
 
 // Revision-Backtracking- TLE

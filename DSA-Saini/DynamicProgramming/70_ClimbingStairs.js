@@ -44,6 +44,18 @@ var climbStairs = function (n) {
     return dp[n];
 };
 
+var climbStairs = function (i) {
+    let arr = new Array(i + 1).fill(0);
+    let bt = (n) => {
+        if (n <= 2) return n;
+        if (arr[n] == 0) {
+            arr[n] = bt(n - 1) + bt(n - 2);
+        }
+        return arr[n];
+    }
+    return bt(i);
+};
+
 //Simple Recursion- Time Limit Exceeded
 var climbStairs = function (n) {
     if(n<=2)return n;

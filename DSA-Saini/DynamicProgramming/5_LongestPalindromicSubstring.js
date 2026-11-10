@@ -35,4 +35,32 @@ var longestPalindrome = function (s) {
     console.log(ans)
     return s.substring(ans[0], ans[1] + 1);
 };
+
+//Revision
+var longestPalindrome = function (s) {
+    let n = s.length;
+    let dp = Array.from({ length: n }, () => new Array(n).fill(false));
+    let ans = [0, 0];
+
+    //For length 1 and 2
+    for (let i = 0; i < n; i++) {
+        dp[i][i] = true;
+        if (i < n - 1 && s[i] == s[i + 1]) {
+            dp[i][i + 1] = true;
+            ans = [i, i + 1];
+        }
+    }
+
+    //For length 3 and above
+    for (let len = 3; len <= n; len++) {
+        for (let i = 0; i < n - len + 1; i++) {
+            if (s[i] == s[i + len - 1] && dp[i + 1][i + len - 2]) {
+                dp[i][i + len - 1] = true;
+                ans = [i, i + len - 1];
+            }
+        }
+    }
+    return s.substring(ans[0], ans[1] + 1);
+};
+
 console.log(longestPalindrome("cbbd"))

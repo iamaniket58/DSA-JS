@@ -23,6 +23,29 @@ var wordBreak = function (s, wordDict) {
     return recursion(s);
 
 };
+//Revision
+var wordBreak = function (s, wordDict) {
+    let map = {}
+    let recursion = (word) => {
+        if (map[word] != undefined) return map[word];
+        if (word == '') {
+            return true;
+        }
+        let result = false;
+        for (let i = 0; i < word.length; i++) {
+            let substrs = word.substring(0, i + 1);
+            if (wordDict.includes(substrs)) {
+                if (recursion(word.substring(i + 1, word.length))) {
+                    result = true
+                }
+            }
+        }
+        return map[word] = result;
+    }
+    return recursion(s);
+
+};
+
 //Chat GPT
 var wordBreak = function (s, wordDict) {
     let wordSet = new Set(wordDict); // for O(1) lookups

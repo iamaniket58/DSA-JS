@@ -38,6 +38,35 @@ var countSubstrings = function (s) {
 
 };
 
+//Revision
+var countSubstrings = function (s) {
+    let n = s.length;
+    let dp = Array.from({ length: n }, () => new Array(n).fill(false));
+    let count = 0;
+    //Fill true for length 1 and 2
+    for (let i = 0; i < n; i++) {
+        dp[i][i] = true;
+        count++;
+        if (i == n - 1) break;
+        if (s[i] == s[i + 1]) {
+            dp[i][i + 1] = true;
+            count++;
+        }
+    }
+
+    for (let i = 3; i <= n; i++) {
+        for (let j = 0; j < n - i + 1; j++) {
+            if (s[j] == s[j + i - 1] && dp[j + 1][j + i - 2]) {
+                dp[j][j + i - 1] = true;
+                count++;
+            }
+        }
+    }
+
+    return count;
+
+};
+
 //DP Solution-Tabulation
 var countSubstrings = function (s) {
     let dp = Array.from({ length: s.length }, () => Array(s.length).fill(false));

@@ -1,19 +1,22 @@
-var minimumOperations = function (nums) {
-    let min;
-    let count = 0;
-    while (nums.reduce((a, b) => a + b) != 0) {
-        min = Infinity;
-        count++;
-        for (let num of nums) {
-            if (num != 0) {
-                min = Math.min(num, min);
+var wordBreak = function (s, wordDict) {
+    let map = {}
+    let recursion = (word) => {
+        // if (map[word]) return map[word];
+        if (word == '') {
+            return;
+        }
+        let result = false;
+        for (let i = 0; i < word.length; i++) {
+            let substrs = word.substring(0, i + 1);
+            if (wordDict.includes(substrs)) {
+                if (recursion(word.substring(i + 1, word.length))) {
+                    result = true
+                }
             }
         }
-        for (let i = 0; i < nums.length; i++) {
-            nums[i] = nums[i] - min;
-        }
+        return result
     }
-    return count;
+    return recursion(s);
 
 };
-console.log(minimumOperations([1,5,0,3,5]))
+console.log(wordBreak("leetcode",["leet","code"]))

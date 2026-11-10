@@ -21,6 +21,24 @@ var combinationSum4 = function (nums, target) {
     }
     return backtrack(0);
 };
+//Top-Down- Remaning SUm
+var combinationSum4 = function (nums, target) {
+    let map = {};
+    let backtrack = (remsum) => {
+        if (map[remsum] == undefined) {
+            if (remsum == 0) return 1;
+            if (remsum < 0) return 0;
+            let total = 0
+            for (let i = 0; i < nums.length; i++) {
+                total += backtrack(remsum - nums[i]);
+            }
+            map[remsum] = total
+        }
+        return map[remsum];
+
+    }
+    return backtrack(target);
+};
 
 //Chat-GPT Bottom-Up
 var combinationSum4 = function (nums, target) {
